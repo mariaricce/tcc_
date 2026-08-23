@@ -1,0 +1,167 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="auth-page">
+
+    <div class="container auth-container">
+
+        <section class="auth-apresentacao">
+
+            <span class="secao-etiqueta">
+                INSTITUTO SOLIDARIZE
+            </span>
+
+            <h1>
+                Faça parte do Solidarize
+            </h1>
+
+            <p>
+                Crie sua conta para se conectar às ações e
+                iniciativas do Instituto.
+            </p>
+
+            <div class="auth-info">
+
+                <h3>
+                    Sua participação importa
+                </h3>
+
+                <p>
+                    Conheça campanhas, acompanhe nossas ações
+                    e descubra diferentes maneiras de contribuir
+                    com a comunidade.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="auth-card">
+
+            <span class="secao-etiqueta">
+                CADASTRO
+            </span>
+
+            <h2>
+                Criar conta
+            </h2>
+
+            <p class="auth-descricao">
+                Preencha seus dados para realizar o cadastro.
+            </p>
+
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/cadastro"
+                method="POST"
+                class="formulario auth-formulario"
+            >
+
+                <div class="campo">
+
+                    <label for="nome">
+                        Nome completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Crie uma senha"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                        <label for="confirmar_senha">
+                         Confirmar senha
+                        </label>
+
+                     <input
+                        type="password"
+                          id="confirmar_senha"
+                              name="confirmar_senha"
+                              placeholder="Digite a senha novamente"
+                                 minlength="6"
+                                 required
+                             >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-principal auth-btn"
+                >
+                    Criar conta
+                </button>
+
+            </form>
+
+
+            <div class="auth-rodape">
+
+                <p>
+                    Já possui uma conta?
+                </p>
+
+                <a href="/login">
+                    Entrar
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<%- include('partials/footer') %>

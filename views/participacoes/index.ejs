@@ -1,0 +1,147 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+                <p class="admin-subtitulo">
+                    Instituto Solidarize
+                </p>
+
+                <h1>Participações</h1>
+
+                <p>
+                    Gerencie a participação dos voluntários nas campanhas.
+                </p>
+            </div>
+
+            <a
+                href="/admin/participacoes/nova"
+                class="btn-principal"
+            >
+                + Nova participação
+            </a>
+
+        </div>
+
+
+        <section class="admin-pagina-card">
+
+            <% if (participacoes.length === 0) { %>
+
+                <div class="admin-vazio">
+
+                    <span>🔗</span>
+
+                    <p>
+                        Nenhuma participação cadastrada.
+                    </p>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Voluntário</th>
+                                <th>Campanha</th>
+                                <th>Data da inscrição</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <% participacoes.forEach(participacao => { %>
+
+                                <tr>
+
+                                    <td>
+                                        <%= participacao.id %>
+                                    </td>
+
+                                    <td>
+                                        <strong>
+                                            <%= participacao.voluntario %>
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        <%= participacao.campanha %>
+                                    </td>
+
+                                    <td>
+                                        <%= new Date(
+                                            participacao.data_inscricao
+                                        ).toLocaleDateString('pt-BR') %>
+                                    </td>
+
+                                    <td>
+                                        <span class="status-admin">
+                                            <%= participacao.status === 'Concluido'
+                                                ? 'Concluído'
+                                                : participacao.status %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <div class="acoes-tabela">
+
+                                            <a
+                                                href="/admin/participacoes/<%= participacao.id %>/editar"
+                                                class="btn-editar"
+                                            >
+                                                Editar
+                                            </a>
+
+                                            <form
+                                                action="/admin/participacoes/<%= participacao.id %>/excluir"
+                                                method="POST"
+                                                onsubmit="return confirm('Deseja realmente excluir esta participação?')"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn-excluir"
+                                                >
+                                                    Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            <% }) %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

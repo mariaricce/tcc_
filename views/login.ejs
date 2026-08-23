@@ -1,0 +1,132 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="auth-page">
+
+    <div class="container auth-container">
+
+        <section class="auth-apresentacao">
+
+            <span class="secao-etiqueta">
+                INSTITUTO SOLIDARIZE
+            </span>
+
+            <h1>
+                Bem-vindo de volta
+            </h1>
+
+            <p>
+                Entre na sua conta para acessar sua área no
+                Instituto Solidarize.
+            </p>
+
+            <div class="auth-info">
+
+                <h3>
+                    Faça parte dessa rede
+                </h3>
+
+                <p>
+                    Acompanhe nossas campanhas, conheça formas
+                    de ajudar e participe das ações promovidas
+                    pelo Instituto.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="auth-card">
+
+            <span class="secao-etiqueta">
+                ACESSO
+            </span>
+
+            <h2>
+                Entrar
+            </h2>
+
+            <p class="auth-descricao">
+                Informe seu e-mail e sua senha.
+            </p>
+
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/login"
+                method="POST"
+                class="formulario auth-formulario"
+            >
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-principal auth-btn"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+
+            <div class="auth-rodape">
+
+                <p>
+                    Ainda não possui uma conta?
+                </p>
+
+                <a href="/cadastro">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<%- include('partials/footer') %>

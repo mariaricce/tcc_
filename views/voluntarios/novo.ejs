@@ -1,0 +1,224 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Voluntários
+                </p>
+
+                <h1>Novo Voluntário</h1>
+
+                <p>
+                    Cadastre um novo voluntário no Instituto Solidarize.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/voluntarios"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/voluntarios/novo"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Nome *</label>
+
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="Nome completo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>E-mail *</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="exemplo@email.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Telefone</label>
+
+                    <input
+                        type="text"
+                        name="telefone"
+                        placeholder="(00) 00000-0000"
+                    >
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Área de interesse</label>
+
+                        <select name="area_interesse">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Campanhas">
+                                Campanhas
+                            </option>
+
+                            <option value="Arrecadações">
+                                Arrecadações
+                            </option>
+
+                            <option value="Eventos">
+                                Eventos
+                            </option>
+
+                            <option value="Atendimento">
+                                Atendimento
+                            </option>
+
+                            <option value="Divulgação">
+                                Divulgação
+                            </option>
+
+                            <option value="Outros">
+                                Outros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>Disponibilidade</label>
+
+                        <select name="disponibilidade">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Manhã">
+                                Manhã
+                            </option>
+
+                            <option value="Tarde">
+                                Tarde
+                            </option>
+
+                            <option value="Noite">
+                                Noite
+                            </option>
+
+                            <option value="Finais de semana">
+                                Finais de semana
+                            </option>
+
+                            <option value="Flexível">
+                                Flexível
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Status *</label>
+
+                    <select
+                        name="status"
+                        required
+                    >
+
+                        <option value="Ativo">
+                            Ativo
+                        </option>
+
+                        <option value="Inativo">
+                            Inativo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/voluntarios"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Cadastrar voluntário
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

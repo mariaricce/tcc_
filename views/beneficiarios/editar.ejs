@@ -1,0 +1,182 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Beneficiários
+                </p>
+
+                <h1>Editar Beneficiário</h1>
+
+                <p>
+                    Atualize as informações do beneficiário.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/beneficiarios"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/beneficiarios/<%= beneficiario.id %>/editar"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="nome">
+                            Nome completo *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            value="<%= beneficiario.nome %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="telefone">
+                            Telefone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="telefone"
+                            name="telefone"
+                            value="<%= beneficiario.telefone || '' %>"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="endereco">
+                        Endereço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="endereco"
+                        name="endereco"
+                        value="<%= beneficiario.endereco || '' %>"
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="observacoes">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacoes"
+                        name="observacoes"
+                        rows="5"
+                    ><%= beneficiario.observacoes || '' %></textarea>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="status">
+                        Status *
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                        required
+                    >
+
+                        <option
+                            value="Ativo"
+                            <%= beneficiario.status === 'Ativo'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Ativo
+                        </option>
+
+                        <option
+                            value="Inativo"
+                            <%= beneficiario.status === 'Inativo'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Inativo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/beneficiarios"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar alterações
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="usuario-painel">
+
+    <section class="usuario-boas-vindas">
+
+        <div class="container">
+
+            <div class="usuario-boas-conteudo">
+
+                <div>
+
+                    <span class="usuario-etiqueta">
+                        INSTITUTO SOLIDARIZE
+                    </span>
+
+                    <h1>
+                        Olá, <%= usuario.nome %>!
+                    </h1>
+
+                    <p>
+                        Seja bem-vindo à sua área no Instituto Solidarize.
+                        Aqui você pode acompanhar nossas campanhas e descobrir
+                        maneiras de participar das nossas ações.
+                    </p>
+
+                </div>
+
+
+                <div class="usuario-avatar-grande">
+                    <%= usuario.nome.charAt(0).toUpperCase() %>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="usuario-conteudo">
+
+        <div class="container">
+
+            <div class="usuario-card-conta">
+
+                <div class="usuario-card-titulo">
+
+                    <div>
+                        <h2>Minha Conta</h2>
+
+                        <p>
+                            Informações do seu cadastro.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="usuario-dados">
+
+                    <div class="usuario-dado">
+
+                        <span>Nome</span>
+
+                        <strong>
+                            <%= usuario.nome %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="usuario-dado">
+
+                        <span>E-mail</span>
+
+                        <strong>
+                            <%= usuario.email %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="usuario-dado">
+
+                        <span>Tipo de conta</span>
+
+                        <strong>
+                            Usuário
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="usuario-secao">
+
+                <div class="usuario-secao-titulo">
+
+                    <h2>
+                        O que você pode fazer?
+                    </h2>
+
+                    <p>
+                        Conheça algumas maneiras de participar
+                        das ações do Instituto.
+                    </p>
+
+                </div>
+
+
+                <div class="usuario-acoes">
+
+                    <a
+                        href="/campanhas"
+                        class="usuario-acao-card"
+                    >
+
+                        <span class="secao-etiqueta">
+                            CAMPANHAS
+                        </span>
+
+                        <h3>
+                            Conheça nossas campanhas
+                        </h3>
+
+                        <p>
+                            Conheça as campanhas que estão sendo
+                            realizadas pelo Instituto.
+                        </p>
+
+                        <span>
+                            Ver campanhas
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/quero-ser-voluntario"
+                        class="usuario-acao-card"
+                    >
+
+                        <span class="secao-etiqueta">
+                            VOLUNTARIADO
+                        </span>
+
+                        <h3>
+                            Seja voluntário
+                        </h3>
+
+                        <p>
+                            Cadastre-se para participar das ações
+                            e ajudar nossa comunidade.
+                        </p>
+
+                        <span>
+                            Quero participar
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/como-ajudar"
+                        class="usuario-acao-card"
+                    >
+
+                        <span class="secao-etiqueta">
+                            PARTICIPAÇÃO
+                        </span>
+
+                        <h3>
+                            Como ajudar
+                        </h3>
+
+                        <p>
+                            Veja outras formas de contribuir
+                            com o Instituto Solidarize.
+                        </p>
+
+                        <span>
+                            Saiba mais
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/contato"
+                        class="usuario-acao-card"
+                    >
+
+                        <span class="secao-etiqueta">
+                            CONTATO
+                        </span>
+
+                        <h3>
+                            Entre em contato
+                        </h3>
+
+                        <p>
+                            Fale com nossa equipe caso tenha
+                            alguma dúvida.
+                        </p>
+
+                        <span>
+                            Falar conosco
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="usuario-rodape-painel">
+
+                <div>
+
+                    <h3>
+                        Deseja sair da sua conta?
+                    </h3>
+
+                    <p>
+                        Você poderá entrar novamente utilizando
+                        seu e-mail e senha.
+                    </p>
+
+                </div>
+
+
+                <form
+                    action="/logout"
+                    method="POST"
+                >
+
+                    <button
+                        type="submit"
+                        class="btn-sair-conta"
+                    >
+                        Sair da conta
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,156 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Instituto Solidarize
+                </p>
+
+                <h1>Atendimentos</h1>
+
+                <p>
+                    Consulte e gerencie os atendimentos realizados aos beneficiários.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/atendimentos/novo"
+                class="btn-principal"
+            >
+                + Novo atendimento
+            </a>
+
+        </div>
+
+
+        <section class="admin-pagina-card">
+
+            <% if (atendimentos.length === 0) { %>
+
+                <div class="admin-vazio">
+
+                    <span>📝</span>
+
+                    <p>
+                        Nenhum atendimento cadastrado.
+                    </p>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Beneficiário</th>
+                                <th>Campanha</th>
+                                <th>Atendimento</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <% atendimentos.forEach(atendimento => { %>
+
+                                <tr>
+
+                                    <td>
+                                        <%= atendimento.id %>
+                                    </td>
+
+                                    <td>
+                                        <strong>
+                                            <%= atendimento.beneficiario %>
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        <%= atendimento.campanha || 'Sem campanha' %>
+                                    </td>
+
+                                    <td>
+                                        <%= atendimento.tipo_atendimento %>
+                                    </td>
+
+                                    <td>
+                                        <%= atendimento.data_formatada %>
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status-admin">
+                                            <%= atendimento.status %>
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <div class="acoes-tabela">
+
+                                            <a
+                                                href="/admin/atendimentos/<%= atendimento.id %>/editar"
+                                                class="btn-editar"
+                                            >
+                                                Editar
+                                            </a>
+
+
+                                            <form
+                                                action="/admin/atendimentos/<%= atendimento.id %>/excluir"
+                                                method="POST"
+                                                onsubmit="return confirm('Deseja realmente excluir este atendimento?')"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn-excluir"
+                                                >
+                                                    Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            <% }) %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

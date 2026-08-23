@@ -1,0 +1,235 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Voluntários
+                </p>
+
+                <h1>Editar Voluntário</h1>
+
+                <p>
+                    Atualize as informações do voluntário.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/voluntarios"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/voluntarios/<%= voluntario.id %>/editar"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Nome *</label>
+
+                        <input
+                            type="text"
+                            name="nome"
+                            value="<%= voluntario.nome %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>E-mail *</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="<%= voluntario.email %>"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Telefone</label>
+
+                    <input
+                        type="text"
+                        name="telefone"
+                        value="<%= voluntario.telefone || '' %>"
+                    >
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Área de interesse</label>
+
+                        <select name="area_interesse">
+
+                            <option
+                                value=""
+                                <%= !voluntario.area_interesse ? 'selected' : '' %>
+                            >
+                                Selecione
+                            </option>
+
+                            <% [
+                                'Campanhas',
+                                'Arrecadações',
+                                'Eventos',
+                                'Atendimento',
+                                'Divulgação',
+                                'Outros'
+                            ].forEach(area => { %>
+
+                                <option
+                                    value="<%= area %>"
+                                    <%= voluntario.area_interesse === area
+                                        ? 'selected'
+                                        : '' %>
+                                >
+                                    <%= area %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>Disponibilidade</label>
+
+                        <select name="disponibilidade">
+
+                            <option
+                                value=""
+                                <%= !voluntario.disponibilidade ? 'selected' : '' %>
+                            >
+                                Selecione
+                            </option>
+
+                            <% [
+                                'Manhã',
+                                'Tarde',
+                                'Noite',
+                                'Finais de semana',
+                                'Flexível'
+                            ].forEach(disponibilidade => { %>
+
+                                <option
+                                    value="<%= disponibilidade %>"
+                                    <%= voluntario.disponibilidade === disponibilidade
+                                        ? 'selected'
+                                        : '' %>
+                                >
+                                    <%= disponibilidade %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Status *</label>
+
+                    <select
+                        name="status"
+                        required
+                    >
+
+                        <option
+                            value="Ativo"
+                            <%= voluntario.status === 'Ativo'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Ativo
+                        </option>
+
+                        <option
+                            value="Inativo"
+                            <%= voluntario.status === 'Inativo'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Inativo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/voluntarios"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar alterações
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

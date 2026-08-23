@@ -1,0 +1,287 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Doações
+                </p>
+
+                <h1>Editar Doação</h1>
+
+                <p>
+                    Atualize as informações da doação.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/doacoes"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/doacoes/<%= doacao.id %>/editar"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="doador_nome">
+                            Nome do doador *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="doador_nome"
+                            name="doador_nome"
+                            value="<%= doacao.doador_nome %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="tipo">
+                            Tipo de doação *
+                        </label>
+
+                        <select
+                            id="tipo"
+                            name="tipo"
+                            required
+                        >
+
+                            <% [
+                                'Dinheiro',
+                                'Alimentos',
+                                'Roupas',
+                                'Material escolar',
+                                'Higiene',
+                                'Outros'
+                            ].forEach(tipo => { %>
+
+                                <option
+                                    value="<%= tipo %>"
+                                    <%= doacao.tipo === tipo ? 'selected' : '' %>
+                                >
+                                    <%= tipo %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="descricao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        rows="4"
+                    ><%= doacao.descricao || '' %></textarea>
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="quantidade">
+                            Quantidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantidade"
+                            name="quantidade"
+                            min="1"
+                            value="<%= doacao.quantidade || '' %>"
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="valor">
+                            Valor em R$
+                        </label>
+
+                        <input
+                            type="number"
+                            id="valor"
+                            name="valor"
+                            min="0"
+                            step="0.01"
+                            value="<%= doacao.valor || '' %>"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="data_doacao">
+                            Data da doação *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data_doacao"
+                            name="data_doacao"
+                            value="<%= doacao.data_doacao %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="campanha_id">
+                            Campanha
+                        </label>
+
+                        <select
+                            id="campanha_id"
+                            name="campanha_id"
+                        >
+
+                            <option value="">
+                                Sem campanha específica
+                            </option>
+
+                            <% campanhas.forEach(campanha => { %>
+
+                                <option
+                                    value="<%= campanha.id %>"
+                                    <%= Number(doacao.campanha_id) === Number(campanha.id)
+                                        ? 'selected'
+                                        : '' %>
+                                >
+                                    <%= campanha.titulo %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="status">
+                        Status *
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                        required
+                    >
+
+                        <option
+                            value="Recebida"
+                            <%= doacao.status === 'Recebida'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Recebida
+                        </option>
+
+                        <option
+                            value="Pendente"
+                            <%= doacao.status === 'Pendente'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Pendente
+                        </option>
+
+                        <option
+                            value="Cancelada"
+                            <%= doacao.status === 'Cancelada'
+                                ? 'selected'
+                                : '' %>
+                        >
+                            Cancelada
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/doacoes"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar alterações
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

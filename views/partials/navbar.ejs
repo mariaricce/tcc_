@@ -1,0 +1,74 @@
+<header class="navbar">
+
+    <div class="container navbar-container">
+
+        <a href="/" class="logo">
+            Instituto Solidarize
+        </a>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/sobre">Sobre</a>
+
+            <a href="/campanhas">Campanhas</a>
+
+            <a href="/como-ajudar">Como Ajudar</a>
+
+            <a href="/contato">Contato</a>
+
+            <button
+                     type="button"
+                    id="toggle-tema"
+                     class="btn-tema"
+            >
+                       Modo escuro
+            </button>
+
+
+            <% if (!usuarioLogado) { %>
+
+                <a href="/login" class="btn-login">
+                    Login
+                </a>
+
+            <% } else { %>
+
+                <% if (usuarioLogado.tipo === 'admin') { %>
+
+                    <a href="/admin" class="link-painel">
+                        Painel Admin
+                    </a>
+
+                <% } else { %>
+
+                    <a href="/usuario" class="link-painel">
+                        Minha Conta
+                    </a>
+
+                <% } %>
+
+
+                <form
+                    action="/logout"
+                    method="POST"
+                    class="form-logout-nav"
+                >
+
+                    <button
+                        type="submit"
+                        class="btn-sair-nav"
+                    >
+                        Sair
+                    </button>
+
+                </form>
+
+            <% } %>
+
+        </nav>
+
+    </div>
+
+</header>

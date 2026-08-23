@@ -1,0 +1,512 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Instituto Solidarize
+                </p>
+
+                <h1>
+                    Painel Administrativo
+                </h1>
+
+                <p>
+                    Bem-vindo,
+                    <strong><%= usuario.nome %></strong>.
+                </p>
+
+            </div>
+
+
+            <div class="admin-usuario">
+
+                <div class="admin-avatar">
+                    <%= usuario.nome.charAt(0).toUpperCase() %>
+                </div>
+
+                <div>
+
+                    <strong>
+                        <%= usuario.nome %>
+                    </strong>
+
+                    <span>
+                        Administrador
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <section class="admin-dashboard">
+
+            <div class="dashboard-titulo-principal">
+
+                <span class="secao-etiqueta">
+                    VISÃO GERAL
+                </span>
+
+                <h2>
+                    Resumo do sistema
+                </h2>
+
+                <p>
+                    Acompanhe os principais dados do Instituto Solidarize.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+
+                <a
+                    href="/admin/campanhas"
+                    class="dashboard-card dashboard-link"
+                >
+
+                    <div>
+
+                        <span class="dashboard-card-label">
+                            Campanhas
+                        </span>
+
+                        <h3>
+                            <%= totais.campanhas %>
+                        </h3>
+
+                        <p>
+                            Campanhas ativas
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/voluntarios"
+                    class="dashboard-card dashboard-link"
+                >
+
+                    <div>
+
+                        <span class="dashboard-card-label">
+                            Voluntários
+                        </span>
+
+                        <h3>
+                            <%= totais.voluntarios %>
+                        </h3>
+
+                        <p>
+                            Pessoas cadastradas
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/beneficiarios"
+                    class="dashboard-card dashboard-link"
+                >
+
+                    <div>
+
+                        <span class="dashboard-card-label">
+                            Beneficiários
+                        </span>
+
+                        <h3>
+                            <%= totais.beneficiarios %>
+                        </h3>
+
+                        <p>
+                            Beneficiários cadastrados
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/doacoes"
+                    class="dashboard-card dashboard-link"
+                >
+
+                    <div>
+
+                        <span class="dashboard-card-label">
+                            Doações
+                        </span>
+
+                        <h3>
+                            <%= totais.doacoes %>
+                        </h3>
+
+                        <p>
+                            Doações registradas
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="dashboard-secao">
+
+                <div class="dashboard-titulo-linha">
+
+                    <div>
+
+                        <span class="secao-etiqueta">
+                            GERENCIAMENTO
+                        </span>
+
+                        <h2>
+                            Acesso rápido
+                        </h2>
+
+                        <p>
+                            Acesse as principais funções administrativas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-acoes-grid">
+
+                    <a href="/admin/campanhas/nova">
+
+                        <div>
+                            <strong>
+                                Nova campanha
+                            </strong>
+
+                            <small>
+                                Cadastrar uma nova campanha
+                            </small>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/admin/voluntarios/novo">
+
+                        <div>
+                            <strong>
+                                Novo voluntário
+                            </strong>
+
+                            <small>
+                                Cadastrar um novo voluntário
+                            </small>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/admin/beneficiarios/novo">
+
+                        <div>
+                            <strong>
+                                Novo beneficiário
+                            </strong>
+
+                            <small>
+                                Cadastrar um beneficiário
+                            </small>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/admin/doacoes/nova">
+
+                        <div>
+                            <strong>
+                                Nova doação
+                            </strong>
+
+                            <small>
+                                Registrar uma nova doação
+                            </small>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/admin/participacoes/nova">
+
+                        <div>
+                            <strong>
+                                Nova participação
+                            </strong>
+
+                            <small>
+                                Vincular voluntário e campanha
+                            </small>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/admin/atendimentos/novo">
+
+                        <div>
+                            <strong>
+                                Novo atendimento
+                            </strong>
+
+                            <small>
+                                Registrar um atendimento
+                            </small>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-secao">
+
+                <div class="dashboard-titulo-linha">
+
+                    <div>
+
+                        <span class="secao-etiqueta">
+                            DOAÇÕES
+                        </span>
+
+                        <h2>
+                            Últimas doações
+                        </h2>
+
+                        <p>
+                            Doações registradas recentemente.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="/admin/doacoes"
+                        class="link-ver-todos"
+                    >
+                        Ver todas
+                    </a>
+
+                </div>
+
+
+                <% if (ultimasDoacoes.length === 0) { %>
+
+                    <div class="admin-vazio">
+
+                        <h3>
+                            Nenhuma doação cadastrada
+                        </h3>
+
+                        <p>
+                            As doações registradas aparecerão aqui.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="tabela-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Doador</th>
+                                    <th>Tipo</th>
+                                    <th>Valor</th>
+                                    <th>Data</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% ultimasDoacoes.forEach(doacao => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= doacao.doador_nome %>
+                                        </td>
+
+                                        <td>
+                                            <%= doacao.tipo %>
+                                        </td>
+
+                                        <td>
+
+                                            <% if (doacao.valor !== null) { %>
+
+                                                R$
+                                                <%= Number(doacao.valor)
+                                                    .toFixed(2)
+                                                    .replace('.', ',') %>
+
+                                            <% } else { %>
+
+                                                -
+
+                                            <% } %>
+
+                                        </td>
+
+                                        <td>
+
+                                            <%= new Date(
+                                                doacao.data_doacao
+                                            ).toLocaleDateString('pt-BR') %>
+
+                                        </td>
+
+                                    </tr>
+
+                                <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+
+            <div class="dashboard-secao">
+
+                <div class="dashboard-titulo-linha">
+
+                    <div>
+
+                        <span class="secao-etiqueta">
+                            VOLUNTÁRIOS
+                        </span>
+
+                        <h2>
+                            Últimos voluntários
+                        </h2>
+
+                        <p>
+                            Pessoas cadastradas recentemente.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="/admin/voluntarios"
+                        class="link-ver-todos"
+                    >
+                        Ver todos
+                    </a>
+
+                </div>
+
+
+                <% if (ultimosVoluntarios.length === 0) { %>
+
+                    <div class="admin-vazio">
+
+                        <h3>
+                            Nenhum voluntário cadastrado
+                        </h3>
+
+                        <p>
+                            Os novos voluntários aparecerão aqui.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="tabela-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Status</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% ultimosVoluntarios.forEach(voluntario => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= voluntario.nome %>
+                                        </td>
+
+                                        <td>
+                                            <%= voluntario.email %>
+                                        </td>
+
+                                        <td>
+
+                                            <span class="status-admin">
+                                                <%= voluntario.status %>
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+
+                                <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Participações
+                </p>
+
+                <h1>Nova Participação</h1>
+
+                <p>
+                    Vincule um voluntário a uma campanha.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/participacoes"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/participacoes/nova"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="voluntario_id">
+                            Voluntário *
+                        </label>
+
+                        <select
+                            id="voluntario_id"
+                            name="voluntario_id"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione um voluntário
+                            </option>
+
+                            <% voluntarios.forEach(voluntario => { %>
+
+                                <option value="<%= voluntario.id %>">
+                                    <%= voluntario.nome %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="campanha_id">
+                            Campanha *
+                        </label>
+
+                        <select
+                            id="campanha_id"
+                            name="campanha_id"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione uma campanha
+                            </option>
+
+                            <% campanhas.forEach(campanha => { %>
+
+                                <option value="<%= campanha.id %>">
+                                    <%= campanha.titulo %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="status">
+                        Status *
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                        required
+                    >
+
+                        <option value="Inscrito">
+                            Inscrito
+                        </option>
+
+                        <option value="Participando">
+                            Participando
+                        </option>
+
+                        <option value="Concluido">
+                            Concluído
+                        </option>
+
+                        <option value="Cancelado">
+                            Cancelado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/participacoes"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Cadastrar participação
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

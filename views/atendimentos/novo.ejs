@@ -1,0 +1,250 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Atendimentos
+                </p>
+
+                <h1>Novo Atendimento</h1>
+
+                <p>
+                    Registre um novo atendimento realizado pelo Instituto Solidarize.
+                </p>
+
+            </div>
+
+            <a
+                href="/admin/atendimentos"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (typeof erro !== 'undefined' && erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/atendimentos/novo"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="beneficiario_id">
+                            Beneficiário *
+                        </label>
+
+                        <select
+                            id="beneficiario_id"
+                            name="beneficiario_id"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione um beneficiário
+                            </option>
+
+                            <% beneficiarios.forEach(beneficiario => { %>
+
+                                <option value="<%= beneficiario.id %>">
+                                    <%= beneficiario.nome %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="campanha_id">
+                            Campanha
+                        </label>
+
+                        <select
+                            id="campanha_id"
+                            name="campanha_id"
+                        >
+
+                            <option value="">
+                                Sem campanha específica
+                            </option>
+
+                            <% campanhas.forEach(campanha => { %>
+
+                                <option value="<%= campanha.id %>">
+                                    <%= campanha.titulo %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label for="tipo_atendimento">
+                            Tipo de atendimento *
+                        </label>
+
+                        <select
+                            id="tipo_atendimento"
+                            name="tipo_atendimento"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Cesta básica">
+                                Cesta básica
+                            </option>
+
+                            <option value="Roupas">
+                                Roupas
+                            </option>
+
+                            <option value="Material escolar">
+                                Material escolar
+                            </option>
+
+                            <option value="Higiene">
+                                Higiene
+                            </option>
+
+                            <option value="Orientação">
+                                Orientação
+                            </option>
+
+                            <option value="Outro">
+                                Outro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="data_atendimento">
+                            Data do atendimento *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data_atendimento"
+                            name="data_atendimento"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="descricao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        rows="5"
+                        placeholder="Descreva o atendimento realizado"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="status">
+                        Status *
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                        required
+                    >
+
+                        <option value="Realizado">
+                            Realizado
+                        </option>
+
+                        <option value="Agendado">
+                            Agendado
+                        </option>
+
+                        <option value="Cancelado">
+                            Cancelado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/atendimentos"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Registrar atendimento
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

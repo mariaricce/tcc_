@@ -1,0 +1,189 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="pagina">
+
+    <section class="pagina-topo">
+
+        <div class="container">
+
+            <h1>Quero ser voluntário </h1>
+
+            <p>
+                Faça parte das ações do
+                Instituto Solidarize.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="conteudo-pagina">
+
+        <div class="container">
+
+
+            <% if (sucesso) { %>
+
+                <div class="mensagem sucesso">
+
+                    Cadastro realizado com sucesso!
+                    Obrigado por querer fazer parte
+                    do Instituto Solidarize. 
+
+                </div>
+
+            <% } %>
+
+
+            <% if (erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/quero-ser-voluntario"
+                method="POST"
+                class="formulario"
+            >
+
+
+                <div class="campo">
+
+                    <label>Nome *</label>
+
+                    <input
+                        type="text"
+                        name="nome"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>E-mail *</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Telefone</label>
+
+                    <input
+                        type="text"
+                        name="telefone"
+                        placeholder="(00) 00000-0000"
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>
+                        Área de interesse
+                    </label>
+
+                    <select name="area_interesse">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Campanhas">
+                            Campanhas
+                        </option>
+
+                        <option value="Arrecadações">
+                            Arrecadações
+                        </option>
+
+                        <option value="Eventos">
+                            Eventos
+                        </option>
+
+                        <option value="Atendimento">
+                            Atendimento
+                        </option>
+
+                        <option value="Divulgação">
+                            Divulgação
+                        </option>
+
+                        <option value="Outros">
+                            Outros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>
+                        Disponibilidade
+                    </label>
+
+                    <select name="disponibilidade">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Manhã">
+                            Manhã
+                        </option>
+
+                        <option value="Tarde">
+                            Tarde
+                        </option>
+
+                        <option value="Noite">
+                            Noite
+                        </option>
+
+                        <option value="Finais de semana">
+                            Finais de semana
+                        </option>
+
+                        <option value="Flexível">
+                            Flexível
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-principal"
+                >
+                    Quero ser voluntário
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+<%- include('../partials/footer') %>

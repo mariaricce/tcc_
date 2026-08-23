@@ -1,0 +1,248 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<main class="campanhas-page">
+
+    <section class="pagina-topo">
+
+        <div class="container">
+
+            <span class="secao-etiqueta">
+                NOSSAS AÇÕES
+            </span>
+
+            <h1>
+                Campanhas
+            </h1>
+
+            <p>
+                Conheça as campanhas realizadas pelo Instituto Solidarize
+                e descubra como você pode contribuir.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="campanhas-publicas">
+
+        <div class="container">
+
+            <div class="campanhas-cabecalho">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        CAMPANHAS ATIVAS
+                    </span>
+
+                    <h2>
+                        Faça parte das nossas ações
+                    </h2>
+
+                    <p>
+                        Cada campanha representa uma oportunidade de
+                        contribuir com pessoas e famílias da comunidade.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <% if (campanhas.length === 0) { %>
+
+                <div class="campanhas-vazio">
+
+                    <h3>
+                        Nenhuma campanha ativa no momento
+                    </h3>
+
+                    <p>
+                        Novas campanhas serão divulgadas aqui.
+                        Acompanhe o Instituto Solidarize para conhecer
+                        nossas próximas ações.
+                    </p>
+
+                    <a
+                        href="/como-ajudar"
+                        class="btn-principal"
+                    >
+                        Veja como ajudar
+                    </a>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="campanhas-grid">
+
+                    <% campanhas.forEach(campanha => { %>
+
+                        <article class="campanha-publica-card">
+
+                            <div class="campanha-card-topo">
+
+                                <span class="campanha-status">
+                                    <%= campanha.status %>
+                                </span>
+
+                                <span class="campanha-id">
+                                    Campanha #<%= campanha.id %>
+                                </span>
+
+                            </div>
+
+
+                            <h3>
+                                <%= campanha.titulo %>
+                            </h3>
+
+
+                            <p class="campanha-descricao">
+                                <%= campanha.descricao %>
+                            </p>
+
+
+                            <div class="campanha-informacoes">
+
+                                <div>
+
+                                    <span>
+                                        Início
+                                    </span>
+
+                                    <strong>
+                                        <%= new Date(
+                                            campanha.data_inicio
+                                        ).toLocaleDateString('pt-BR') %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Término
+                                    </span>
+
+                                    <strong>
+
+                                        <% if (campanha.data_fim) { %>
+
+                                            <%= new Date(
+                                                campanha.data_fim
+                                            ).toLocaleDateString('pt-BR') %>
+
+                                        <% } else { %>
+
+                                            Não definido
+
+                                        <% } %>
+
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Meta
+                                    </span>
+
+                                    <strong>
+
+                                        <% if (campanha.meta) { %>
+
+                                            R$
+                                            <%= Number(campanha.meta)
+                                                .toFixed(2)
+                                                .replace('.', ',') %>
+
+                                        <% } else { %>
+
+                                            Não definida
+
+                                        <% } %>
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campanha-card-rodape">
+
+                                <a
+                                    href="/como-ajudar"
+                                    class="btn-principal"
+                                >
+                                    Quero ajudar
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </section>
+
+
+    <section class="campanhas-chamada">
+
+        <div class="container">
+
+            <div class="campanhas-chamada-box">
+
+                <span class="secao-etiqueta">
+                    PARTICIPE
+                </span>
+
+                <h2>
+                    Sua contribuição faz diferença
+                </h2>
+
+                <p>
+                    Além de apoiar nossas campanhas, você pode participar
+                    como voluntário, realizar doações ou ajudar divulgando
+                    as ações do Instituto.
+                </p>
+
+                <div class="hero-botoes">
+
+                    <a
+                        href="/como-ajudar"
+                        class="btn-principal"
+                    >
+                        Como ajudar
+                    </a>
+
+                    <a
+                        href="/quero-ser-voluntario"
+                        class="btn-secundario"
+                    >
+                        Seja voluntário
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,143 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+                <p class="admin-subtitulo">
+                    Instituto Solidarize
+                </p>
+
+                <h1>Beneficiários</h1>
+
+                <p>
+                    Consulte e gerencie as pessoas beneficiadas pela instituição.
+                </p>
+            </div>
+
+            <a
+                href="/admin/beneficiarios/novo"
+                class="btn-principal"
+            >
+                + Novo beneficiário
+            </a>
+
+        </div>
+
+
+        <section class="admin-pagina-card">
+
+            <% if (beneficiarios.length === 0) { %>
+
+                <div class="admin-vazio">
+
+                    <span>👥</span>
+
+                    <p>
+                        Nenhum beneficiário cadastrado.
+                    </p>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Endereço</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <% beneficiarios.forEach(beneficiario => { %>
+
+                                <tr>
+
+                                    <td>
+                                        <%= beneficiario.id %>
+                                    </td>
+
+                                    <td>
+                                        <strong>
+                                            <%= beneficiario.nome %>
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        <%= beneficiario.telefone || '-' %>
+                                    </td>
+
+                                    <td>
+                                        <%= beneficiario.endereco || '-' %>
+                                    </td>
+
+                                    <td>
+                                        <span class="status-admin">
+                                            <%= beneficiario.status %>
+                                        </span>
+                                    </td>
+
+                                    <td>
+
+                                        <div class="acoes-tabela">
+
+                                            <a
+                                                href="/admin/beneficiarios/<%= beneficiario.id %>/editar"
+                                                class="btn-editar"
+                                            >
+                                                Editar
+                                            </a>
+
+                                            <form
+                                                action="/admin/beneficiarios/<%= beneficiario.id %>/excluir"
+                                                method="POST"
+                                                onsubmit="return confirm('Deseja realmente excluir este beneficiário?')"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn-excluir"
+                                                >
+                                                    Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            <% }) %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

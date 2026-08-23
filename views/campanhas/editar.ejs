@@ -1,0 +1,198 @@
+<%- include('../partials/header') %>
+
+<div class="admin-layout">
+
+    <%- include('../partials/admin-sidebar') %>
+
+    <main class="admin-conteudo">
+
+        <div class="admin-cabecalho">
+
+            <div>
+
+                <p class="admin-subtitulo">
+                    Campanhas
+                </p>
+
+                <h1>Editar Campanha</h1>
+
+                <p>
+                    Altere as informações da campanha.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/admin/campanhas"
+                class="btn-secundario"
+            >
+                ← Voltar
+            </a>
+
+        </div>
+
+
+        <section class="admin-form-card">
+
+            <% if (erro) { %>
+
+                <div class="mensagem erro">
+                    <%= erro %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/admin/campanhas/<%= campanha.id %>/editar"
+                method="POST"
+                class="formulario admin-formulario"
+            >
+
+                <div class="campo">
+
+                    <label>Título *</label>
+
+                    <input
+                        type="text"
+                        name="titulo"
+                        value="<%= campanha.titulo %>"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Descrição *</label>
+
+                    <textarea
+                        name="descricao"
+                        rows="5"
+                        required
+                    ><%= campanha.descricao %></textarea>
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Data de início *</label>
+
+                        <input
+                            type="date"
+                            name="data_inicio"
+                            value="<%= campanha.data_inicio %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>Data de término</label>
+
+                        <input
+                            type="date"
+                            name="data_fim"
+                            value="<%= campanha.data_fim || '' %>"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-grid">
+
+                    <div class="campo">
+
+                        <label>Meta em R$</label>
+
+                        <input
+                            type="number"
+                            name="meta"
+                            step="0.01"
+                            min="0"
+                            value="<%= campanha.meta || '' %>"
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label>Status *</label>
+
+                        <select
+                            name="status"
+                            required
+                        >
+
+                            <option
+                                value="Ativa"
+                                <%= campanha.status === 'Ativa'
+                                    ? 'selected'
+                                    : '' %>
+                            >
+                                Ativa
+                            </option>
+
+                            <option
+                                value="Pausada"
+                                <%= campanha.status === 'Pausada'
+                                    ? 'selected'
+                                    : '' %>
+                            >
+                                Pausada
+                            </option>
+
+                            <option
+                                value="Encerrada"
+                                <%= campanha.status === 'Encerrada'
+                                    ? 'selected'
+                                    : '' %>
+                            >
+                                Encerrada
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-acoes">
+
+                    <a
+                        href="/admin/campanhas"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar alterações
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
