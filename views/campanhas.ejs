@@ -4,33 +4,77 @@
 
 <main class="campanhas-page">
 
-    <section class="pagina-topo">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="campanhas-hero">
 
-            <span class="secao-etiqueta">
-                NOSSAS AÇÕES
-            </span>
+        <div class="container campanhas-hero-grid">
 
-            <h1>
-                Campanhas
-            </h1>
+            <div class="campanhas-hero-conteudo">
 
-            <p>
-                Conheça as campanhas realizadas pelo Instituto Solidarize
-                e descubra como você pode contribuir.
-            </p>
+                <span class="secao-etiqueta">
+                    NOSSAS AÇÕES
+                </span>
+
+                <h1>
+                    Campanhas que transformam
+                    <span>solidariedade em ação</span>
+                </h1>
+
+                <p>
+                    Conheça as iniciativas realizadas pelo
+                    Instituto Solidarize e descubra como sua
+                    contribuição pode ajudar pessoas e famílias
+                    da nossa comunidade.
+                </p>
+
+                <a
+                    href="#campanhas-ativas"
+                    class="btn-principal"
+                >
+                    Ver campanhas ativas
+                </a>
+
+            </div>
+
+
+            <div class="campanhas-hero-destaque">
+
+                <span class="campanhas-hero-etiqueta">
+                    PARTICIPE
+                </span>
+
+                <h2>
+                    Cada contribuição aproxima uma campanha da sua meta
+                </h2>
+
+                <p>
+                    Escolha uma ação, acompanhe o progresso
+                    da arrecadação e contribua diretamente
+                    pelo site.
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <section class="campanhas-publicas">
+    <!-- =====================================================
+         CAMPANHAS ATIVAS
+    ====================================================== -->
+
+    <section
+        class="campanhas-publicas campanhas-publicas-nova"
+        id="campanhas-ativas"
+    >
 
         <div class="container">
 
-            <div class="campanhas-cabecalho">
+            <div class="campanhas-cabecalho campanhas-cabecalho-novo">
 
                 <div>
 
@@ -43,8 +87,9 @@
                     </h2>
 
                     <p>
-                        Cada campanha representa uma oportunidade de
-                        contribuir com pessoas e famílias da comunidade.
+                        Cada campanha representa uma oportunidade
+                        de contribuir e gerar impacto positivo
+                        na comunidade.
                     </p>
 
                 </div>
@@ -56,14 +101,18 @@
 
                 <div class="campanhas-vazio">
 
+                    <span class="secao-etiqueta">
+                        EM BREVE
+                    </span>
+
                     <h3>
                         Nenhuma campanha ativa no momento
                     </h3>
 
                     <p>
                         Novas campanhas serão divulgadas aqui.
-                        Acompanhe o Instituto Solidarize para conhecer
-                        nossas próximas ações.
+                        Acompanhe o Instituto Solidarize para
+                        conhecer nossas próximas ações.
                     </p>
 
                     <a
@@ -80,11 +129,21 @@
                 <div class="campanhas-carrossel-area">
 
 
+                    <!-- BARRA DO CARROSSEL -->
+
                     <div class="campanhas-carrossel-barra">
 
-                        <span id="campanha-indicador">
-                            1 de <%= campanhas.length %>
-                        </span>
+                        <div class="campanhas-indicador-area">
+
+                            <span class="campanhas-indicador-label">
+                                CAMPANHA
+                            </span>
+
+                            <strong id="campanha-indicador">
+                                1 de <%= campanhas.length %>
+                            </strong>
+
+                        </div>
 
 
                         <div class="campanhas-carrossel-controles">
@@ -110,6 +169,8 @@
 
                     </div>
 
+
+                    <!-- CARROSSEL -->
 
                     <div
                         class="campanhas-carrossel"
@@ -156,7 +217,15 @@
                                     <% } else { %>
 
                                         <div class="campanha-slide-sem-imagem">
-                                            Instituto Solidarize
+
+                                            <span>
+                                                Instituto Solidarize
+                                            </span>
+
+                                            <strong>
+                                                Solidariedade em ação
+                                            </strong>
+
                                         </div>
 
                                     <% } %>
@@ -191,6 +260,8 @@
                                         <%= campanha.descricao %>
                                     </p>
 
+
+                                    <!-- DATAS E META -->
 
                                     <div class="campanha-informacoes">
 
@@ -262,6 +333,8 @@
                                     </div>
 
 
+                                    <!-- ARRECADAÇÃO -->
+
                                     <div class="campanha-arrecadacao">
 
                                         <div class="campanha-arrecadacao-topo">
@@ -273,7 +346,6 @@
                                             <strong>
 
                                                 R$
-
                                                 <%= arrecadado
                                                     .toFixed(2)
                                                     .replace('.', ',') %>
@@ -310,13 +382,11 @@
                                                 <span>
 
                                                     R$
-
                                                     <%= arrecadado
                                                         .toFixed(2)
                                                         .replace('.', ',') %>
 
                                                     de R$
-
                                                     <%= meta
                                                         .toFixed(2)
                                                         .replace('.', ',') %>
@@ -340,6 +410,8 @@
 
                                     </div>
 
+
+                                    <!-- AÇÃO -->
 
                                     <div class="campanha-slide-acao">
 
@@ -369,11 +441,100 @@
     </section>
 
 
-    <section class="campanhas-chamada">
+    <!-- =====================================================
+         OUTRAS FORMAS DE PARTICIPAR
+    ====================================================== -->
+
+    <section class="campanhas-participacao">
+
+        <div class="container campanhas-participacao-grid">
+
+            <div>
+
+                <span class="secao-etiqueta">
+                    ALÉM DAS DOAÇÕES
+                </span>
+
+                <h2>
+                    Existem outras formas de fazer parte
+                </h2>
+
+                <p>
+                    Você também pode contribuir oferecendo seu tempo,
+                    participando de ações ou ajudando nossas campanhas
+                    a chegarem a mais pessoas.
+                </p>
+
+            </div>
+
+
+            <div class="campanhas-participacao-opcoes">
+
+                <a
+                    href="/quero-ser-voluntario"
+                    class="campanhas-participacao-item"
+                >
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Seja voluntário
+                        </h3>
+
+                        <p>
+                            Participe diretamente das ações
+                            realizadas pelo Instituto.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/como-ajudar"
+                    class="campanhas-participacao-item"
+                >
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Conheça outras formas de ajudar
+                        </h3>
+
+                        <p>
+                            Descubra diferentes maneiras
+                            de apoiar o Solidarize.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHAMADA FINAL
+    ====================================================== -->
+
+    <section class="home-cta">
 
         <div class="container">
 
-            <div class="campanhas-chamada-box">
+            <div class="home-cta-box">
 
                 <span class="secao-etiqueta">
                     PARTICIPE
@@ -384,11 +545,9 @@
                 </h2>
 
                 <p>
-                    Além de apoiar nossas campanhas, você pode participar
-                    como voluntário, realizar doações ou ajudar divulgando
-                    as ações do Instituto.
+                    Apoie uma campanha, participe como voluntário
+                    ou ajude divulgando as ações do Instituto.
                 </p>
-
 
                 <div class="hero-botoes">
 
@@ -416,6 +575,10 @@
 
 </main>
 
+
+<!-- =========================================================
+     CARROSSEL
+========================================================= -->
 
 <script>
 

@@ -7241,3 +7241,559 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   CAMPANHAS - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.campanhas-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.campanhas-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.campanhas-hero-conteudo h1 {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.campanhas-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.15em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.campanhas-hero-conteudo > p {
+    max-width: 610px;
+
+    margin: 25px 0 28px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* CARD DO HERO */
+
+.campanhas-hero-destaque {
+    position: relative;
+
+    padding: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+}
+
+
+.campanhas-hero-destaque::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius:
+        22px 0 0 22px;
+}
+
+
+.campanhas-hero-etiqueta {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.campanhas-hero-destaque h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+
+.campanhas-hero-destaque p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ÁREA DAS CAMPANHAS
+========================================================= */
+
+.campanhas-publicas-nova {
+    padding: 100px 0;
+
+    background: var(--lilas-suave);
+}
+
+
+.campanhas-cabecalho-novo {
+    margin-bottom: 35px;
+}
+
+
+.campanhas-cabecalho-novo h2 {
+    font-size: 36px;
+}
+
+
+/* =========================================================
+   INDICADOR
+========================================================= */
+
+.campanhas-indicador-area {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.campanhas-indicador-label {
+    color: var(--texto-claro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+#campanha-indicador {
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+.campanha-slide-card {
+    background: var(--branco);
+
+    border-color: var(--borda);
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.10);
+}
+
+
+.campanha-slide-imagem {
+    background: var(--lilas-claro);
+}
+
+
+.campanha-slide-sem-imagem {
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+
+.campanha-slide-sem-imagem span {
+    color: var(--lilas-principal);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.campanha-slide-sem-imagem strong {
+    color: var(--lilas-muito-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 20px;
+}
+
+
+.campanha-slide-conteudo h3 {
+    color: var(--lilas-muito-escuro);
+}
+
+
+.campanha-slide-conteudo
+.campanha-descricao {
+    color: var(--texto-claro);
+}
+
+
+/* =========================================================
+   PROGRESSO
+========================================================= */
+
+.campanha-arrecadacao {
+    border-top-color: var(--borda);
+}
+
+
+.campanha-arrecadacao-topo span,
+.campanha-progresso-dados span,
+.campanha-sem-meta {
+    color: var(--texto-claro);
+}
+
+
+.campanha-arrecadacao-topo strong,
+.campanha-progresso-dados strong {
+    color: var(--lilas-escuro);
+}
+
+
+.campanha-progresso {
+    background: var(--lilas-claro);
+}
+
+
+.campanha-progresso-preenchimento {
+    background:
+        linear-gradient(
+            90deg,
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+}
+
+
+/* =========================================================
+   OUTRAS FORMAS DE PARTICIPAR
+========================================================= */
+
+.campanhas-participacao {
+    padding: 100px 0;
+
+    background: var(--branco);
+}
+
+
+.campanhas-participacao-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.8fr)
+        minmax(0, 1.2fr);
+
+    gap: 90px;
+
+    align-items: start;
+}
+
+
+.campanhas-participacao-grid > div:first-child h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 36px;
+
+    line-height: 1.25;
+
+    margin-bottom: 15px;
+}
+
+
+.campanhas-participacao-grid > div:first-child p {
+    max-width: 500px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+.campanhas-participacao-opcoes {
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.campanhas-participacao-item {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    padding: 25px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+
+.campanhas-participacao-item:hover {
+    background: var(--lilas-claro);
+
+    transform: translateX(5px);
+}
+
+
+.campanhas-participacao-item > span {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--branco);
+
+    border-radius: 13px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.campanhas-participacao-item h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+
+.campanhas-participacao-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.campanhas-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.campanhas-hero-destaque {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.campanhas-publicas-nova {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.campanha-slide-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.campanhas-participacao {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.campanhas-participacao-item {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .campanhas-hero-grid,
+    .campanhas-participacao-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .campanhas-hero {
+        padding: 65px 0;
+    }
+
+
+    .campanhas-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .campanhas-hero-destaque {
+        padding: 30px 25px;
+    }
+
+
+    .campanhas-publicas-nova,
+    .campanhas-participacao {
+        padding: 70px 0;
+    }
+
+
+    .campanhas-carrossel-barra {
+        align-items: stretch;
+    }
+
+
+    .campanhas-indicador-area {
+        align-items: flex-start;
+    }
+
+
+    .campanhas-participacao-item {
+        grid-template-columns: 1fr;
+    }
+
+}
