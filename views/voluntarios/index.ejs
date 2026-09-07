@@ -4,132 +4,410 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaVoluntarios =
+                voluntarios || [];
+
+            const totalVoluntarios =
+                listaVoluntarios.length;
+
+            const voluntariosAtivos =
+                listaVoluntarios.filter(
+                    voluntario =>
+                        voluntario.status === 'Ativo'
+                ).length;
+
+            const voluntariosInativos =
+                listaVoluntarios.filter(
+                    voluntario =>
+                        voluntario.status === 'Inativo'
+                ).length;
+
+            const comTelefone =
+                listaVoluntarios.filter(
+                    voluntario =>
+                        voluntario.telefone
+                ).length;
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
 
-                <h1>Voluntários</h1>
+                <h1>
+                    Voluntários
+                </h1>
 
                 <p>
-                    Consulte e gerencie os voluntários da instituição.
+                    Consulte, cadastre e gerencie as pessoas
+                    interessadas em participar das ações
+                    do Instituto Solidarize.
                 </p>
 
             </div>
+
 
             <a
                 href="/admin/voluntarios/novo"
                 class="btn-principal"
             >
-                + Novo voluntário
+                Novo voluntário
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (voluntarios.length === 0) { %>
+        <section class="voluntarios-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="voluntarios-admin-resumo-card">
 
-                    <span>🤝</span>
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalVoluntarios %>
+                </strong>
+
+                <p>
+                    Voluntários cadastrados
+                </p>
+
+            </div>
+
+
+            <div class="voluntarios-admin-resumo-card">
+
+                <span>
+                    ATIVOS
+                </span>
+
+                <strong>
+                    <%= voluntariosAtivos %>
+                </strong>
+
+                <p>
+                    Voluntários ativos
+                </p>
+
+            </div>
+
+
+            <div class="voluntarios-admin-resumo-card">
+
+                <span>
+                    INATIVOS
+                </span>
+
+                <strong>
+                    <%= voluntariosInativos %>
+                </strong>
+
+                <p>
+                    Voluntários inativos
+                </p>
+
+            </div>
+
+
+            <div class="voluntarios-admin-resumo-card">
+
+                <span>
+                    COM CONTATO
+                </span>
+
+                <strong>
+                    <%= comTelefone %>
+                </strong>
+
+                <p>
+                    Cadastros com telefone
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card voluntarios-admin-listagem">
+
+            <div class="voluntarios-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Voluntários cadastrados
+                    </h2>
 
                     <p>
-                        Nenhum voluntário cadastrado.
+                        Consulte os dados, disponibilidade
+                        e situação dos voluntários cadastrados.
                     </p>
+
+                </div>
+
+
+                <span class="voluntarios-admin-quantidade">
+
+                    <%= totalVoluntarios %>
+
+                    <%= totalVoluntarios === 1
+                        ? 'voluntário'
+                        : 'voluntários' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaVoluntarios.length === 0) { %>
+
+                <div class="admin-vazio voluntarios-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhum voluntário cadastrado
+                    </h3>
+
+                    <p>
+                        Cadastre o primeiro voluntário
+                        para começar a organizar as pessoas
+                        participantes das ações do Instituto.
+                    </p>
+
+                    <a
+                        href="/admin/voluntarios/novo"
+                        class="btn-principal"
+                    >
+                        Cadastrar voluntário
+                    </a>
 
                 </div>
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container voluntarios-admin-tabela">
 
                     <table>
 
                         <thead>
 
                             <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>E-mail</th>
-                                <th>Telefone</th>
-                                <th>Interesse</th>
-                                <th>Disponibilidade</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Voluntário
+                                </th>
+
+                                <th>
+                                    Telefone
+                                </th>
+
+                                <th>
+                                    Interesse
+                                </th>
+
+                                <th>
+                                    Disponibilidade
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
 
                         </thead>
 
+
                         <tbody>
 
-                            <% voluntarios.forEach(voluntario => { %>
+                            <% listaVoluntarios.forEach(voluntario => { %>
 
                                 <tr>
 
+                                    <!-- ID -->
+
                                     <td>
-                                        <%= voluntario.id %>
+
+                                        <span class="voluntario-admin-id">
+                                            #<%= voluntario.id %>
+                                        </span>
+
                                     </td>
 
+
+                                    <!-- VOLUNTÁRIO -->
+
                                     <td>
-                                        <strong>
-                                            <%= voluntario.nome %>
-                                        </strong>
+
+                                        <div class="voluntario-admin-identidade">
+
+                                            <div class="voluntario-admin-avatar">
+
+                                                <%= voluntario.nome
+                                                    .charAt(0)
+                                                    .toUpperCase() %>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= voluntario.nome %>
+                                                </strong>
+
+                                                <span>
+                                                    <%= voluntario.email %>
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
                                     </td>
 
+
+                                    <!-- TELEFONE -->
+
                                     <td>
-                                        <%= voluntario.email %>
+
+                                        <% if (voluntario.telefone) { %>
+
+                                            <span class="voluntario-admin-telefone">
+                                                <%= voluntario.telefone %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="voluntario-admin-sem-dado">
+                                                Não informado
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
+
+                                    <!-- INTERESSE -->
+
                                     <td>
-                                        <%= voluntario.telefone || '-' %>
+
+                                        <% if (voluntario.area_interesse) { %>
+
+                                            <span class="voluntario-admin-interesse">
+                                                <%= voluntario.area_interesse %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="voluntario-admin-sem-dado">
+                                                Não informado
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
+
+                                    <!-- DISPONIBILIDADE -->
+
                                     <td>
-                                        <%= voluntario.area_interesse || '-' %>
+
+                                        <% if (voluntario.disponibilidade) { %>
+
+                                            <span class="voluntario-admin-disponibilidade">
+                                                <%= voluntario.disponibilidade %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="voluntario-admin-sem-dado">
+                                                Não informada
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
-                                    <td>
-                                        <%= voluntario.disponibilidade || '-' %>
-                                    </td>
+
+                                    <!-- STATUS -->
 
                                     <td>
 
-                                        <span class="status-admin">
+                                        <span
+                                            class="status-admin status-<%= voluntario.status.toLowerCase() %>"
+                                        >
                                             <%= voluntario.status %>
                                         </span>
 
                                     </td>
 
-                                    <td class="acoes-tabela">
 
-                                        <a
-                                            href="/admin/voluntarios/<%= voluntario.id %>/editar"
-                                            class="btn-editar"
-                                        >
-                                            Editar
-                                        </a>
+                                    <!-- AÇÕES -->
 
-                                        <form
-                                            action="/admin/voluntarios/<%= voluntario.id %>/excluir"
-                                            method="POST"
-                                            onsubmit="return confirm('Deseja realmente excluir este voluntário?')"
-                                        >
+                                    <td>
 
-                                            <button
-                                                type="submit"
-                                                class="btn-excluir"
+                                        <div class="acoes-tabela voluntarios-admin-acoes">
+
+                                            <a
+                                                href="/admin/voluntarios/<%= voluntario.id %>/editar"
+                                                class="btn-editar"
                                             >
-                                                Excluir
-                                            </button>
+                                                Editar
+                                            </a>
 
-                                        </form>
+
+                                            <form
+                                                action="/admin/voluntarios/<%= voluntario.id %>/excluir"
+                                                method="POST"
+                                                onsubmit="return confirm('Deseja realmente excluir este voluntário?')"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn-excluir"
+                                                >
+                                                    Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
 
                                     </td>
 
