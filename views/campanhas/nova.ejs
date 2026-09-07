@@ -4,234 +4,555 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Campanhas
-                </p>
+                <span class="secao-etiqueta">
+                    CAMPANHAS
+                </span>
 
                 <h1>
-                    Nova Campanha
+                    Nova campanha
                 </h1>
 
                 <p>
-                    Cadastre uma nova campanha social.
+                    Cadastre uma nova ação social do
+                    Instituto Solidarize e defina suas
+                    principais informações.
                 </p>
 
             </div>
+
 
             <a
                 href="/admin/campanhas"
                 class="btn-secundario"
             >
-                Voltar
+                Voltar para campanhas
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (erro) { %>
+        <section class="campanha-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="campanha-form-grid-novo">
 
 
-            <form
-                action="/admin/campanhas/nova"
-                method="POST"
-                enctype="multipart/form-data"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="campo">
+                <div class="campanha-form-principal">
 
-                    <label for="titulo">
-                        Título *
-                    </label>
+                    <div class="campanha-form-cabecalho">
 
-                    <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Nome da campanha"
-                        maxlength="150"
-                        required
-                    >
+                        <span class="secao-etiqueta">
+                            DADOS DA CAMPANHA
+                        </span>
 
-                </div>
+                        <h2>
+                            Informações principais
+                        </h2>
 
-
-                <div class="campo">
-
-                    <label for="descricao">
-                        Descrição *
-                    </label>
-
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="5"
-                        placeholder="Descreva o objetivo da campanha"
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="imagem">
-                        Imagem da campanha
-                    </label>
-
-                    <input
-                        type="file"
-                        id="imagem"
-                        name="imagem"
-                        accept="image/jpeg,image/png,image/webp"
-                    >
-
-                    <small class="campo-ajuda">
-                        Formatos permitidos: JPG, PNG ou WEBP.
-                        Tamanho máximo: 5 MB.
-                    </small>
-
-                </div>
-
-
-                <div
-                    id="preview-container"
-                    class="campanha-preview"
-                    hidden
-                >
-
-                    <p class="campanha-preview-titulo">
-                        Pré-visualização
-                    </p>
-
-                    <img
-                        id="preview-imagem"
-                        src=""
-                        alt="Pré-visualização da imagem da campanha"
-                    >
-
-                </div>
-
-
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="data_inicio">
-                            Data de início *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data_inicio"
-                            name="data_inicio"
-                            required
-                        >
+                        <p>
+                            Preencha os campos abaixo para
+                            cadastrar a campanha no sistema.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (erro) { %>
 
-                        <label for="data_fim">
-                            Data de término
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <input
-                            type="date"
-                            id="data_fim"
-                            name="data_fim"
-                        >
-
-                    </div>
-
-                </div>
+                    <% } %>
 
 
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="meta">
-                            Meta em R$
-                        </label>
-
-                        <input
-                            type="number"
-                            id="meta"
-                            name="meta"
-                            step="0.01"
-                            min="0"
-                            placeholder="0,00"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="status">
-                            Status *
-                        </label>
-
-                        <select
-                            id="status"
-                            name="status"
-                            required
-                        >
-
-                            <option value="Ativa">
-                                Ativa
-                            </option>
-
-                            <option value="Pausada">
-                                Pausada
-                            </option>
-
-                            <option value="Encerrada">
-                                Encerrada
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/campanhas"
-                        class="btn-secundario"
+                    <form
+                        action="/admin/campanhas/nova"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="formulario admin-formulario campanha-formulario-novo"
                     >
-                        Cancelar
-                    </a>
 
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Cadastrar campanha
-                    </button>
+                        <!-- =========================================
+                             IDENTIFICAÇÃO
+                        ========================================== -->
+
+                        <div class="campanha-form-bloco">
+
+                            <div class="campanha-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Identificação
+                                    </h3>
+
+                                    <p>
+                                        Informe o nome e a descrição
+                                        da campanha.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="titulo">
+                                    Título *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="titulo"
+                                    name="titulo"
+                                    placeholder="Ex.: Campanha do Agasalho"
+                                    maxlength="150"
+                                    required
+                                >
+
+                                <small class="campo-ajuda">
+                                    Use um título curto e fácil de identificar.
+                                </small>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="descricao">
+                                    Descrição *
+                                </label>
+
+                                <textarea
+                                    id="descricao"
+                                    name="descricao"
+                                    rows="6"
+                                    placeholder="Descreva o objetivo da campanha e como ela ajudará a comunidade"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             IMAGEM
+                        ========================================== -->
+
+                        <div class="campanha-form-bloco">
+
+                            <div class="campanha-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Imagem da campanha
+                                    </h3>
+
+                                    <p>
+                                        Escolha a imagem que será
+                                        exibida no site.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="imagem">
+                                    Arquivo de imagem
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="imagem"
+                                    name="imagem"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
+
+                                <small class="campo-ajuda">
+                                    Formatos permitidos: JPG, PNG ou WEBP.
+                                    Tamanho máximo: 5 MB.
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                id="preview-container"
+                                class="campanha-preview campanha-preview-novo"
+                                hidden
+                            >
+
+                                <div class="campanha-preview-topo">
+
+                                    <span>
+                                        PRÉ-VISUALIZAÇÃO
+                                    </span>
+
+                                    <strong>
+                                        Imagem selecionada
+                                    </strong>
+
+                                </div>
+
+                                <img
+                                    id="preview-imagem"
+                                    src=""
+                                    alt="Pré-visualização da imagem da campanha"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             PERÍODO
+                        ========================================== -->
+
+                        <div class="campanha-form-bloco">
+
+                            <div class="campanha-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Período
+                                    </h3>
+
+                                    <p>
+                                        Defina quando a campanha
+                                        começa e termina.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="data_inicio">
+                                        Data de início *
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_inicio"
+                                        name="data_inicio"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="data_fim">
+                                        Data de término
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_fim"
+                                        name="data_fim"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        Pode ser deixada em branco
+                                        caso ainda não esteja definida.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             META E STATUS
+                        ========================================== -->
+
+                        <div class="campanha-form-bloco">
+
+                            <div class="campanha-form-bloco-titulo">
+
+                                <span>
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Meta e situação
+                                    </h3>
+
+                                    <p>
+                                        Defina a meta financeira
+                                        e o status inicial.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="meta">
+                                        Meta em R$
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="meta"
+                                        name="meta"
+                                        step="0.01"
+                                        min="0"
+                                        placeholder="0,00"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        A meta financeira é opcional.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="status">
+                                        Status *
+                                    </label>
+
+                                    <select
+                                        id="status"
+                                        name="status"
+                                        required
+                                    >
+
+                                        <option value="Ativa">
+                                            Ativa
+                                        </option>
+
+                                        <option value="Pausada">
+                                            Pausada
+                                        </option>
+
+                                        <option value="Encerrada">
+                                            Encerrada
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes campanha-form-acoes-novas">
+
+                            <a
+                                href="/admin/campanhas"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Cadastrar campanha
+                            </button>
+
+                        </div>
+
+                    </form>
 
                 </div>
 
-            </form>
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="campanha-form-lateral">
+
+                    <div class="campanha-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            ORIENTAÇÕES
+                        </span>
+
+                        <h2>
+                            Antes de cadastrar
+                        </h2>
+
+                        <p>
+                            Confira algumas informações importantes
+                            para que a campanha apareça corretamente
+                            no site.
+                        </p>
+
+
+                        <div class="campanha-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Título
+                                </strong>
+
+                                <p>
+                                    Escolha um nome claro e relacionado
+                                    ao objetivo da campanha.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="campanha-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Imagem
+                                </strong>
+
+                                <p>
+                                    Utilize uma imagem de boa qualidade
+                                    e relacionada à ação realizada.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="campanha-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Meta
+                                </strong>
+
+                                <p>
+                                    Caso exista arrecadação financeira,
+                                    informe a meta da campanha.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="campanha-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Status
+                                </strong>
+
+                                <p>
+                                    Apenas campanhas ativas são exibidas
+                                    entre as ações disponíveis ao público.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="campanha-form-status-card">
+
+                        <span>
+                            STATUS INICIAL
+                        </span>
+
+                        <strong>
+                            Ativa
+                        </strong>
+
+                        <p>
+                            O formulário inicia com o status
+                            Ativa selecionado. Você pode alterá-lo
+                            antes de cadastrar.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
 
         </section>
 
@@ -242,124 +563,127 @@
 
 <script>
 
-    document.addEventListener(
-        'DOMContentLoaded',
-        () => {
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
 
-            const inputImagem =
-                document.getElementById('imagem');
+        const inputImagem =
+            document.getElementById('imagem');
 
-            const previewContainer =
-                document.getElementById(
-                    'preview-container'
-                );
-
-            const previewImagem =
-                document.getElementById(
-                    'preview-imagem'
-                );
-
-
-            if (
-                !inputImagem ||
-                !previewContainer ||
-                !previewImagem
-            ) {
-                return;
-            }
-
-
-            inputImagem.addEventListener(
-                'change',
-                () => {
-
-                    const arquivo =
-                        inputImagem.files[0];
-
-
-                    if (!arquivo) {
-
-                        previewContainer.hidden = true;
-
-                        previewImagem.src = '';
-
-                        return;
-
-                    }
-
-
-                    const tiposPermitidos = [
-                        'image/jpeg',
-                        'image/png',
-                        'image/webp'
-                    ];
-
-
-                    if (
-                        !tiposPermitidos.includes(
-                            arquivo.type
-                        )
-                    ) {
-
-                        inputImagem.value = '';
-
-                        previewContainer.hidden = true;
-
-                        alert(
-                            'Selecione uma imagem JPG, PNG ou WEBP.'
-                        );
-
-                        return;
-
-                    }
-
-
-                    const limite =
-                        5 * 1024 * 1024;
-
-
-                    if (arquivo.size > limite) {
-
-                        inputImagem.value = '';
-
-                        previewContainer.hidden = true;
-
-                        alert(
-                            'A imagem deve ter no máximo 5 MB.'
-                        );
-
-                        return;
-
-                    }
-
-
-                    const leitor =
-                        new FileReader();
-
-
-                    leitor.addEventListener(
-                        'load',
-                        () => {
-
-                            previewImagem.src =
-                                leitor.result;
-
-                            previewContainer.hidden =
-                                false;
-
-                        }
-                    );
-
-
-                    leitor.readAsDataURL(
-                        arquivo
-                    );
-
-                }
+        const previewContainer =
+            document.getElementById(
+                'preview-container'
             );
 
+        const previewImagem =
+            document.getElementById(
+                'preview-imagem'
+            );
+
+
+        if (
+            !inputImagem ||
+            !previewContainer ||
+            !previewImagem
+        ) {
+            return;
         }
-    );
+
+
+        inputImagem.addEventListener(
+            'change',
+            () => {
+
+                const arquivo =
+                    inputImagem.files[0];
+
+
+                if (!arquivo) {
+
+                    previewContainer.hidden = true;
+
+                    previewImagem.src = '';
+
+                    return;
+                }
+
+
+                const tiposPermitidos = [
+
+                    'image/jpeg',
+                    'image/png',
+                    'image/webp'
+
+                ];
+
+
+                if (
+                    !tiposPermitidos.includes(
+                        arquivo.type
+                    )
+                ) {
+
+                    inputImagem.value = '';
+
+                    previewContainer.hidden = true;
+
+                    previewImagem.src = '';
+
+                    alert(
+                        'Selecione uma imagem JPG, PNG ou WEBP.'
+                    );
+
+                    return;
+                }
+
+
+                const limite =
+                    5 * 1024 * 1024;
+
+
+                if (arquivo.size > limite) {
+
+                    inputImagem.value = '';
+
+                    previewContainer.hidden = true;
+
+                    previewImagem.src = '';
+
+                    alert(
+                        'A imagem deve ter no máximo 5 MB.'
+                    );
+
+                    return;
+                }
+
+
+                const leitor =
+                    new FileReader();
+
+
+                leitor.addEventListener(
+                    'load',
+                    () => {
+
+                        previewImagem.src =
+                            leitor.result;
+
+                        previewContainer.hidden =
+                            false;
+
+                    }
+                );
+
+
+                leitor.readAsDataURL(
+                    arquivo
+                );
+
+            }
+        );
+
+    }
+);
 
 </script>
 
