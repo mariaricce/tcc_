@@ -1,4 +1,5 @@
 <%- include('partials/header') %>
+
 <%- include('partials/navbar') %>
 
 <main class="auth-page">
@@ -7,8 +8,20 @@
 
         <section class="auth-apresentacao">
 
+            <a
+                href="/"
+                class="auth-marca"
+                aria-label="Instituto Solidarize - Página inicial"
+            >
+                <img
+                    src="/images/logo-solidarize.png"
+                    alt="Instituto Solidarize"
+                    class="auth-marca-imagem"
+                >
+            </a>
+
             <span class="secao-etiqueta">
-                INSTITUTO SOLIDARIZE
+                FAÇA PARTE
             </span>
 
             <h1>
@@ -78,6 +91,7 @@
                         id="nome"
                         name="nome"
                         placeholder="Digite seu nome"
+                        autocomplete="name"
                         required
                     >
 
@@ -95,6 +109,7 @@
                         id="email"
                         name="email"
                         placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -113,25 +128,28 @@
                         name="senha"
                         placeholder="Crie uma senha"
                         minlength="6"
+                        autocomplete="new-password"
                         required
                     >
 
                 </div>
 
+
                 <div class="campo">
 
-                        <label for="confirmar_senha">
-                         Confirmar senha
-                        </label>
+                    <label for="confirmar_senha">
+                        Confirmar senha
+                    </label>
 
-                     <input
+                    <input
                         type="password"
-                          id="confirmar_senha"
-                              name="confirmar_senha"
-                              placeholder="Digite a senha novamente"
-                                 minlength="6"
-                                 required
-                             >
+                        id="confirmar_senha"
+                        name="confirmar_senha"
+                        placeholder="Digite a senha novamente"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
 
                 </div>
 

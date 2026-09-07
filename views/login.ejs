@@ -1,4 +1,5 @@
 <%- include('partials/header') %>
+
 <%- include('partials/navbar') %>
 
 <main class="auth-page">
@@ -7,8 +8,20 @@
 
         <section class="auth-apresentacao">
 
+            <a
+                href="/"
+                class="auth-marca"
+                aria-label="Instituto Solidarize - Página inicial"
+            >
+                <img
+                    src="/images/logo-solidarize.png"
+                    alt="Instituto Solidarize"
+                    class="auth-marca-imagem"
+                >
+            </a>
+
             <span class="secao-etiqueta">
-                INSTITUTO SOLIDARIZE
+                ÁREA DO USUÁRIO
             </span>
 
             <h1>
@@ -78,6 +91,7 @@
                         id="email"
                         name="email"
                         placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -95,6 +109,7 @@
                         id="senha"
                         name="senha"
                         placeholder="Digite sua senha"
+                        autocomplete="current-password"
                         required
                     >
 
