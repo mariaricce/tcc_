@@ -7797,3 +7797,1325 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   DOAÇÃO - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.doacao-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.doacao-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.doacao-hero-conteudo h1 {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.doacao-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.18em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.doacao-hero-conteudo > p {
+    max-width: 600px;
+
+    margin-top: 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* CARD DO HERO */
+
+.doacao-hero-destaque {
+    position: relative;
+
+    padding: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+}
+
+
+.doacao-hero-destaque::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius:
+        22px 0 0 22px;
+}
+
+
+.doacao-hero-etiqueta {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.doacao-hero-destaque h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+
+.doacao-hero-destaque p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ÁREA PRINCIPAL
+========================================================= */
+
+.doacao-publica-conteudo-novo {
+    padding: 100px 0;
+
+    background: var(--lilas-suave);
+}
+
+
+.doacao-publica-grid-novo {
+    grid-template-columns:
+        minmax(0, 0.95fr)
+        minmax(0, 1.05fr);
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   CAMPANHA
+========================================================= */
+
+.doacao-campanha-card-novo {
+    padding: 0;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+
+.doacao-campanha-card-novo
+.doacao-campanha-imagem {
+    height: 290px;
+
+    margin: 0;
+
+    border-radius: 0;
+}
+
+
+.doacao-campanha-conteudo {
+    padding: 32px;
+}
+
+
+.doacao-campanha-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+
+.doacao-campanha-topo
+.secao-etiqueta {
+    margin-bottom: 0;
+}
+
+
+.doacao-campanha-id {
+    color: var(--texto-claro);
+
+    font-size: 12px;
+}
+
+
+.doacao-campanha-card-novo h2 {
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 12px;
+}
+
+
+.doacao-campanha-descricao {
+    color: var(--texto-claro);
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.doacao-form-card-novo {
+    position: relative;
+
+    padding: 38px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+
+.doacao-form-card-novo::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+}
+
+
+.doacao-form-card-novo h2 {
+    font-size: 30px;
+
+    line-height: 1.3;
+
+    margin-bottom: 10px;
+}
+
+
+.doacao-form-card-novo
+.doacao-formulario {
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: 0;
+
+    box-shadow: none;
+}
+
+
+/* VALORES */
+
+.doacao-form-card-novo
+.doacao-valores button {
+    min-height: 48px;
+
+    transition: 0.2s;
+}
+
+
+.doacao-form-card-novo
+.doacao-valores button:hover {
+    background: var(--lilas-principal);
+
+    color: var(--branco);
+
+    transform: translateY(-2px);
+}
+
+
+/* VALOR MANUAL */
+
+.doacao-form-card-novo
+.doacao-valor-input {
+    min-height: 50px;
+}
+
+
+/* BOTÃO */
+
+.doacao-form-card-novo
+.doacao-btn {
+    min-height: 50px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   AVISO
+========================================================= */
+
+.doacao-aviso {
+    margin-top: 25px;
+
+    padding: 18px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 12px;
+}
+
+
+.doacao-aviso span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.doacao-aviso p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   ETAPAS
+========================================================= */
+
+.doacao-etapas {
+    padding: 95px 0;
+
+    background: var(--branco);
+}
+
+
+.doacao-etapas-cabecalho {
+    margin-bottom: 40px;
+}
+
+
+.doacao-etapas-cabecalho h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 36px;
+}
+
+
+.doacao-etapas-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+.doacao-etapa {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    padding: 27px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+}
+
+
+.doacao-etapa > span {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--branco);
+
+    border-radius: 13px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.doacao-etapa h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+
+.doacao-etapa p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.doacao-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.doacao-hero-destaque {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.doacao-publica-conteudo-novo {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.doacao-campanha-card-novo,
+body.modo-escuro
+.doacao-form-card-novo {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.doacao-aviso,
+body.modo-escuro
+.doacao-etapa {
+    background: var(--lilas-suave);
+}
+
+
+body.modo-escuro
+.doacao-etapas {
+    background: var(--branco);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .doacao-hero-grid,
+    .doacao-publica-grid-novo {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .doacao-etapas-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .doacao-hero {
+        padding: 65px 0;
+    }
+
+
+    .doacao-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .doacao-hero-destaque {
+        padding: 30px 25px;
+    }
+
+
+    .doacao-publica-conteudo-novo,
+    .doacao-etapas {
+        padding: 70px 0;
+    }
+
+
+    .doacao-campanha-card-novo
+    .doacao-campanha-imagem {
+        height: 220px;
+    }
+
+
+    .doacao-campanha-conteudo,
+    .doacao-form-card-novo {
+        padding: 25px 20px;
+    }
+
+
+    .doacao-campanha-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .doacao-etapas-cabecalho h2 {
+        font-size: 29px;
+    }
+
+
+    .doacao-etapa {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   SUCESSO DA DOAÇÃO - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.doacao-sucesso-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.doacao-sucesso-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.doacao-sucesso-hero-conteudo h1 {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.doacao-sucesso-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.2em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.doacao-sucesso-hero-conteudo > p {
+    max-width: 600px;
+
+    margin-top: 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* DESTAQUE */
+
+.doacao-sucesso-hero-destaque {
+    position: relative;
+
+    padding: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+}
+
+
+.doacao-sucesso-hero-destaque::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius:
+        22px 0 0 22px;
+}
+
+
+.doacao-sucesso-hero-etiqueta {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.doacao-sucesso-hero-destaque h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+
+.doacao-sucesso-hero-destaque p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ÁREA PRINCIPAL
+========================================================= */
+
+.doacao-sucesso-conteudo-novo {
+    padding: 100px 0;
+
+    background: var(--lilas-suave);
+}
+
+
+.doacao-sucesso-card-novo {
+    max-width: 1100px;
+
+    padding: 0;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
+
+    gap: 0;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+}
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.doacao-resumo-novo {
+    padding: 35px;
+
+    border-right: 1px solid var(--borda);
+}
+
+
+.doacao-resumo-novo
+.doacao-sucesso-imagem {
+    height: 220px;
+
+    margin-bottom: 28px;
+}
+
+
+.doacao-resumo-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+}
+
+
+.doacao-resumo-topo
+.secao-etiqueta {
+    margin-bottom: 0;
+}
+
+
+.doacao-numero {
+    color: var(--texto-claro);
+
+    font-size: 12px;
+}
+
+
+.doacao-resumo-novo h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 27px;
+
+    line-height: 1.3;
+
+    margin-bottom: 10px;
+}
+
+
+.doacao-resumo-texto {
+    margin-bottom: 25px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+.doacao-resumo-dados {
+    border-top: 1px solid var(--borda);
+}
+
+
+.doacao-status-pendente {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background: var(--lilas-claro);
+
+    color: var(--lilas-escuro);
+
+    border-radius: 50px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PIX
+========================================================= */
+
+.pix-area-nova {
+    padding: 40px;
+}
+
+
+.pix-area-nova h2 {
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+
+.pix-introducao {
+    margin-bottom: 25px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* VALOR */
+
+.pix-valor-destaque {
+    margin-bottom: 15px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius: 13px;
+
+    color: white;
+}
+
+
+.pix-valor-destaque span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+
+    opacity: 0.85;
+}
+
+
+.pix-valor-destaque strong {
+    display: block;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 28px;
+}
+
+
+/* RECEBEDOR */
+
+.pix-area-nova
+.pix-recebedor {
+    margin: 0 0 15px;
+
+    border: 1px solid var(--borda);
+}
+
+
+/* CHAVE */
+
+.pix-area-nova
+.pix-chave-box {
+    padding: 20px;
+}
+
+
+.pix-copiar-btn {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* COPIADO */
+
+.pix-area-nova
+.pix-copiado {
+    padding: 10px 0 0;
+
+    font-weight: 700;
+}
+
+
+/* ORIENTAÇÃO */
+
+.pix-orientacao-box {
+    margin-top: 22px;
+
+    padding: 18px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 12px;
+}
+
+
+.pix-orientacao-box span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.pix-orientacao-box p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* WHATSAPP */
+
+.pix-area-nova
+.doacao-whatsapp {
+    width: 100%;
+
+    margin-top: 20px;
+
+    text-align: center;
+}
+
+
+/* VOLTAR */
+
+.doacao-voltar {
+    display: block;
+
+    margin-top: 20px;
+
+    color: var(--lilas-escuro);
+
+    text-align: center;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.doacao-voltar:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   ETAPAS
+========================================================= */
+
+.doacao-sucesso-etapas {
+    padding: 95px 0;
+
+    background: var(--branco);
+}
+
+
+.doacao-sucesso-etapas-cabecalho {
+    max-width: 680px;
+
+    margin-bottom: 40px;
+}
+
+
+.doacao-sucesso-etapas-cabecalho h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+
+.doacao-sucesso-etapas-cabecalho p {
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+.doacao-sucesso-etapas-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+.doacao-sucesso-etapa {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    padding: 27px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+}
+
+
+.doacao-sucesso-etapa > span {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--branco);
+
+    border-radius: 13px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.doacao-sucesso-etapa h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+
+.doacao-sucesso-etapa p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.doacao-sucesso-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.doacao-sucesso-hero-destaque {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.doacao-sucesso-conteudo-novo {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.doacao-sucesso-card-novo {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.pix-orientacao-box,
+body.modo-escuro
+.doacao-sucesso-etapa {
+    background: var(--lilas-suave);
+}
+
+
+body.modo-escuro
+.doacao-sucesso-etapas {
+    background: var(--branco);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .doacao-sucesso-hero-grid,
+    .doacao-sucesso-card-novo {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .doacao-sucesso-hero-grid {
+        gap: 45px;
+    }
+
+
+    .doacao-resumo-novo {
+        border-right: 0;
+
+        border-bottom: 1px solid var(--borda);
+    }
+
+
+    .doacao-sucesso-etapas-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .doacao-sucesso-hero {
+        padding: 65px 0;
+    }
+
+
+    .doacao-sucesso-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .doacao-sucesso-hero-destaque {
+        padding: 30px 25px;
+    }
+
+
+    .doacao-sucesso-conteudo-novo,
+    .doacao-sucesso-etapas {
+        padding: 70px 0;
+    }
+
+
+    .doacao-resumo-novo,
+    .pix-area-nova {
+        padding: 25px 20px;
+    }
+
+
+    .doacao-resumo-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .doacao-sucesso-etapas-cabecalho h2 {
+        font-size: 29px;
+    }
+
+
+    .doacao-sucesso-etapa {
+        grid-template-columns: 1fr;
+    }
+
+}

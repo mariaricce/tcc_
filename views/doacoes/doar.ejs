@@ -1,41 +1,77 @@
 <%- include('../partials/header') %>
+
 <%- include('../partials/navbar') %>
 
 <main class="doacao-publica-page">
 
-    <section class="pagina-topo">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="doacao-hero">
 
-            <span class="secao-etiqueta">
-                FAÇA A DIFERENÇA
-            </span>
+        <div class="container doacao-hero-grid">
 
-            <h1>
-                Faça uma doação
-            </h1>
+            <div class="doacao-hero-conteudo">
 
-            <p>
-                Sua contribuição ajuda o Instituto Solidarize
-                a continuar realizando suas ações.
-            </p>
+                <span class="secao-etiqueta">
+                    FAÇA A DIFERENÇA
+                </span>
+
+                <h1>
+                    Sua contribuição pode
+                    <span>transformar histórias</span>
+                </h1>
+
+                <p>
+                    Escolha um valor, informe seus dados
+                    e contribua com esta campanha do
+                    Instituto Solidarize.
+                </p>
+
+            </div>
+
+
+            <div class="doacao-hero-destaque">
+
+                <span class="doacao-hero-etiqueta">
+                    DOAÇÃO POR PIX
+                </span>
+
+                <h2>
+                    Um processo simples para apoiar nossas ações
+                </h2>
+
+                <p>
+                    Após registrar sua doação, você receberá
+                    as informações para realizar o pagamento
+                    por PIX.
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <section class="doacao-publica-conteudo">
+    <!-- =====================================================
+         CONTEÚDO DA DOAÇÃO
+    ====================================================== -->
 
-        <div class="container doacao-publica-grid">
+    <section class="doacao-publica-conteudo doacao-publica-conteudo-novo">
+
+        <div class="container doacao-publica-grid doacao-publica-grid-novo">
 
 
-            <!-- CAMPANHA -->
+            <!-- =================================================
+                 CAMPANHA
+            ================================================== -->
 
-            <div class="doacao-campanha-card">
+            <article class="doacao-campanha-card doacao-campanha-card-novo">
 
 
-                <!-- IMAGEM DA CAMPANHA -->
+                <!-- IMAGEM -->
 
                 <% if (campanha.imagem) { %>
 
@@ -52,140 +88,154 @@
                 <% } %>
 
 
-                <span class="secao-etiqueta">
-                    CAMPANHA
-                </span>
+                <div class="doacao-campanha-conteudo">
 
+                    <div class="doacao-campanha-topo">
 
-                <h2>
-                    <%= campanha.titulo %>
-                </h2>
-
-
-                <p>
-                    <%= campanha.descricao %>
-                </p>
-
-
-                <% if (campanha.meta) { %>
-
-                    <div class="doacao-meta">
-
-                        <span>
-                            Meta da campanha
+                        <span class="secao-etiqueta">
+                            CAMPANHA SELECIONADA
                         </span>
 
-                        <strong>
-                            R$
-                            <%= Number(campanha.meta)
-                                .toFixed(2)
-                                .replace('.', ',') %>
-                        </strong>
+                        <span class="doacao-campanha-id">
+                            #<%= campanha.id %>
+                        </span>
 
                     </div>
 
-                <% } %>
+
+                    <h2>
+                        <%= campanha.titulo %>
+                    </h2>
 
 
-                <% if (
-                    campanha.valor_arrecadado !== undefined &&
-                    campanha.meta
-                ) { %>
-
-                    <%
-                        const meta =
-                            Number(campanha.meta) || 0;
-
-                        const arrecadado =
-                            Number(
-                                campanha.valor_arrecadado
-                            ) || 0;
-
-                        const percentual =
-                            meta > 0
-                                ? (arrecadado / meta) * 100
-                                : 0;
-
-                        const percentualExibido =
-                            Math.round(percentual);
-
-                        const larguraBarra =
-                            Math.min(percentual, 100);
-                    %>
+                    <p class="doacao-campanha-descricao">
+                        <%= campanha.descricao %>
+                    </p>
 
 
-                    <div class="campanha-arrecadacao">
+                    <% if (campanha.meta) { %>
 
-                        <div class="campanha-arrecadacao-topo">
+                        <div class="doacao-meta">
 
                             <span>
-                                Arrecadado
+                                Meta da campanha
                             </span>
 
                             <strong>
                                 R$
-                                <%= arrecadado
+                                <%= Number(campanha.meta)
                                     .toFixed(2)
                                     .replace('.', ',') %>
                             </strong>
 
                         </div>
 
+                    <% } %>
 
-                        <div
-                            class="campanha-progresso"
-                            role="progressbar"
-                            aria-label="Progresso da arrecadação"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            aria-valuenow="<%= Math.min(
-                                percentualExibido,
-                                100
-                            ) %>"
-                        >
+
+                    <% if (
+                        campanha.valor_arrecadado !== undefined &&
+                        campanha.meta
+                    ) { %>
+
+                        <%
+                            const meta =
+                                Number(campanha.meta) || 0;
+
+                            const arrecadado =
+                                Number(
+                                    campanha.valor_arrecadado
+                                ) || 0;
+
+                            const percentual =
+                                meta > 0
+                                    ? (arrecadado / meta) * 100
+                                    : 0;
+
+                            const percentualExibido =
+                                Math.round(percentual);
+
+                            const larguraBarra =
+                                Math.min(percentual, 100);
+                        %>
+
+
+                        <div class="campanha-arrecadacao">
+
+                            <div class="campanha-arrecadacao-topo">
+
+                                <span>
+                                    Arrecadado
+                                </span>
+
+                                <strong>
+                                    R$
+                                    <%= arrecadado
+                                        .toFixed(2)
+                                        .replace('.', ',') %>
+                                </strong>
+
+                            </div>
+
 
                             <div
-                                class="campanha-progresso-preenchimento"
-                                style="width: <%= larguraBarra %>%"
-                            ></div>
+                                class="campanha-progresso"
+                                role="progressbar"
+                                aria-label="Progresso da arrecadação"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuenow="<%= Math.min(
+                                    percentualExibido,
+                                    100
+                                ) %>"
+                            >
+
+                                <div
+                                    class="campanha-progresso-preenchimento"
+                                    style="width: <%= larguraBarra %>%"
+                                ></div>
+
+                            </div>
+
+
+                            <div class="campanha-progresso-dados">
+
+                                <span>
+                                    R$
+                                    <%= arrecadado
+                                        .toFixed(2)
+                                        .replace('.', ',') %>
+
+                                    de R$
+
+                                    <%= meta
+                                        .toFixed(2)
+                                        .replace('.', ',') %>
+                                </span>
+
+                                <strong>
+                                    <%= percentualExibido %>%
+                                </strong>
+
+                            </div>
 
                         </div>
 
+                    <% } %>
 
-                        <div class="campanha-progresso-dados">
+                </div>
 
-                            <span>
-                                R$
-                                <%= arrecadado
-                                    .toFixed(2)
-                                    .replace('.', ',') %>
-
-                                de R$
-
-                                <%= meta
-                                    .toFixed(2)
-                                    .replace('.', ',') %>
-                            </span>
-
-                            <strong>
-                                <%= percentualExibido %>%
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                <% } %>
-
-            </div>
+            </article>
 
 
-            <!-- FORMULÁRIO DE DOAÇÃO -->
+            <!-- =================================================
+                 FORMULÁRIO
+            ================================================== -->
 
-            <div class="doacao-form-card">
+            <article class="doacao-form-card doacao-form-card-novo">
 
                 <span class="secao-etiqueta">
-                    DOAÇÃO EM DINHEIRO
+                    SUA CONTRIBUIÇÃO
                 </span>
 
                 <h2>
@@ -193,8 +243,8 @@
                 </h2>
 
                 <p class="doacao-form-texto">
-                    Após confirmar os dados, você receberá
-                    as informações para realizar o pagamento por PIX.
+                    Informe seu nome e escolha um dos valores
+                    sugeridos ou digite outro valor.
                 </p>
 
 
@@ -214,6 +264,8 @@
                 >
 
 
+                    <!-- NOME -->
+
                     <div class="campo">
 
                         <label for="doador_nome">
@@ -227,18 +279,20 @@
                             maxlength="150"
                             value="<%= dados.doador_nome || '' %>"
                             placeholder="Digite seu nome"
+                            autocomplete="name"
                             required
                         >
 
                     </div>
 
 
+                    <!-- VALORES SUGERIDOS -->
+
                     <div class="campo">
 
                         <label>
                             Sugestões de valor
                         </label>
-
 
                         <div class="doacao-valores">
 
@@ -275,12 +329,13 @@
                     </div>
 
 
+                    <!-- VALOR -->
+
                     <div class="campo">
 
                         <label for="valor">
                             Valor da doação
                         </label>
-
 
                         <div class="doacao-valor-input">
 
@@ -305,6 +360,8 @@
                     </div>
 
 
+                    <!-- BOTÃO -->
+
                     <button
                         type="submit"
                         class="btn-principal doacao-btn"
@@ -315,11 +372,117 @@
                 </form>
 
 
-                <p class="doacao-seguranca">
-                    A doação será registrada inicialmente como
-                    pendente e será confirmada após a conferência
-                    do pagamento.
-                </p>
+                <!-- INFORMAÇÃO -->
+
+                <div class="doacao-aviso">
+
+                    <span>
+                        COMO FUNCIONA
+                    </span>
+
+                    <p>
+                        Sua doação será registrada inicialmente
+                        como pendente. Depois do pagamento por PIX,
+                        a equipe do Instituto poderá confirmar
+                        o recebimento.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ETAPAS
+    ====================================================== -->
+
+    <section class="doacao-etapas">
+
+        <div class="container">
+
+            <div class="doacao-etapas-cabecalho">
+
+                <span class="secao-etiqueta">
+                    PASSO A PASSO
+                </span>
+
+                <h2>
+                    Como sua doação é realizada
+                </h2>
+
+            </div>
+
+
+            <div class="doacao-etapas-grid">
+
+                <div class="doacao-etapa">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Escolha o valor
+                        </h3>
+
+                        <p>
+                            Informe quanto deseja contribuir
+                            com a campanha.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="doacao-etapa">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Receba o PIX
+                        </h3>
+
+                        <p>
+                            Após continuar, você verá os dados
+                            necessários para realizar o pagamento.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="doacao-etapa">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Envie o comprovante
+                        </h3>
+
+                        <p>
+                            Depois do pagamento, envie o comprovante
+                            pelo WhatsApp do Instituto.
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 

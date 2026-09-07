@@ -1,40 +1,76 @@
 <%- include('../partials/header') %>
+
 <%- include('../partials/navbar') %>
 
 <main class="doacao-sucesso-page">
 
-    <section class="pagina-topo">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="doacao-sucesso-hero">
 
-            <span class="secao-etiqueta">
-                DOAÇÃO REGISTRADA
-            </span>
+        <div class="container doacao-sucesso-hero-grid">
 
-            <h1>
-                Falta apenas realizar o PIX
-            </h1>
+            <div class="doacao-sucesso-hero-conteudo">
 
-            <p>
-                Sua intenção de doação já foi registrada
-                no Instituto Solidarize.
-            </p>
+                <span class="secao-etiqueta">
+                    DOAÇÃO REGISTRADA
+                </span>
+
+                <h1>
+                    Falta apenas realizar
+                    <span>o PIX</span>
+                </h1>
+
+                <p>
+                    Sua intenção de doação já foi registrada
+                    no Instituto Solidarize. Agora siga as
+                    instruções para concluir sua contribuição.
+                </p>
+
+            </div>
+
+
+            <div class="doacao-sucesso-hero-destaque">
+
+                <span class="doacao-sucesso-hero-etiqueta">
+                    PRÓXIMO PASSO
+                </span>
+
+                <h2>
+                    Realize o pagamento e envie o comprovante
+                </h2>
+
+                <p>
+                    A doação permanecerá como pendente até
+                    que o pagamento seja conferido pela equipe
+                    do Instituto.
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <section class="doacao-sucesso-conteudo">
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <section class="doacao-sucesso-conteudo doacao-sucesso-conteudo-novo">
 
         <div class="container">
 
-            <div class="doacao-sucesso-card">
+            <div class="doacao-sucesso-card doacao-sucesso-card-novo">
 
 
-                <!-- RESUMO DA DOAÇÃO -->
+                <!-- =================================================
+                     RESUMO DA DOAÇÃO
+                ================================================== -->
 
-                <div class="doacao-resumo">
+                <div class="doacao-resumo doacao-resumo-novo">
 
 
                     <% if (doacao.campanha_imagem) { %>
@@ -44,6 +80,7 @@
                             <img
                                 src="/images/campanhas/<%= doacao.campanha_imagem %>"
                                 alt="Imagem da campanha <%= doacao.campanha %>"
+                                loading="lazy"
                             >
 
                         </div>
@@ -51,9 +88,17 @@
                     <% } %>
 
 
-                    <span>
-                        Doação #<%= doacao.id %>
-                    </span>
+                    <div class="doacao-resumo-topo">
+
+                        <span class="secao-etiqueta">
+                            RESUMO
+                        </span>
+
+                        <span class="doacao-numero">
+                            Doação #<%= doacao.id %>
+                        </span>
+
+                    </div>
 
 
                     <h2>
@@ -61,68 +106,78 @@
                     </h2>
 
 
-                    <div class="doacao-resumo-linha">
-
-                        <span>
-                            Doador
-                        </span>
-
-                        <strong>
-                            <%= doacao.doador_nome %>
-                        </strong>
-
-                    </div>
+                    <p class="doacao-resumo-texto">
+                        Confira os dados registrados antes de
+                        realizar o pagamento.
+                    </p>
 
 
-                    <div class="doacao-resumo-linha">
+                    <div class="doacao-resumo-dados">
 
-                        <span>
-                            Valor
-                        </span>
+                        <div class="doacao-resumo-linha">
 
-                        <strong class="doacao-valor-destaque">
+                            <span>
+                                Doador
+                            </span>
 
-                            R$
-                            <%= Number(doacao.valor)
-                                .toFixed(2)
-                                .replace('.', ',') %>
+                            <strong>
+                                <%= doacao.doador_nome %>
+                            </strong>
 
-                        </strong>
-
-                    </div>
+                        </div>
 
 
-                    <div class="doacao-resumo-linha">
+                        <div class="doacao-resumo-linha">
 
-                        <span>
-                            Data
-                        </span>
+                            <span>
+                                Valor
+                            </span>
 
-                        <strong>
-                            <%= doacao.data_doacao_formatada %>
-                        </strong>
+                            <strong class="doacao-valor-destaque">
+                                R$
+                                <%= Number(doacao.valor)
+                                    .toFixed(2)
+                                    .replace('.', ',') %>
+                            </strong>
 
-                    </div>
+                        </div>
 
 
-                    <div class="doacao-resumo-linha">
+                        <div class="doacao-resumo-linha">
 
-                        <span>
-                            Status
-                        </span>
+                            <span>
+                                Data
+                            </span>
 
-                        <strong>
-                            <%= doacao.status %>
-                        </strong>
+                            <strong>
+                                <%= doacao.data_doacao_formatada %>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="doacao-resumo-linha">
+
+                            <span>
+                                Status
+                            </span>
+
+                            <strong class="doacao-status-pendente">
+                                <%= doacao.status %>
+                            </strong>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <!-- PAGAMENTO PIX -->
+                <!-- =================================================
+                     PIX
+                ================================================== -->
 
-                <div class="pix-area">
+                <div class="pix-area pix-area-nova">
 
                     <span class="secao-etiqueta">
                         PAGAMENTO VIA PIX
@@ -135,10 +190,31 @@
 
                     <% if (pixChave) { %>
 
-                        <p>
-                            Envie o valor da doação para a chave PIX abaixo:
+                        <p class="pix-introducao">
+                            Utilize os dados abaixo para realizar
+                            o pagamento no aplicativo do seu banco.
                         </p>
 
+
+                        <!-- VALOR -->
+
+                        <div class="pix-valor-destaque">
+
+                            <span>
+                                Valor da doação
+                            </span>
+
+                            <strong>
+                                R$
+                                <%= Number(doacao.valor)
+                                    .toFixed(2)
+                                    .replace('.', ',') %>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- RECEBEDOR -->
 
                         <div class="pix-recebedor">
 
@@ -153,6 +229,8 @@
                         </div>
 
 
+                        <!-- CHAVE -->
+
                         <div class="pix-chave-box">
 
                             <span>
@@ -163,11 +241,10 @@
                                 <%= pixChave %>
                             </strong>
 
-
                             <button
                                 type="button"
                                 id="copiar-pix"
-                                class="btn-secundario"
+                                class="btn-secundario pix-copiar-btn"
                             >
                                 Copiar chave PIX
                             </button>
@@ -184,11 +261,21 @@
                         </p>
 
 
-                        <p class="pix-orientacao">
-                            Após realizar o pagamento,
-                            envie o comprovante pelo WhatsApp
-                            para que a doação possa ser confirmada.
-                        </p>
+                        <!-- ORIENTAÇÃO -->
+
+                        <div class="pix-orientacao-box">
+
+                            <span>
+                                DEPOIS DO PAGAMENTO
+                            </span>
+
+                            <p>
+                                Envie o comprovante pelo WhatsApp
+                                do Instituto para que a equipe possa
+                                conferir e confirmar sua doação.
+                            </p>
+
+                        </div>
 
 
                         <a
@@ -204,10 +291,8 @@
                     <% } else { %>
 
                         <div class="mensagem erro">
-
                             A chave PIX ainda não foi
                             configurada no sistema.
-
                         </div>
 
 
@@ -229,6 +314,106 @@
                     >
                         Voltar para campanhas
                     </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ETAPAS FINAIS
+    ====================================================== -->
+
+    <section class="doacao-sucesso-etapas">
+
+        <div class="container">
+
+            <div class="doacao-sucesso-etapas-cabecalho">
+
+                <span class="secao-etiqueta">
+                    PARA FINALIZAR
+                </span>
+
+                <h2>
+                    Sua doação está quase concluída
+                </h2>
+
+                <p>
+                    Siga estes passos para que a equipe
+                    consiga confirmar sua contribuição.
+                </p>
+
+            </div>
+
+
+            <div class="doacao-sucesso-etapas-grid">
+
+                <div class="doacao-sucesso-etapa">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Faça o PIX
+                        </h3>
+
+                        <p>
+                            Utilize a chave informada nesta página
+                            para realizar o pagamento.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="doacao-sucesso-etapa">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Envie o comprovante
+                        </h3>
+
+                        <p>
+                            Use o botão do WhatsApp para encaminhar
+                            o comprovante ao Instituto.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="doacao-sucesso-etapa">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Aguarde a confirmação
+                        </h3>
+
+                        <p>
+                            Após a conferência, a doação poderá
+                            ser marcada como recebida pela equipe.
+                        </p>
+
+                    </div>
 
                 </div>
 
