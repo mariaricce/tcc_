@@ -85,6 +85,7 @@ const Campanha = {
                 c.id,
                 c.titulo,
                 c.descricao,
+                c.imagem,
 
                 DATE_FORMAT(
                     c.data_inicio,
@@ -128,6 +129,7 @@ const Campanha = {
     async criar(
         titulo,
         descricao,
+        imagem,
         dataInicio,
         dataFim,
         meta,
@@ -140,18 +142,20 @@ const Campanha = {
             (
                 titulo,
                 descricao,
+                imagem,
                 data_inicio,
                 data_fim,
                 meta,
                 status
             )
 
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
 
         `, [
 
             titulo,
             descricao,
+            imagem || null,
             dataInicio,
             dataFim || null,
             meta || null,
@@ -171,6 +175,7 @@ const Campanha = {
         id,
         titulo,
         descricao,
+        imagem,
         dataInicio,
         dataFim,
         meta,
@@ -184,6 +189,7 @@ const Campanha = {
             SET
                 titulo = ?,
                 descricao = ?,
+                imagem = ?,
                 data_inicio = ?,
                 data_fim = ?,
                 meta = ?,
@@ -195,6 +201,7 @@ const Campanha = {
 
             titulo,
             descricao,
+            imagem || null,
             dataInicio,
             dataFim || null,
             meta || null,

@@ -31,11 +31,30 @@
 
             <div class="doacao-sucesso-card">
 
+
+                <!-- RESUMO DA DOAÇÃO -->
+
                 <div class="doacao-resumo">
+
+
+                    <% if (doacao.campanha_imagem) { %>
+
+                        <div class="doacao-sucesso-imagem">
+
+                            <img
+                                src="/images/campanhas/<%= doacao.campanha_imagem %>"
+                                alt="Imagem da campanha <%= doacao.campanha %>"
+                            >
+
+                        </div>
+
+                    <% } %>
+
 
                     <span>
                         Doação #<%= doacao.id %>
                     </span>
+
 
                     <h2>
                         <%= doacao.campanha || 'Instituto Solidarize' %>
@@ -62,10 +81,12 @@
                         </span>
 
                         <strong class="doacao-valor-destaque">
+
                             R$
                             <%= Number(doacao.valor)
                                 .toFixed(2)
                                 .replace('.', ',') %>
+
                         </strong>
 
                     </div>
@@ -98,6 +119,8 @@
 
                 </div>
 
+
+                <!-- PAGAMENTO PIX -->
 
                 <div class="pix-area">
 
@@ -140,6 +163,7 @@
                                 <%= pixChave %>
                             </strong>
 
+
                             <button
                                 type="button"
                                 id="copiar-pix"
@@ -161,8 +185,9 @@
 
 
                         <p class="pix-orientacao">
-                            Após realizar o pagamento, envie o comprovante
-                            pelo WhatsApp para que a doação possa ser confirmada.
+                            Após realizar o pagamento,
+                            envie o comprovante pelo WhatsApp
+                            para que a doação possa ser confirmada.
                         </p>
 
 
@@ -175,11 +200,16 @@
                             Enviar comprovante pelo WhatsApp
                         </a>
 
+
                     <% } else { %>
 
                         <div class="mensagem erro">
-                            A chave PIX ainda não foi configurada no sistema.
+
+                            A chave PIX ainda não foi
+                            configurada no sistema.
+
                         </div>
+
 
                         <a
                             href="<%= whatsappLink %>"

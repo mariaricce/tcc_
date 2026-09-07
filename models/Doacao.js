@@ -1,85 +1,80 @@
-const pool =
-    require('../config/database');
+const pool = require('../config/database');
 
 
 const Doacao = {
 
     // ========================================
-    // LISTAR
+    // LISTAR TODAS
     // ========================================
 
     async listarTodas() {
 
-        const [doacoes] =
-            await pool.execute(`
+        const [doacoes] = await pool.execute(`
 
-                SELECT
-                    d.id,
-                    d.doador_nome,
-                    d.tipo,
-                    d.descricao,
-                    d.quantidade,
-                    d.valor,
+            SELECT
+                d.id,
+                d.doador_nome,
+                d.tipo,
+                d.descricao,
+                d.quantidade,
+                d.valor,
 
-                    DATE_FORMAT(
-                        d.data_doacao,
-                        '%d/%m/%Y'
-                    ) AS data_doacao_formatada,
+                DATE_FORMAT(
+                    d.data_doacao,
+                    '%d/%m/%Y'
+                ) AS data_doacao_formatada,
 
-                    d.status,
-                    d.campanha_id,
+                d.status,
+                d.campanha_id,
 
-                    c.titulo AS campanha
+                c.titulo AS campanha,
+                c.imagem AS campanha_imagem
 
-                FROM doacoes d
+            FROM doacoes d
 
-                LEFT JOIN campanhas c
-                    ON d.campanha_id = c.id
+            LEFT JOIN campanhas c
+                ON d.campanha_id = c.id
 
-                ORDER BY d.id DESC
+            ORDER BY d.id DESC
 
-            `);
-
+        `);
 
         return doacoes;
-
     },
 
 
     // ========================================
-    // BUSCAR PARA ADMIN
+    // BUSCAR POR ID
+    // ADMIN
     // ========================================
 
     async buscarPorId(id) {
 
-        const [doacoes] =
-            await pool.execute(`
+        const [doacoes] = await pool.execute(`
 
-                SELECT
-                    id,
-                    doador_nome,
-                    tipo,
-                    descricao,
-                    quantidade,
-                    valor,
+            SELECT
+                id,
+                doador_nome,
+                tipo,
+                descricao,
+                quantidade,
+                valor,
 
-                    DATE_FORMAT(
-                        data_doacao,
-                        '%Y-%m-%d'
-                    ) AS data_doacao,
+                DATE_FORMAT(
+                    data_doacao,
+                    '%Y-%m-%d'
+                ) AS data_doacao,
 
-                    campanha_id,
-                    status
+                campanha_id,
+                status
 
-                FROM doacoes
+            FROM doacoes
 
-                WHERE id = ?
+            WHERE id = ?
 
-            `, [id]);
-
+        `, [id]);
 
         return doacoes[0];
-
     },
 
 
@@ -89,36 +84,34 @@ const Doacao = {
 
     async buscarPublicaPorId(id) {
 
-        const [doacoes] =
-            await pool.execute(`
+        const [doacoes] = await pool.execute(`
 
-                SELECT
-                    d.id,
-                    d.doador_nome,
-                    d.tipo,
-                    d.valor,
-                    d.status,
-                    d.campanha_id,
+            SELECT
+                d.id,
+                d.doador_nome,
+                d.tipo,
+                d.valor,
+                d.status,
+                d.campanha_id,
 
-                    DATE_FORMAT(
-                        d.data_doacao,
-                        '%d/%m/%Y'
-                    ) AS data_doacao_formatada,
+                DATE_FORMAT(
+                    d.data_doacao,
+                    '%d/%m/%Y'
+                ) AS data_doacao_formatada,
 
-                    c.titulo AS campanha
+                c.titulo AS campanha,
+                c.imagem AS campanha_imagem
 
-                FROM doacoes d
+            FROM doacoes d
 
-                LEFT JOIN campanhas c
-                    ON d.campanha_id = c.id
+            LEFT JOIN campanhas c
+                ON d.campanha_id = c.id
 
-                WHERE d.id = ?
+            WHERE d.id = ?
 
-            `, [id]);
-
+        `, [id]);
 
         return doacoes[0];
-
     },
 
 
@@ -137,48 +130,36 @@ const Doacao = {
         status
     ) {
 
-        const [resultado] =
-            await pool.execute(`
+        const [resultado] = await pool.execute(`
 
-                INSERT INTO doacoes
-                (
-                    doador_nome,
-                    tipo,
-                    descricao,
-                    quantidade,
-                    valor,
-                    data_doacao,
-                    campanha_id,
-                    status
-                )
-
-                VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?
-                )
-
-            `, [
-
-                doadorNome,
-
+            INSERT INTO doacoes
+            (
+                doador_nome,
                 tipo,
-
-                descricao || null,
-
-                quantidade || null,
-
-                valor || null,
-
-                dataDoacao,
-
-                campanhaId || null,
-
+                descricao,
+                quantidade,
+                valor,
+                data_doacao,
+                campanha_id,
                 status
+            )
 
-            ]);
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 
+        `, [
+
+            doadorNome,
+            tipo,
+            descricao || null,
+            quantidade || null,
+            valor || null,
+            dataDoacao,
+            campanhaId || null,
+            status
+
+        ]);
 
         return resultado;
-
     },
 
 
@@ -198,48 +179,37 @@ const Doacao = {
         status
     ) {
 
-        const [resultado] =
-            await pool.execute(`
+        const [resultado] = await pool.execute(`
 
-                UPDATE doacoes
+            UPDATE doacoes
 
-                SET
-                    doador_nome = ?,
-                    tipo = ?,
-                    descricao = ?,
-                    quantidade = ?,
-                    valor = ?,
-                    data_doacao = ?,
-                    campanha_id = ?,
-                    status = ?
+            SET
+                doador_nome = ?,
+                tipo = ?,
+                descricao = ?,
+                quantidade = ?,
+                valor = ?,
+                data_doacao = ?,
+                campanha_id = ?,
+                status = ?
 
-                WHERE id = ?
+            WHERE id = ?
 
-            `, [
+        `, [
 
-                doadorNome,
+            doadorNome,
+            tipo,
+            descricao || null,
+            quantidade || null,
+            valor || null,
+            dataDoacao,
+            campanhaId || null,
+            status,
+            id
 
-                tipo,
-
-                descricao || null,
-
-                quantidade || null,
-
-                valor || null,
-
-                dataDoacao,
-
-                campanhaId || null,
-
-                status,
-
-                id
-
-            ]);
-
+        ]);
 
         return resultado;
-
     },
 
 
@@ -249,18 +219,15 @@ const Doacao = {
 
     async excluir(id) {
 
-        const [resultado] =
-            await pool.execute(
-                `
-                    DELETE FROM doacoes
-                    WHERE id = ?
-                `,
-                [id]
-            );
-
+        const [resultado] = await pool.execute(
+            `
+                DELETE FROM doacoes
+                WHERE id = ?
+            `,
+            [id]
+        );
 
         return resultado;
-
     }
 
 };

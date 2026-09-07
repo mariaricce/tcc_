@@ -1,9 +1,10 @@
-const Campanha = require('../models/Campanha');
+const Campanha =
+    require('../models/Campanha');
 
 
-// =============================
+// ========================================
 // PÁGINA PÚBLICA
-// =============================
+// ========================================
 
 exports.publicas = async (req, res) => {
 
@@ -12,10 +13,19 @@ exports.publicas = async (req, res) => {
         const campanhas =
             await Campanha.listarAtivas();
 
-        res.render('campanhas', {
-            titulo: 'Campanhas | Instituto Solidarize',
-            campanhas
-        });
+
+        res.render(
+            'campanhas',
+            {
+
+                titulo:
+                    'Campanhas | Instituto Solidarize',
+
+                campanhas
+
+            }
+        );
+
 
     } catch (erro) {
 
@@ -24,17 +34,19 @@ exports.publicas = async (req, res) => {
             erro
         );
 
+
         res.status(500).send(
             'Erro ao carregar campanhas.'
         );
+
     }
 
 };
 
 
-// =============================
+// ========================================
 // LISTAR NO ADMIN
-// =============================
+// ========================================
 
 exports.listar = async (req, res) => {
 
@@ -43,10 +55,19 @@ exports.listar = async (req, res) => {
         const campanhas =
             await Campanha.listarTodas();
 
-        res.render('campanhas/index', {
-            titulo: 'Gerenciar Campanhas | Instituto Solidarize',
-            campanhas
-        });
+
+        res.render(
+            'campanhas/index',
+            {
+
+                titulo:
+                    'Gerenciar Campanhas | Instituto Solidarize',
+
+                campanhas
+
+            }
+        );
+
 
     } catch (erro) {
 
@@ -55,31 +76,40 @@ exports.listar = async (req, res) => {
             erro
         );
 
+
         res.status(500).send(
             'Erro ao listar campanhas.'
         );
+
     }
 
 };
 
 
-// =============================
+// ========================================
 // FORMULÁRIO NOVA CAMPANHA
-// =============================
+// ========================================
 
 exports.exibirNova = (req, res) => {
 
-    res.render('campanhas/nova', {
-        titulo: 'Nova Campanha | Instituto Solidarize',
-        erro: null
-    });
+    res.render(
+        'campanhas/nova',
+        {
+
+            titulo:
+                'Nova Campanha | Instituto Solidarize',
+
+            erro: null
+
+        }
+    );
 
 };
 
 
-// =============================
-// CADASTRAR
-// =============================
+// ========================================
+// CADASTRAR CAMPANHA
+// ========================================
 
 exports.criar = async (req, res) => {
 
@@ -95,22 +125,42 @@ exports.criar = async (req, res) => {
         } = req.body;
 
 
-        if (!titulo || !descricao || !data_inicio || !status) {
+        // Nome do arquivo enviado
+        const imagem =
+            req.file
+                ? req.file.filename
+                : null;
 
-            return res.render('campanhas/nova', {
 
-                titulo: 'Nova Campanha | Instituto Solidarize',
+        // CAMPOS OBRIGATÓRIOS
 
-                erro: 'Preencha os campos obrigatórios.'
+        if (
+            !titulo ||
+            !descricao ||
+            !data_inicio ||
+            !status
+        ) {
 
-            });
+            return res.render(
+                'campanhas/nova',
+                {
+
+                    titulo:
+                        'Nova Campanha | Instituto Solidarize',
+
+                    erro:
+                        'Preencha os campos obrigatórios.'
+
+                }
+            );
 
         }
 
 
         await Campanha.criar(
-            titulo,
-            descricao,
+            titulo.trim(),
+            descricao.trim(),
+            imagem,
             data_inicio,
             data_fim,
             meta,
@@ -118,7 +168,9 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.redirect('/admin/campanhas');
+        return res.redirect(
+            '/admin/campanhas'
+        );
 
 
     } catch (erro) {
@@ -129,47 +181,62 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.render('campanhas/nova', {
+        return res.render(
+            'campanhas/nova',
+            {
 
-            titulo: 'Nova Campanha | Instituto Solidarize',
+                titulo:
+                    'Nova Campanha | Instituto Solidarize',
 
-            erro: 'Não foi possível cadastrar a campanha.'
+                erro:
+                    'Não foi possível cadastrar a campanha.'
 
-        });
+            }
+        );
+
     }
 
 };
 
 
-// =============================
-// FORMULÁRIO EDITAR
-// =============================
+// ========================================
+// FORMULÁRIO EDITAR CAMPANHA
+// ========================================
 
 exports.exibirEditar = async (req, res) => {
 
     try {
 
         const campanha =
-            await Campanha.buscarPorId(req.params.id);
+            await Campanha.buscarPorId(
+                req.params.id
+            );
 
 
         if (!campanha) {
 
-            return res.status(404).send(
-                'Campanha não encontrada.'
-            );
+            return res
+                .status(404)
+                .send(
+                    'Campanha não encontrada.'
+                );
+
         }
 
 
-        res.render('campanhas/editar', {
+        res.render(
+            'campanhas/editar',
+            {
 
-            titulo: 'Editar Campanha | Instituto Solidarize',
+                titulo:
+                    'Editar Campanha | Instituto Solidarize',
 
-            campanha,
+                campanha,
 
-            erro: null
+                erro: null
 
-        });
+            }
+        );
 
 
     } catch (erro) {
@@ -179,17 +246,19 @@ exports.exibirEditar = async (req, res) => {
             erro
         );
 
+
         res.status(500).send(
             'Erro ao carregar campanha.'
         );
+
     }
 
 };
 
 
-// =============================
-// ATUALIZAR
-// =============================
+// ========================================
+// ATUALIZAR CAMPANHA
+// ========================================
 
 exports.atualizar = async (req, res) => {
 
@@ -205,29 +274,68 @@ exports.atualizar = async (req, res) => {
         } = req.body;
 
 
-        if (!titulo || !descricao || !data_inicio || !status) {
+        // BUSCA A CAMPANHA ATUAL
 
-            const campanha =
-                await Campanha.buscarPorId(req.params.id);
+        const campanhaAtual =
+            await Campanha.buscarPorId(
+                req.params.id
+            );
 
 
-            return res.render('campanhas/editar', {
+        if (!campanhaAtual) {
 
-                titulo: 'Editar Campanha | Instituto Solidarize',
+            return res
+                .status(404)
+                .send(
+                    'Campanha não encontrada.'
+                );
 
-                campanha,
+        }
 
-                erro: 'Preencha os campos obrigatórios.'
 
-            });
+        // SE UMA NOVA IMAGEM FOI ENVIADA,
+        // USA A NOVA.
+        // CASO CONTRÁRIO, MANTÉM A ANTIGA.
+
+        const imagem =
+            req.file
+                ? req.file.filename
+                : campanhaAtual.imagem;
+
+
+        // VALIDAÇÃO
+
+        if (
+            !titulo ||
+            !descricao ||
+            !data_inicio ||
+            !status
+        ) {
+
+            return res.render(
+                'campanhas/editar',
+                {
+
+                    titulo:
+                        'Editar Campanha | Instituto Solidarize',
+
+                    campanha:
+                        campanhaAtual,
+
+                    erro:
+                        'Preencha os campos obrigatórios.'
+
+                }
+            );
 
         }
 
 
         await Campanha.atualizar(
             req.params.id,
-            titulo,
-            descricao,
+            titulo.trim(),
+            descricao.trim(),
+            imagem,
             data_inicio,
             data_fim,
             meta,
@@ -235,7 +343,9 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.redirect('/admin/campanhas');
+        return res.redirect(
+            '/admin/campanhas'
+        );
 
 
     } catch (erro) {
@@ -246,17 +356,18 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao atualizar campanha.'
         );
+
     }
 
 };
 
 
-// =============================
-// EXCLUIR
-// =============================
+// ========================================
+// EXCLUIR CAMPANHA
+// ========================================
 
 exports.excluir = async (req, res) => {
 
@@ -267,7 +378,9 @@ exports.excluir = async (req, res) => {
         );
 
 
-        res.redirect('/admin/campanhas');
+        return res.redirect(
+            '/admin/campanhas'
+        );
 
 
     } catch (erro) {
@@ -278,9 +391,10 @@ exports.excluir = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao excluir campanha.'
         );
+
     }
 
 };

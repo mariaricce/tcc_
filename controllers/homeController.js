@@ -4,7 +4,6 @@ const Campanha = require('../models/Campanha');
 
 // ========================================
 // FUNÇÃO AUXILIAR
-// EVITA HTML INDESEJADO NO E-MAIL
 // ========================================
 
 function escaparHtml(texto) {
@@ -56,7 +55,6 @@ exports.campanhas = async (req, res) => {
         const campanhas =
             await Campanha.listarAtivas();
 
-
         res.render('campanhas', {
 
             titulo:
@@ -66,14 +64,12 @@ exports.campanhas = async (req, res) => {
 
         });
 
-
     } catch (erro) {
 
         console.error(
             'Erro ao carregar campanhas:',
             erro
         );
-
 
         res.status(500).send(
             'Erro ao carregar campanhas.'
@@ -120,7 +116,7 @@ exports.contato = (req, res) => {
 
 
 // ========================================
-// ENVIAR CONTATO POR E-MAIL
+// ENVIAR CONTATO
 // ========================================
 
 exports.enviarContato = async (req, res) => {
@@ -134,10 +130,6 @@ exports.enviarContato = async (req, res) => {
             mensagem
         } = req.body;
 
-
-        // ----------------------------------------
-        // CAMPOS OBRIGATÓRIOS
-        // ----------------------------------------
 
         if (
             !nome ||
@@ -153,10 +145,6 @@ exports.enviarContato = async (req, res) => {
         }
 
 
-        // ----------------------------------------
-        // LIMPEZA DOS DADOS
-        // ----------------------------------------
-
         nome = nome.trim();
 
         email = email
@@ -168,14 +156,15 @@ exports.enviarContato = async (req, res) => {
         mensagem = mensagem.trim();
 
 
-        // ----------------------------------------
-        // VALIDAÇÃO BÁSICA
-        // ----------------------------------------
+        const emailValido =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
         if (
             nome.length < 2 ||
             assunto.length < 2 ||
-            mensagem.length < 3
+            mensagem.length < 3 ||
+            !emailValido.test(email)
         ) {
 
             return res.redirect(
@@ -184,23 +173,6 @@ exports.enviarContato = async (req, res) => {
 
         }
 
-
-        const emailValido =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-        if (!emailValido.test(email)) {
-
-            return res.redirect(
-                '/contato?erro=1'
-            );
-
-        }
-
-
-        // ----------------------------------------
-        // VERSÃO SEGURA PARA HTML
-        // ----------------------------------------
 
         const nomeSeguro =
             escaparHtml(nome);
@@ -215,10 +187,6 @@ exports.enviarContato = async (req, res) => {
             escaparHtml(mensagem)
                 .replace(/\n/g, '<br>');
 
-
-        // ----------------------------------------
-        // ENVIO DO E-MAIL
-        // ----------------------------------------
 
         await transporter.sendMail({
 
@@ -247,49 +215,29 @@ ${mensagem}
             `,
 
             html: `
-                <div
-                    style="
-                        font-family: Arial, sans-serif;
-                        line-height: 1.6;
-                    "
-                >
+                <div style="font-family: Arial, sans-serif; line-height: 1.6;">
 
-                    <h2
-                        style="
-                            color: #6d3fd4;
-                        "
-                    >
+                    <h2 style="color: #6d3fd4;">
                         Nova mensagem pelo site
                     </h2>
 
                     <p>
-                        <strong>
-                            Nome:
-                        </strong>
-
+                        <strong>Nome:</strong>
                         ${nomeSeguro}
                     </p>
 
                     <p>
-                        <strong>
-                            E-mail:
-                        </strong>
-
+                        <strong>E-mail:</strong>
                         ${emailSeguro}
                     </p>
 
                     <p>
-                        <strong>
-                            Assunto:
-                        </strong>
-
+                        <strong>Assunto:</strong>
                         ${assuntoSeguro}
                     </p>
 
                     <p>
-                        <strong>
-                            Mensagem:
-                        </strong>
+                        <strong>Mensagem:</strong>
                     </p>
 
                     <p>
@@ -313,7 +261,6 @@ ${mensagem}
             'Erro ao enviar mensagem:',
             erro
         );
-
 
         return res.redirect(
             '/contato?erro=1'

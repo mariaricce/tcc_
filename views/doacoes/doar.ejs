@@ -4,6 +4,7 @@
 <main class="doacao-publica-page">
 
     <section class="pagina-topo">
+
         <div class="container">
 
             <span class="secao-etiqueta">
@@ -20,6 +21,7 @@
             </p>
 
         </div>
+
     </section>
 
 
@@ -27,19 +29,43 @@
 
         <div class="container doacao-publica-grid">
 
+
+            <!-- CAMPANHA -->
+
             <div class="doacao-campanha-card">
+
+
+                <!-- IMAGEM DA CAMPANHA -->
+
+                <% if (campanha.imagem) { %>
+
+                    <div class="doacao-campanha-imagem">
+
+                        <img
+                            src="/images/campanhas/<%= campanha.imagem %>"
+                            alt="Imagem da campanha <%= campanha.titulo %>"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                <% } %>
+
 
                 <span class="secao-etiqueta">
                     CAMPANHA
                 </span>
 
+
                 <h2>
                     <%= campanha.titulo %>
                 </h2>
 
+
                 <p>
                     <%= campanha.descricao %>
                 </p>
+
 
                 <% if (campanha.meta) { %>
 
@@ -60,8 +86,101 @@
 
                 <% } %>
 
+
+                <% if (
+                    campanha.valor_arrecadado !== undefined &&
+                    campanha.meta
+                ) { %>
+
+                    <%
+                        const meta =
+                            Number(campanha.meta) || 0;
+
+                        const arrecadado =
+                            Number(
+                                campanha.valor_arrecadado
+                            ) || 0;
+
+                        const percentual =
+                            meta > 0
+                                ? (arrecadado / meta) * 100
+                                : 0;
+
+                        const percentualExibido =
+                            Math.round(percentual);
+
+                        const larguraBarra =
+                            Math.min(percentual, 100);
+                    %>
+
+
+                    <div class="campanha-arrecadacao">
+
+                        <div class="campanha-arrecadacao-topo">
+
+                            <span>
+                                Arrecadado
+                            </span>
+
+                            <strong>
+                                R$
+                                <%= arrecadado
+                                    .toFixed(2)
+                                    .replace('.', ',') %>
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="campanha-progresso"
+                            role="progressbar"
+                            aria-label="Progresso da arrecadação"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="<%= Math.min(
+                                percentualExibido,
+                                100
+                            ) %>"
+                        >
+
+                            <div
+                                class="campanha-progresso-preenchimento"
+                                style="width: <%= larguraBarra %>%"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="campanha-progresso-dados">
+
+                            <span>
+                                R$
+                                <%= arrecadado
+                                    .toFixed(2)
+                                    .replace('.', ',') %>
+
+                                de R$
+
+                                <%= meta
+                                    .toFixed(2)
+                                    .replace('.', ',') %>
+                            </span>
+
+                            <strong>
+                                <%= percentualExibido %>%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
             </div>
 
+
+            <!-- FORMULÁRIO DE DOAÇÃO -->
 
             <div class="doacao-form-card">
 
@@ -94,6 +213,7 @@
                     class="formulario doacao-formulario"
                 >
 
+
                     <div class="campo">
 
                         <label for="doador_nome">
@@ -118,6 +238,7 @@
                         <label>
                             Sugestões de valor
                         </label>
+
 
                         <div class="doacao-valores">
 
@@ -159,6 +280,7 @@
                         <label for="valor">
                             Valor da doação
                         </label>
+
 
                         <div class="doacao-valor-input">
 

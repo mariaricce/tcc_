@@ -100,7 +100,28 @@
                                 Math.min(percentual, 100);
                         %>
 
+
                         <article class="campanha-publica-card">
+
+
+                            <!-- IMAGEM DA CAMPANHA -->
+
+                            <% if (campanha.imagem) { %>
+
+                                <div class="campanha-card-imagem">
+
+                                    <img
+                                        src="/images/campanhas/<%= campanha.imagem %>"
+                                        alt="Imagem da campanha <%= campanha.titulo %>"
+                                        loading="lazy"
+                                    >
+
+                                </div>
+
+                            <% } %>
+
+
+                            <!-- TOPO DO CARD -->
 
                             <div class="campanha-card-topo">
 
@@ -115,15 +136,21 @@
                             </div>
 
 
+                            <!-- TÍTULO -->
+
                             <h3>
                                 <%= campanha.titulo %>
                             </h3>
 
 
+                            <!-- DESCRIÇÃO -->
+
                             <p class="campanha-descricao">
                                 <%= campanha.descricao %>
                             </p>
 
+
+                            <!-- INFORMAÇÕES -->
 
                             <div class="campanha-informacoes">
 
@@ -195,6 +222,8 @@
                             </div>
 
 
+                            <!-- ARRECADAÇÃO -->
+
                             <div class="campanha-arrecadacao">
 
                                 <div class="campanha-arrecadacao-topo">
@@ -239,11 +268,14 @@
                                             <%= arrecadado
                                                 .toFixed(2)
                                                 .replace('.', ',') %>
+
                                             de R$
+
                                             <%= meta
                                                 .toFixed(2)
                                                 .replace('.', ',') %>
                                         </span>
+
 
                                         <strong>
                                             <%= percentualExibido %>%
@@ -262,6 +294,8 @@
 
                             </div>
 
+
+                            <!-- BOTÃO -->
 
                             <div class="campanha-card-rodape">
 

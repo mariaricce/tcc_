@@ -8,21 +8,34 @@ const campanhaController =
 const authMiddleware =
     require('../middlewares/authMiddleware');
 
+const uploadCampanha =
+    require('../config/uploadCampanha');
 
-// Página pública
+
+// ========================================
+// PÁGINA PÚBLICA
+// ========================================
+
 router.get(
     '/campanhas',
     campanhaController.publicas
 );
 
 
-// Administração
+// ========================================
+// ADMINISTRAÇÃO
+// ========================================
+
+// LISTAR CAMPANHAS
+
 router.get(
     '/admin/campanhas',
     authMiddleware.somenteAdmin,
     campanhaController.listar
 );
 
+
+// NOVA CAMPANHA
 
 router.get(
     '/admin/campanhas/nova',
@@ -31,12 +44,17 @@ router.get(
 );
 
 
+// CADASTRAR CAMPANHA
+
 router.post(
     '/admin/campanhas/nova',
     authMiddleware.somenteAdmin,
+    uploadCampanha.single('imagem'),
     campanhaController.criar
 );
 
+
+// EDITAR CAMPANHA
 
 router.get(
     '/admin/campanhas/:id/editar',
@@ -45,12 +63,17 @@ router.get(
 );
 
 
+// SALVAR EDIÇÃO
+
 router.post(
     '/admin/campanhas/:id/editar',
     authMiddleware.somenteAdmin,
+    uploadCampanha.single('imagem'),
     campanhaController.atualizar
 );
 
+
+// EXCLUIR CAMPANHA
 
 router.post(
     '/admin/campanhas/:id/excluir',

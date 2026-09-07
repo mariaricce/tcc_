@@ -4178,3 +4178,103 @@ body.modo-escuro .campanha-progresso-dados strong {
     }
 
 }
+/* =========================================================
+   IMAGEM DA CAMPANHA
+========================================================= */
+
+.campanha-card-imagem {
+    width: 100%;
+    height: 220px;
+
+    margin-bottom: 25px;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background: #f4effc;
+}
+
+.campanha-card-imagem img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 500px) {
+
+    .campanha-card-imagem {
+        height: 190px;
+    }
+
+}
+/* =========================================================
+   IMAGEM NA PÁGINA DE DOAÇÃO
+========================================================= */
+
+.doacao-campanha-imagem {
+    width: 100%;
+    height: 260px;
+
+    margin-bottom: 25px;
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    background: #f4effc;
+}
+
+.doacao-campanha-imagem img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+
+    .doacao-campanha-imagem {
+        height: 210px;
+    }
+
+}
+/* =========================================================
+   IMAGEM NA CONFIRMAÇÃO DA DOAÇÃO
+========================================================= */
+
+.doacao-sucesso-imagem {
+    width: 100%;
+    height: 190px;
+
+    margin-bottom: 25px;
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    background: #f4effc;
+}
+
+.doacao-sucesso-imagem img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+@media (max-width: 800px) {
+
+    .doacao-sucesso-imagem {
+        height: 230px;
+    }
+
+}
