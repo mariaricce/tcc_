@@ -195,3 +195,223 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+// ===============================
+// DOAÇÃO - VALORES SUGERIDOS
+// ===============================
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const campoValor =
+            document.getElementById('valor');
+
+
+        const botoes =
+            document.querySelectorAll(
+                '[data-valor-doacao]'
+            );
+
+
+        botoes.forEach(botao => {
+
+            botao.addEventListener(
+                'click',
+                () => {
+
+                    if (!campoValor) {
+                        return;
+                    }
+
+
+                    campoValor.value =
+                        botao.dataset.valorDoacao;
+
+
+                    campoValor.focus();
+
+                }
+            );
+
+        });
+
+    }
+);
+
+
+// ===============================
+// COPIAR PIX
+// ===============================
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const botao =
+            document.getElementById(
+                'copiar-pix'
+            );
+
+
+        const chave =
+            document.getElementById(
+                'pix-chave'
+            );
+
+
+        const aviso =
+            document.getElementById(
+                'pix-copiado'
+            );
+
+
+        if (!botao || !chave) {
+            return;
+        }
+
+
+        botao.addEventListener(
+            'click',
+            async () => {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        chave.textContent.trim()
+                    );
+
+
+                    if (aviso) {
+
+                        aviso.hidden = false;
+
+                    }
+
+
+                    botao.textContent =
+                        'Chave copiada';
+
+
+                } catch (erro) {
+
+                    console.error(
+                        'Erro ao copiar PIX:',
+                        erro
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+// ===============================
+// DOAÇÃO - VALORES SUGERIDOS
+// ===============================
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const campoValor =
+            document.getElementById('valor');
+
+
+        const botoes =
+            document.querySelectorAll(
+                '[data-valor-doacao]'
+            );
+
+
+        botoes.forEach(botao => {
+
+            botao.addEventListener(
+                'click',
+                () => {
+
+                    if (!campoValor) {
+                        return;
+                    }
+
+
+                    campoValor.value =
+                        botao.dataset.valorDoacao;
+
+
+                    campoValor.focus();
+
+                }
+            );
+
+        });
+
+    }
+);
+
+
+// ===============================
+// COPIAR CHAVE PIX
+// ===============================
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const botao =
+            document.getElementById(
+                'copiar-pix'
+            );
+
+
+        const chave =
+            document.getElementById(
+                'pix-chave'
+            );
+
+
+        const aviso =
+            document.getElementById(
+                'pix-copiado'
+            );
+
+
+        if (!botao || !chave) {
+            return;
+        }
+
+
+        botao.addEventListener(
+            'click',
+            async () => {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        chave.textContent.trim()
+                    );
+
+
+                    if (aviso) {
+                        aviso.hidden = false;
+                    }
+
+
+                    botao.textContent =
+                        'Chave copiada';
+
+
+                } catch (erro) {
+
+                    console.error(
+                        'Erro ao copiar chave PIX:',
+                        erro
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);

@@ -1,5 +1,370 @@
 const Doacao = require('../models/Doacao');
+
 const Campanha = require('../models/Campanha');
+
+
+// ========================================
+// DOAÇÃO PÚBLICA
+// ========================================
+
+// ABRIR PÁGINA DE DOAÇÃO
+exports.exibirDoacaoPublica = async (req, res) => {
+
+    try {
+
+        const campanha =
+            await Campanha.buscarPorId(
+                req.params.campanhaId
+            );
+
+
+        if (!campanha) {
+
+            return res.status(404).send(
+                'Campanha não encontrada.'
+            );
+
+        }
+
+
+        if (campanha.status !== 'Ativa') {
+
+            return res.status(400).send(
+                'Esta campanha não está disponível para doações.'
+            );
+
+        }
+
+
+        return res.render(
+            'doacoes/doar',
+            {
+
+                titulo:
+                    `Doar para ${campanha.titulo} | Instituto Solidarize`,
+
+                campanha,
+
+                erro: null,
+
+                dados: {}
+
+            }
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao abrir página de doação:',
+            erro
+        );
+
+
+        return res.status(500).send(
+            'Erro ao carregar a página de doação.'
+        );
+
+    }
+
+};
+
+
+// ========================================
+// REGISTRAR DOAÇÃO PÚBLICA
+// ========================================
+
+exports.criarDoacaoPublica = async (req, res) => {
+
+    try {
+
+        const campanha =
+            await Campanha.buscarPorId(
+                req.params.campanhaId
+            );
+
+
+        if (!campanha) {
+
+            return res.status(404).send(
+                'Campanha não encontrada.'
+            );
+
+        }
+
+
+        if (campanha.status !== 'Ativa') {
+
+            return res.status(400).send(
+                'Esta campanha não está disponível para doações.'
+            );
+
+        }
+
+
+        let {
+            doador_nome,
+            valor
+        } = req.body;
+
+
+        if (!doador_nome || !valor) {
+
+            return res.render(
+                'doacoes/doar',
+                {
+
+                    titulo:
+                        `Doar para ${campanha.titulo} | Instituto Solidarize`,
+
+                    campanha,
+
+                    erro:
+                        'Informe seu nome e o valor da doação.',
+
+                    dados: req.body
+
+                }
+            );
+
+        }
+
+
+        doador_nome =
+            doador_nome.trim();
+
+
+        const valorNumerico =
+            Number(valor);
+
+
+        if (doador_nome.length < 3) {
+
+            return res.render(
+                'doacoes/doar',
+                {
+
+                    titulo:
+                        `Doar para ${campanha.titulo} | Instituto Solidarize`,
+
+                    campanha,
+
+                    erro:
+                        'Informe um nome válido.',
+
+                    dados: req.body
+
+                }
+            );
+
+        }
+
+
+        if (
+            !Number.isFinite(valorNumerico) ||
+            valorNumerico <= 0
+        ) {
+
+            return res.render(
+                'doacoes/doar',
+                {
+
+                    titulo:
+                        `Doar para ${campanha.titulo} | Instituto Solidarize`,
+
+                    campanha,
+
+                    erro:
+                        'Informe um valor de doação válido.',
+
+                    dados: req.body
+
+                }
+            );
+
+        }
+
+
+        // Evita valores absurdamente altos
+        if (valorNumerico > 1000000) {
+
+            return res.render(
+                'doacoes/doar',
+                {
+
+                    titulo:
+                        `Doar para ${campanha.titulo} | Instituto Solidarize`,
+
+                    campanha,
+
+                    erro:
+                        'O valor informado é inválido.',
+
+                    dados: req.body
+
+                }
+            );
+
+        }
+
+
+        // DATA LOCAL
+        const agora =
+            new Date();
+
+
+        const ano =
+            agora.getFullYear();
+
+        const mes =
+            String(
+                agora.getMonth() + 1
+            ).padStart(2, '0');
+
+        const dia =
+            String(
+                agora.getDate()
+            ).padStart(2, '0');
+
+
+        const dataDoacao =
+            `${ano}-${mes}-${dia}`;
+
+
+        const resultado =
+            await Doacao.criar(
+
+                doador_nome,
+
+                'Dinheiro',
+
+                'Doação em dinheiro realizada pelo site.',
+
+                null,
+
+                valorNumerico.toFixed(2),
+
+                dataDoacao,
+
+                campanha.id,
+
+                'Pendente'
+
+            );
+
+
+        return res.redirect(
+            `/doar/sucesso/${resultado.insertId}`
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao registrar doação pelo site:',
+            erro
+        );
+
+
+        return res.status(500).send(
+            'Não foi possível registrar a doação.'
+        );
+
+    }
+
+};
+
+
+// ========================================
+// EXIBIR PAGAMENTO PIX
+// ========================================
+
+exports.exibirSucessoDoacao = async (req, res) => {
+
+    try {
+
+        const doacao =
+            await Doacao.buscarPublicaPorId(
+                req.params.id
+            );
+
+
+        if (!doacao) {
+
+            return res.status(404).send(
+                'Doação não encontrada.'
+            );
+
+        }
+
+
+        const pixChave =
+            process.env.PIX_CHAVE || '';
+
+
+        const pixRecebedor =
+            process.env.PIX_RECEBEDOR ||
+            'Instituto Solidarize';
+
+
+        const whatsappNumero =
+            process.env.WHATSAPP_NUMERO ||
+            '5545999476198';
+
+
+        const mensagemWhatsApp =
+            encodeURIComponent(
+                `Olá! Realizei uma doação para o Instituto Solidarize.
+
+Doação: #${doacao.id}
+Campanha: ${doacao.campanha || 'Não informada'}
+Doador: ${doacao.doador_nome}
+Valor: R$ ${Number(doacao.valor)
+                    .toFixed(2)
+                    .replace('.', ',')}
+
+Gostaria de enviar o comprovante do PIX.`
+            );
+
+
+        const whatsappLink =
+            `https://wa.me/${whatsappNumero}?text=${mensagemWhatsApp}`;
+
+
+        return res.render(
+            'doacoes/doacao-sucesso',
+            {
+
+                titulo:
+                    'Pagamento da Doação | Instituto Solidarize',
+
+                doacao,
+
+                pixChave,
+
+                pixRecebedor,
+
+                whatsappLink
+
+            }
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao exibir pagamento:',
+            erro
+        );
+
+
+        return res.status(500).send(
+            'Erro ao carregar os dados da doação.'
+        );
+
+    }
+
+};
 
 
 // ========================================
@@ -10,16 +375,30 @@ exports.listar = async (req, res) => {
 
     try {
 
-        const doacoes = await Doacao.listarTodas();
+        const doacoes =
+            await Doacao.listarTodas();
 
-        res.render('doacoes/index', {
-            titulo: 'Gerenciar Doações | Instituto Solidarize',
-            doacoes
-        });
+
+        res.render(
+            'doacoes/index',
+            {
+
+                titulo:
+                    'Gerenciar Doações | Instituto Solidarize',
+
+                doacoes
+
+            }
+        );
+
 
     } catch (erro) {
 
-        console.error('Erro ao listar doações:', erro);
+        console.error(
+            'Erro ao listar doações:',
+            erro
+        );
+
 
         res.status(500).send(
             'Erro ao listar doações.'
@@ -38,13 +417,24 @@ exports.exibirNova = async (req, res) => {
 
     try {
 
-        const campanhas = await Campanha.listarTodas();
+        const campanhas =
+            await Campanha.listarTodas();
 
-        res.render('doacoes/nova', {
-            titulo: 'Nova Doação | Instituto Solidarize',
-            campanhas,
-            erro: null
-        });
+
+        res.render(
+            'doacoes/nova',
+            {
+
+                titulo:
+                    'Nova Doação | Instituto Solidarize',
+
+                campanhas,
+
+                erro: null
+
+            }
+        );
+
 
     } catch (erro) {
 
@@ -52,6 +442,7 @@ exports.exibirNova = async (req, res) => {
             'Erro ao abrir formulário de doação:',
             erro
         );
+
 
         res.status(500).send(
             'Erro ao carregar formulário.'
@@ -89,19 +480,24 @@ exports.criar = async (req, res) => {
             !status
         ) {
 
-            const campanhas = await Campanha.listarTodas();
+            const campanhas =
+                await Campanha.listarTodas();
 
-            return res.render('doacoes/nova', {
 
-                titulo:
-                    'Nova Doação | Instituto Solidarize',
+            return res.render(
+                'doacoes/nova',
+                {
 
-                campanhas,
+                    titulo:
+                        'Nova Doação | Instituto Solidarize',
 
-                erro:
-                    'Preencha os campos obrigatórios.'
+                    campanhas,
 
-            });
+                    erro:
+                        'Preencha os campos obrigatórios.'
+
+                }
+            );
 
         }
 
@@ -118,7 +514,9 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.redirect('/admin/doacoes');
+        return res.redirect(
+            '/admin/doacoes'
+        );
 
 
     } catch (erro) {
@@ -128,7 +526,8 @@ exports.criar = async (req, res) => {
             erro
         );
 
-        res.status(500).send(
+
+        return res.status(500).send(
             'Erro ao cadastrar doação.'
         );
 
@@ -145,9 +544,10 @@ exports.exibirEditar = async (req, res) => {
 
     try {
 
-        const doacao = await Doacao.buscarPorId(
-            req.params.id
-        );
+        const doacao =
+            await Doacao.buscarPorId(
+                req.params.id
+            );
 
 
         if (!doacao) {
@@ -159,19 +559,25 @@ exports.exibirEditar = async (req, res) => {
         }
 
 
-        const campanhas = await Campanha.listarTodas();
+        const campanhas =
+            await Campanha.listarTodas();
 
 
-        res.render('doacoes/editar', {
+        res.render(
+            'doacoes/editar',
+            {
 
-            titulo:
-                'Editar Doação | Instituto Solidarize',
+                titulo:
+                    'Editar Doação | Instituto Solidarize',
 
-            doacao,
-            campanhas,
-            erro: null
+                doacao,
 
-        });
+                campanhas,
+
+                erro: null
+
+            }
+        );
 
 
     } catch (erro) {
@@ -180,6 +586,7 @@ exports.exibirEditar = async (req, res) => {
             'Erro ao carregar doação:',
             erro
         );
+
 
         res.status(500).send(
             'Erro ao carregar doação.'
@@ -217,25 +624,32 @@ exports.atualizar = async (req, res) => {
             !status
         ) {
 
-            const doacao = await Doacao.buscarPorId(
-                req.params.id
+            const doacao =
+                await Doacao.buscarPorId(
+                    req.params.id
+                );
+
+
+            const campanhas =
+                await Campanha.listarTodas();
+
+
+            return res.render(
+                'doacoes/editar',
+                {
+
+                    titulo:
+                        'Editar Doação | Instituto Solidarize',
+
+                    doacao,
+
+                    campanhas,
+
+                    erro:
+                        'Preencha os campos obrigatórios.'
+
+                }
             );
-
-            const campanhas = await Campanha.listarTodas();
-
-
-            return res.render('doacoes/editar', {
-
-                titulo:
-                    'Editar Doação | Instituto Solidarize',
-
-                doacao,
-                campanhas,
-
-                erro:
-                    'Preencha os campos obrigatórios.'
-
-            });
 
         }
 
@@ -253,7 +667,9 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.redirect('/admin/doacoes');
+        return res.redirect(
+            '/admin/doacoes'
+        );
 
 
     } catch (erro) {
@@ -263,7 +679,8 @@ exports.atualizar = async (req, res) => {
             erro
         );
 
-        res.status(500).send(
+
+        return res.status(500).send(
             'Erro ao atualizar doação.'
         );
 
@@ -284,7 +701,10 @@ exports.excluir = async (req, res) => {
             req.params.id
         );
 
-        res.redirect('/admin/doacoes');
+
+        return res.redirect(
+            '/admin/doacoes'
+        );
 
 
     } catch (erro) {
@@ -294,7 +714,8 @@ exports.excluir = async (req, res) => {
             erro
         );
 
-        res.status(500).send(
+
+        return res.status(500).send(
             'Erro ao excluir doação.'
         );
 

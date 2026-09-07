@@ -1,0 +1,192 @@
+﻿<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<main class="doacao-sucesso-page">
+
+    <section class="pagina-topo">
+
+        <div class="container">
+
+            <span class="secao-etiqueta">
+                DOAÃ‡ÃƒO REGISTRADA
+            </span>
+
+            <h1>
+                Falta apenas realizar o PIX
+            </h1>
+
+            <p>
+                Sua intenÃ§Ã£o de doaÃ§Ã£o jÃ¡ foi registrada
+                no Instituto Solidarize.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="doacao-sucesso-conteudo">
+
+        <div class="container">
+
+            <div class="doacao-sucesso-card">
+
+
+                <div class="doacao-resumo">
+
+                    <span>
+                        DoaÃ§Ã£o #<%= doacao.id %>
+                    </span>
+
+                    <h2>
+                        <%= doacao.campanha %>
+                    </h2>
+
+
+                    <div class="doacao-resumo-linha">
+
+                        <span>
+                            Doador
+                        </span>
+
+                        <strong>
+                            <%= doacao.doador_nome %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="doacao-resumo-linha">
+
+                        <span>
+                            Valor
+                        </span>
+
+                        <strong class="doacao-valor-destaque">
+                            R$
+                            <%= Number(doacao.valor)
+                                .toFixed(2)
+                                .replace('.', ',') %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="doacao-resumo-linha">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong>
+                            Pendente
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pix-area">
+
+                    <span class="secao-etiqueta">
+                        PAGAMENTO VIA PIX
+                    </span>
+
+                    <h2>
+                        Realize o pagamento
+                    </h2>
+
+
+                    <% if (pixChave) { %>
+
+                        <p>
+                            Envie o valor da doaÃ§Ã£o para
+                            a chave PIX abaixo:
+                        </p>
+
+
+                        <div class="pix-recebedor">
+
+                            <span>
+                                Recebedor
+                            </span>
+
+                            <strong>
+                                <%= pixRecebedor %>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="pix-chave-box">
+
+                            <span>
+                                Chave PIX
+                            </span>
+
+                            <strong id="pix-chave">
+                                <%= pixChave %>
+                            </strong>
+
+                            <button
+                                type="button"
+                                id="copiar-pix"
+                                class="btn-secundario"
+                            >
+                                Copiar chave PIX
+                            </button>
+
+                        </div>
+
+
+                        <p
+                            id="pix-copiado"
+                            class="pix-copiado"
+                            hidden
+                        >
+                            Chave PIX copiada.
+                        </p>
+
+
+                        <a
+                            href="<%= whatsappLink %>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-principal doacao-whatsapp"
+                        >
+                            Enviar comprovante pelo WhatsApp
+                        </a>
+
+
+                    <% } else { %>
+
+                        <div class="mensagem erro">
+
+                            A chave PIX ainda nÃ£o foi
+                            configurada no sistema.
+
+                        </div>
+
+                        <a
+                            href="<%= whatsappLink %>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-principal"
+                        >
+                            Falar com o Instituto
+                        </a>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<%- include('../partials/footer') %>

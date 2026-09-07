@@ -1,4 +1,5 @@
 <%- include('partials/header') %>
+
 <%- include('partials/navbar') %>
 
 <main class="campanhas-page">
@@ -51,7 +52,7 @@
             </div>
 
 
-            <% if (campanhas.length === 0) { %>
+            <% if (!campanhas || campanhas.length === 0) { %>
 
                 <div class="campanhas-vazio">
 
@@ -178,7 +179,7 @@
                             <div class="campanha-card-rodape">
 
                                 <a
-                                    href="/como-ajudar"
+                                    href="/doar/<%= campanha.id %>"
                                     class="btn-principal"
                                 >
                                     Quero ajudar
@@ -218,6 +219,7 @@
                     como voluntário, realizar doações ou ajudar divulgando
                     as ações do Instituto.
                 </p>
+
 
                 <div class="hero-botoes">
 

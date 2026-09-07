@@ -3641,3 +3641,396 @@ body.modo-escuro .footer {
 body.modo-escuro .privacidade-conteudo {
     background: var(--branco);
 }
+/* =========================================================
+   DOAÇÃO PÚBLICA
+========================================================= */
+
+.doacao-publica-conteudo,
+.doacao-sucesso-conteudo {
+    padding: 80px 0;
+    background: var(--lilas-suave);
+}
+
+
+.doacao-publica-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 45px;
+
+    align-items: start;
+}
+
+
+.doacao-campanha-card,
+.doacao-form-card,
+.doacao-sucesso-card {
+
+    padding: 35px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+}
+
+
+.doacao-campanha-card h2,
+.doacao-form-card h2,
+.pix-area h2 {
+
+    color: var(--lilas-muito-escuro);
+
+    margin-bottom: 15px;
+}
+
+
+.doacao-campanha-card > p,
+.doacao-form-texto,
+.pix-area > p {
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+.doacao-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.doacao-meta span {
+    color: var(--texto-claro);
+}
+
+
+.doacao-meta strong {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+/* VALORES */
+
+.doacao-valores {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+.doacao-valores button {
+
+    padding: 12px 8px;
+
+    background: var(--lilas-claro);
+
+    color: var(--lilas-escuro);
+
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.doacao-valores button:hover {
+    border-color: var(--lilas-principal);
+}
+
+
+.doacao-valor-input {
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid var(--borda);
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    background: var(--branco);
+}
+
+
+.doacao-valor-input span {
+
+    padding: 13px 15px;
+
+    background: var(--lilas-claro);
+
+    color: var(--lilas-escuro);
+
+    font-weight: 700;
+}
+
+
+.doacao-valor-input input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: transparent;
+
+    color: var(--texto);
+
+    border: 0;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.doacao-btn {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+.doacao-seguranca {
+    margin-top: 18px;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SUCESSO DA DOAÇÃO
+========================================================= */
+
+.doacao-sucesso-card {
+    max-width: 900px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.8fr 1.2fr;
+
+    gap: 45px;
+}
+
+
+.doacao-resumo {
+    padding-right: 35px;
+
+    border-right:
+        1px solid var(--borda);
+}
+
+
+.doacao-resumo > span {
+    color: var(--lilas-escuro);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.doacao-resumo h2 {
+    color: var(--lilas-muito-escuro);
+
+    margin: 10px 0 30px;
+}
+
+
+.doacao-resumo-linha {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid var(--borda);
+}
+
+
+.doacao-resumo-linha span {
+    color: var(--texto-claro);
+}
+
+
+.doacao-valor-destaque {
+    color: var(--lilas-escuro);
+
+    font-size: 20px;
+}
+
+
+/* PIX */
+
+.pix-recebedor {
+    margin: 25px 0 15px;
+
+    padding: 16px;
+
+    background: var(--lilas-suave);
+
+    border-radius: 10px;
+}
+
+
+.pix-recebedor span,
+.pix-chave-box > span {
+
+    display: block;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.pix-chave-box {
+
+    padding: 20px;
+
+    background: var(--lilas-claro);
+
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+
+.pix-chave-box strong {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+
+    word-break: break-all;
+}
+
+
+.pix-copiado {
+    margin-top: 10px;
+
+    color: var(--verde-sucesso);
+
+    font-size: 13px;
+}
+
+
+.doacao-whatsapp {
+    display: block;
+
+    margin-top: 25px;
+
+    text-align: center;
+}
+
+
+/* MODO ESCURO */
+
+body.modo-escuro
+.doacao-publica-conteudo,
+
+body.modo-escuro
+.doacao-sucesso-conteudo {
+
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.doacao-campanha-card,
+
+body.modo-escuro
+.doacao-form-card,
+
+body.modo-escuro
+.doacao-sucesso-card {
+
+    background: var(--branco);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+
+    .doacao-publica-grid,
+    .doacao-sucesso-card {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .doacao-resumo {
+
+        padding-right: 0;
+
+        padding-bottom: 30px;
+
+        border-right: 0;
+
+        border-bottom:
+            1px solid var(--borda);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .doacao-valores {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .doacao-campanha-card,
+    .doacao-form-card,
+    .doacao-sucesso-card {
+
+        padding: 25px 20px;
+
+    }
+
+}

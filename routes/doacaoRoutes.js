@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const doacaoController =
@@ -7,6 +8,35 @@ const doacaoController =
 const authMiddleware =
     require('../middlewares/authMiddleware');
 
+
+// ========================================
+// DOAÇÃO PÚBLICA
+// ========================================
+
+// ABRIR PÁGINA PARA DOAR
+router.get(
+    '/doar/:campanhaId',
+    doacaoController.exibirDoacaoPublica
+);
+
+
+// REGISTRAR DOAÇÃO
+router.post(
+    '/doar/:campanhaId',
+    doacaoController.criarDoacaoPublica
+);
+
+
+// CONFIRMAÇÃO / PAGAMENTO PIX
+router.get(
+    '/doar/sucesso/:id',
+    doacaoController.exibirSucessoDoacao
+);
+
+
+// ========================================
+// ADMINISTRADOR
+// ========================================
 
 // LISTAR DOAÇÕES
 router.get(
