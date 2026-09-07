@@ -4,22 +4,58 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaCampanhas = campanhas || [];
+
+            const totalCampanhas =
+                listaCampanhas.length;
+
+            const campanhasAtivas =
+                listaCampanhas.filter(
+                    campanha => campanha.status === 'Ativa'
+                ).length;
+
+            const campanhasPausadas =
+                listaCampanhas.filter(
+                    campanha => campanha.status === 'Pausada'
+                ).length;
+
+            const campanhasEncerradas =
+                listaCampanhas.filter(
+                    campanha => campanha.status === 'Encerrada'
+                ).length;
+
+            const totalArrecadado =
+                listaCampanhas.reduce(
+                    (total, campanha) =>
+                        total +
+                        Number(campanha.valor_arrecadado || 0),
+                    0
+                );
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
 
                 <h1>
                     Campanhas
                 </h1>
 
                 <p>
-                    Gerencie todas as campanhas da instituição.
+                    Cadastre, acompanhe e gerencie as campanhas
+                    realizadas pelo Instituto Solidarize.
                 </p>
 
             </div>
@@ -32,14 +68,16 @@
                 Nova campanha
             </a>
 
-        </div>
+        </header>
 
 
-        <!-- MENSAGENS -->
+        <!-- =====================================================
+             MENSAGENS
+        ====================================================== -->
 
         <% if (erroExclusao) { %>
 
-            <div class="mensagem erro">
+            <div class="mensagem erro admin-mensagem-listagem">
 
                 Esta campanha possui registros vinculados
                 e não pode ser excluída.
@@ -54,23 +92,178 @@
 
         <% if (sucessoExclusao) { %>
 
-            <div class="mensagem sucesso">
-
+            <div class="mensagem sucesso admin-mensagem-listagem">
                 Campanha excluída com sucesso.
-
             </div>
 
         <% } %>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (!campanhas || campanhas.length === 0) { %>
+        <section class="campanhas-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="campanhas-admin-resumo-card">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalCampanhas %>
+                </strong>
+
+                <p>
+                    Campanhas cadastradas
+                </p>
+
+            </div>
+
+
+            <div class="campanhas-admin-resumo-card">
+
+                <span>
+                    ATIVAS
+                </span>
+
+                <strong>
+                    <%= campanhasAtivas %>
+                </strong>
+
+                <p>
+                    Campanhas em andamento
+                </p>
+
+            </div>
+
+
+            <div class="campanhas-admin-resumo-card">
+
+                <span>
+                    PAUSADAS
+                </span>
+
+                <strong>
+                    <%= campanhasPausadas %>
+                </strong>
+
+                <p>
+                    Campanhas temporariamente pausadas
+                </p>
+
+            </div>
+
+
+            <div class="campanhas-admin-resumo-card">
+
+                <span>
+                    ENCERRADAS
+                </span>
+
+                <strong>
+                    <%= campanhasEncerradas %>
+                </strong>
+
+                <p>
+                    Campanhas finalizadas
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VALOR ARRECADADO
+        ====================================================== -->
+
+        <section class="campanhas-admin-arrecadacao-total">
+
+            <div>
+
+                <span class="secao-etiqueta">
+                    ARRECADAÇÃO
+                </span>
+
+                <h2>
+                    Total recebido pelas campanhas
+                </h2>
+
+                <p>
+                    Soma das doações confirmadas
+                    vinculadas às campanhas cadastradas.
+                </p>
+
+            </div>
+
+
+            <strong>
+                R$
+                <%= totalArrecadado
+                    .toFixed(2)
+                    .replace('.', ',') %>
+            </strong>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card campanhas-admin-listagem">
+
+            <div class="campanhas-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Campanhas cadastradas
+                    </h2>
 
                     <p>
-                        Nenhuma campanha cadastrada.
+                        Consulte informações, edite campanhas
+                        existentes ou altere seus dados.
+                    </p>
+
+                </div>
+
+
+                <span class="campanhas-admin-quantidade">
+
+                    <%= totalCampanhas %>
+
+                    <%= totalCampanhas === 1
+                        ? 'campanha'
+                        : 'campanhas' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaCampanhas.length === 0) { %>
+
+                <div class="admin-vazio campanhas-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhuma campanha cadastrada
+                    </h3>
+
+                    <p>
+                        Cadastre a primeira campanha
+                        para começar a organizar as ações
+                        do Instituto Solidarize.
                     </p>
 
                     <a
@@ -84,7 +277,7 @@
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container campanhas-admin-tabela">
 
                     <table>
 
@@ -97,19 +290,11 @@
                                 </th>
 
                                 <th>
-                                    Imagem
+                                    Campanha
                                 </th>
 
                                 <th>
-                                    Título
-                                </th>
-
-                                <th>
-                                    Início
-                                </th>
-
-                                <th>
-                                    Fim
+                                    Período
                                 </th>
 
                                 <th>
@@ -135,81 +320,106 @@
 
                         <tbody>
 
-                            <% campanhas.forEach(campanha => { %>
+                            <% listaCampanhas.forEach(campanha => { %>
 
                                 <tr>
+
 
                                     <!-- ID -->
 
                                     <td>
-                                        <%= campanha.id %>
+
+                                        <span class="campanha-admin-id">
+                                            #<%= campanha.id %>
+                                        </span>
+
                                     </td>
 
 
-                                    <!-- IMAGEM -->
+                                    <!-- CAMPANHA -->
 
                                     <td>
 
-                                        <% if (campanha.imagem) { %>
+                                        <div class="campanha-admin-identidade">
 
-                                            <div class="campanha-admin-imagem">
+                                            <% if (campanha.imagem) { %>
 
-                                                <img
-                                                    src="/images/campanhas/<%= campanha.imagem %>"
-                                                    alt="Imagem da campanha <%= campanha.titulo %>"
-                                                    loading="lazy"
-                                                >
+                                                <div class="campanha-admin-imagem">
+
+                                                    <img
+                                                        src="/images/campanhas/<%= campanha.imagem %>"
+                                                        alt="Imagem da campanha <%= campanha.titulo %>"
+                                                        loading="lazy"
+                                                    >
+
+                                                </div>
+
+                                            <% } else { %>
+
+                                                <div class="campanha-admin-sem-imagem">
+                                                    <span>
+                                                        Sem imagem
+                                                    </span>
+                                                </div>
+
+                                            <% } %>
+
+
+                                            <div class="campanha-admin-titulo">
+
+                                                <strong>
+                                                    <%= campanha.titulo %>
+                                                </strong>
+
+                                                <span>
+                                                    Campanha institucional
+                                                </span>
 
                                             </div>
 
-                                        <% } else { %>
+                                        </div>
 
-                                            <span class="campanha-sem-imagem">
-                                                Sem imagem
+                                    </td>
+
+
+                                    <!-- PERÍODO -->
+
+                                    <td>
+
+                                        <div class="campanha-admin-periodo">
+
+                                            <span>
+                                                Início
                                             </span>
 
-                                        <% } %>
-
-                                    </td>
-
-
-                                    <!-- TÍTULO -->
-
-                                    <td>
-
-                                        <strong>
-                                            <%= campanha.titulo %>
-                                        </strong>
-
-                                    </td>
+                                            <strong>
+                                                <%= new Date(
+                                                    campanha.data_inicio
+                                                ).toLocaleDateString('pt-BR') %>
+                                            </strong>
 
 
-                                    <!-- DATA INÍCIO -->
+                                            <span>
+                                                Término
+                                            </span>
 
-                                    <td>
+                                            <strong>
 
-                                        <%= new Date(
-                                            campanha.data_inicio
-                                        ).toLocaleDateString('pt-BR') %>
+                                                <% if (campanha.data_fim) { %>
 
-                                    </td>
+                                                    <%= new Date(
+                                                        campanha.data_fim
+                                                    ).toLocaleDateString('pt-BR') %>
 
+                                                <% } else { %>
 
-                                    <!-- DATA FIM -->
+                                                    Não definido
 
-                                    <td>
+                                                <% } %>
 
-                                        <% if (campanha.data_fim) { %>
+                                            </strong>
 
-                                            <%= new Date(
-                                                campanha.data_fim
-                                            ).toLocaleDateString('pt-BR') %>
-
-                                        <% } else { %>
-
-                                            Não definida
-
-                                        <% } %>
+                                        </div>
 
                                     </td>
 
@@ -220,16 +430,22 @@
 
                                         <% if (campanha.meta) { %>
 
-                                            R$
-                                            <%= Number(
-                                                campanha.meta
-                                            )
-                                                .toFixed(2)
-                                                .replace('.', ',') %>
+                                            <strong class="campanha-admin-meta">
+
+                                                R$
+                                                <%= Number(
+                                                    campanha.meta
+                                                )
+                                                    .toFixed(2)
+                                                    .replace('.', ',') %>
+
+                                            </strong>
 
                                         <% } else { %>
 
-                                            Não definida
+                                            <span class="campanha-admin-sem-valor">
+                                                Não definida
+                                            </span>
 
                                         <% } %>
 
@@ -243,7 +459,6 @@
                                         <strong class="campanha-admin-arrecadado">
 
                                             R$
-
                                             <%= Number(
                                                 campanha.valor_arrecadado || 0
                                             )
@@ -270,30 +485,34 @@
 
                                     <!-- AÇÕES -->
 
-                                    <td class="acoes-tabela">
+                                    <td>
 
-                                        <a
-                                            href="/admin/campanhas/<%= campanha.id %>/editar"
-                                            class="btn-editar"
-                                        >
-                                            Editar
-                                        </a>
+                                        <div class="acoes-tabela campanhas-admin-acoes">
 
-
-                                        <form
-                                            action="/admin/campanhas/<%= campanha.id %>/excluir"
-                                            method="POST"
-                                            onsubmit="return confirm('Deseja realmente excluir esta campanha?')"
-                                        >
-
-                                            <button
-                                                type="submit"
-                                                class="btn-excluir"
+                                            <a
+                                                href="/admin/campanhas/<%= campanha.id %>/editar"
+                                                class="btn-editar"
                                             >
-                                                Excluir
-                                            </button>
+                                                Editar
+                                            </a>
 
-                                        </form>
+
+                                            <form
+                                                action="/admin/campanhas/<%= campanha.id %>/excluir"
+                                                method="POST"
+                                                onsubmit="return confirm('Deseja realmente excluir esta campanha?')"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn-excluir"
+                                                >
+                                                    Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
 
                                     </td>
 

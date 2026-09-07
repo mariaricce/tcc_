@@ -10687,3 +10687,740 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   ADMIN - LISTAGEM DE CAMPANHAS
+========================================================= */
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 35px 40px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.admin-listagem-topo > div {
+    max-width: 720px;
+}
+
+
+.admin-listagem-topo h1 {
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 34px;
+}
+
+
+.admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    line-height: 1.65;
+}
+
+
+.admin-listagem-topo > .btn-principal {
+    flex-shrink: 0;
+}
+
+
+.admin-mensagem-listagem {
+    margin: 25px 40px 0;
+}
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.campanhas-admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 40px 40px 0;
+}
+
+
+.campanhas-admin-resumo-card {
+    padding: 23px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.campanhas-admin-resumo-card > span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.campanhas-admin-resumo-card > strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+}
+
+
+.campanhas-admin-resumo-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ARRECADAÇÃO TOTAL
+========================================================= */
+
+.campanhas-admin-arrecadacao-total {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 40px;
+
+    margin: 20px 40px 0;
+
+    padding: 28px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+}
+
+
+.campanhas-admin-arrecadacao-total > div {
+    max-width: 650px;
+}
+
+
+.campanhas-admin-arrecadacao-total h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 22px;
+}
+
+
+.campanhas-admin-arrecadacao-total p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+}
+
+
+.campanhas-admin-arrecadacao-total > strong {
+    flex-shrink: 0;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   LISTAGEM
+========================================================= */
+
+.campanhas-admin-listagem {
+    margin: 35px 40px 45px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.campanhas-admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 27px 28px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.campanhas-admin-listagem-topo h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.campanhas-admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.campanhas-admin-quantidade {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.campanhas-admin-tabela {
+    overflow-x: auto;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.campanhas-admin-tabela table {
+    width: 100%;
+
+    min-width: 1050px;
+
+    border-collapse: collapse;
+}
+
+
+.campanhas-admin-tabela th {
+    padding: 13px 15px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+.campanhas-admin-tabela td {
+    padding: 16px 15px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.campanhas-admin-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.campanhas-admin-tabela tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.campanha-admin-id {
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CAMPANHA + IMAGEM
+========================================================= */
+
+.campanha-admin-identidade {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 240px;
+}
+
+
+.campanha-admin-imagem,
+.campanha-admin-sem-imagem {
+    width: 68px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border: 1px solid var(--borda);
+
+    border-radius: 9px;
+
+    background: var(--lilas-suave);
+}
+
+
+.campanha-admin-imagem img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.campanha-admin-sem-imagem {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+
+    color: var(--texto-claro);
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+
+.campanha-admin-titulo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.campanha-admin-titulo strong {
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.campanha-admin-titulo span {
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PERÍODO
+========================================================= */
+
+.campanha-admin-periodo {
+    display: grid;
+
+    grid-template-columns:
+        auto auto;
+
+    gap: 3px 8px;
+
+    min-width: 145px;
+}
+
+
+.campanha-admin-periodo span {
+    color: var(--texto-claro);
+
+    font-size: 9px;
+}
+
+
+.campanha-admin-periodo strong {
+    color: var(--texto);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   VALORES
+========================================================= */
+
+.campanha-admin-meta {
+    color: var(--texto);
+
+    white-space: nowrap;
+}
+
+
+.campanha-admin-arrecadado {
+    color: var(--lilas-escuro);
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.campanha-admin-sem-valor {
+    color: var(--texto-claro);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.campanhas-admin-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.campanhas-admin-acoes form {
+    margin: 0;
+}
+
+
+.campanhas-admin-acoes
+.btn-editar,
+.campanhas-admin-acoes
+.btn-excluir {
+    min-height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   VAZIO
+========================================================= */
+
+.campanhas-admin-vazio {
+    margin: 0;
+
+    padding: 65px 30px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+.campanhas-admin-vazio h3 {
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+.campanhas-admin-vazio p {
+    max-width: 480px;
+
+    margin: 0 auto 22px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.admin-listagem-topo,
+body.modo-escuro
+.campanhas-admin-resumo-card,
+body.modo-escuro
+.campanhas-admin-listagem {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.campanhas-admin-arrecadacao-total {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.campanhas-admin-tabela th,
+body.modo-escuro
+.campanha-admin-sem-imagem,
+body.modo-escuro
+.campanhas-admin-quantidade {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .campanhas-admin-resumo {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 28px;
+    }
+
+
+    .admin-listagem-topo
+    .btn-principal {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .admin-mensagem-listagem {
+        margin:
+            20px 28px 0;
+    }
+
+
+    .campanhas-admin-resumo {
+        padding:
+            28px 28px 0;
+    }
+
+
+    .campanhas-admin-arrecadacao-total {
+        margin:
+            18px 28px 0;
+    }
+
+
+    .campanhas-admin-listagem {
+        margin:
+            30px 28px 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-listagem-topo {
+        padding: 22px 18px;
+    }
+
+
+    .admin-listagem-topo h1 {
+        font-size: 28px;
+    }
+
+
+    .admin-mensagem-listagem {
+        margin:
+            18px 18px 0;
+    }
+
+
+    .campanhas-admin-resumo {
+        grid-template-columns: 1fr;
+
+        padding:
+            25px 18px 0;
+    }
+
+
+    .campanhas-admin-arrecadacao-total {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        margin:
+            18px 18px 0;
+
+        padding: 23px 20px;
+    }
+
+
+    .campanhas-admin-arrecadacao-total
+    > strong {
+        font-size: 25px;
+    }
+
+
+    .campanhas-admin-listagem {
+        margin:
+            25px 18px 35px;
+    }
+
+
+    .campanhas-admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 22px 20px;
+    }
+
+}
