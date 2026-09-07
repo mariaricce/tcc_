@@ -1,6 +1,7 @@
 /* =========================================================
    INSTITUTO SOLIDARIZE
-   CSS FILTRADO - SOMENTE ESTILOS EM USO
+   CSS LIMPO - VERSÃO ATUAL
+   Duplicações e versões antigas removidas
 ========================================================= */
 
 * {
@@ -668,28 +669,6 @@ background: var(--vermelho);
     color: var(--branco);
 }
 
-.footer {
-padding: 50px 0;
-
-    background: var(--lilas-muito-escuro);
-
-    color: var(--branco);
-
-    text-align: center;
-}
-
-.footer h3 {
-margin-bottom: 12px;
-
-    font-size: 21px;
-}
-
-.footer p {
-margin-top: 8px;
-
-    color: #ded1f5;
-}
-
 @media (max-width: 1000px) {
     .dashboard-cards {
 grid-template-columns:
@@ -699,20 +678,6 @@ grid-template-columns:
     .cards-ajudar {
 grid-template-columns:
             repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 850px) {
-    .navbar-container {
-flex-direction: column;
-
-        gap: 15px;
-    }
-
-    nav {
-justify-content: center;
-
-        flex-wrap: wrap;
     }
 }
 
@@ -2126,40 +2091,6 @@ color: var(--texto-claro);
     line-height: 1.7;
 }
 
-.campanhas-grid {
-display: grid;
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-    gap: 24px;
-}
-
-.campanha-publica-card {
-display: flex;
-    flex-direction: column;
-
-    min-height: 420px;
-
-    padding: 30px;
-
-    background: var(--branco);
-
-    border: 1px solid var(--borda);
-    border-radius: 18px;
-
-    box-shadow: var(--sombra);
-
-    transition: 0.25s;
-}
-
-.campanha-publica-card:hover {
-transform: translateY(-5px);
-
-    border-color: #ccb6f8;
-
-    box-shadow:
-        0 16px 38px rgba(109, 63, 212, 0.14);
-}
-
 .campanha-card-topo {
 display: flex;
     justify-content: space-between;
@@ -2188,15 +2119,6 @@ display: inline-block;
 .campanha-id {
 color: var(--texto-claro);
     font-size: 12px;
-}
-
-.campanha-publica-card h3 {
-color: var(--lilas-muito-escuro);
-
-    font-size: 22px;
-    line-height: 1.3;
-
-    margin-bottom: 14px;
 }
 
 .campanha-descricao {
@@ -2233,15 +2155,6 @@ color: var(--texto-claro);
 color: var(--texto);
     font-size: 13px;
     text-align: right;
-}
-
-.campanha-card-rodape {
-margin-top: 25px;
-}
-
-.campanha-card-rodape .btn-principal {
-width: 100%;
-    text-align: center;
 }
 
 .campanhas-vazio {
@@ -2320,28 +2233,14 @@ max-width: 650px;
     line-height: 1.8;
 }
 
-@media (max-width: 1000px) {
-    .campanhas-grid {
-grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-}
-
 @media (max-width: 650px) {
-    .campanhas-grid {
-grid-template-columns: 1fr;
-    }
-
-    .campanha-publica-card {
-min-height: auto;
-    }
-
-    .campanhas-publicas, .campanhas-chamada {
-padding: 65px 0;
+    .campanhas-publicas,
+    .campanhas-chamada {
+        padding: 65px 0;
     }
 
     .campanhas-chamada-box {
-padding: 40px 22px;
+        padding: 40px 22px;
     }
 }
 
@@ -3031,11 +2930,6 @@ body.modo-escuro .campanhas-publicas {
 }
 
 
-body.modo-escuro .campanha-publica-card {
-    background: var(--branco);
-}
-
-
 body.modo-escuro .campanhas-chamada {
     background: var(--branco);
 }
@@ -3170,6 +3064,15 @@ body.modo-escuro .btn-tema:hover {
 
     color: var(--lilas-escuro);
 }
+body.modo-escuro .campanha-slide-card {
+    background: var(--branco);
+    border-color: var(--borda);
+}
+
+body.modo-escuro .campanha-slide-imagem {
+    background: var(--lilas-claro);
+}
+
 /* =========================================================
    MENU RESPONSIVO
 ========================================================= */
@@ -4179,42 +4082,6 @@ body.modo-escuro .campanha-progresso-dados strong {
 
 }
 /* =========================================================
-   IMAGEM DA CAMPANHA
-========================================================= */
-
-.campanha-card-imagem {
-    width: 100%;
-    height: 220px;
-
-    margin-bottom: 25px;
-
-    border-radius: 14px;
-
-    overflow: hidden;
-
-    background: #f4effc;
-}
-
-.campanha-card-imagem img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* CELULAR */
-
-@media (max-width: 500px) {
-
-    .campanha-card-imagem {
-        height: 190px;
-    }
-
-}
-/* =========================================================
    IMAGEM NA PÁGINA DE DOAÇÃO
 ========================================================= */
 
@@ -4362,255 +4229,6 @@ body.modo-escuro .campanha-progresso-dados strong {
 
 }
 /* =========================================================
-   CARROSSEL DE CAMPANHAS
-========================================================= */
-
-.campanhas-carrossel-area {
-    width: 100%;
-    position: relative;
-}
-
-
-/* CONTROLES */
-
-.campanhas-carrossel-controles {
-    display: flex;
-    justify-content: flex-end;
-
-    gap: 10px;
-
-    margin-bottom: 22px;
-}
-
-.carrossel-btn {
-    min-width: 105px;
-}
-
-.carrossel-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-
-/* TRILHO */
-
-.campanhas-carrossel {
-    width: 100%;
-
-    display: flex;
-
-    gap: 24px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-
-    padding: 5px 3px 25px;
-
-    scrollbar-width: none;
-}
-
-.campanhas-carrossel::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* CARDS */
-
-.campanhas-carrossel
-.campanha-publica-card {
-    flex: 0 0 calc(
-        (100% - 48px) / 3
-    );
-
-    min-width: 0;
-
-    scroll-snap-align: start;
-}
-
-
-/* TABLET */
-
-@media (max-width: 1100px) {
-
-    .campanhas-carrossel
-    .campanha-publica-card {
-        flex: 0 0 calc(
-            (100% - 24px) / 2
-        );
-    }
-
-}
-
-
-/* CELULAR */
-
-@media (max-width: 700px) {
-
-    .campanhas-carrossel
-    .campanha-publica-card {
-        flex: 0 0 100%;
-    }
-
-    .campanhas-carrossel-controles {
-        justify-content: center;
-    }
-
-    .carrossel-btn {
-        flex: 1;
-        max-width: 160px;
-    }
-
-}
-/* =========================================================
-   AJUSTE DOS CARDS DO CARROSSEL
-========================================================= */
-
-.campanhas-carrossel {
-    align-items: stretch;
-    padding-bottom: 20px;
-}
-
-
-/* CARD MAIS COMPACTO */
-
-.campanhas-carrossel .campanha-publica-card {
-    display: flex;
-    flex-direction: column;
-
-    padding: 22px;
-
-    height: auto;
-    min-height: 0;
-}
-
-
-/* IMAGEM MENOR */
-
-.campanhas-carrossel .campanha-card-imagem {
-    width: 100%;
-    height: 165px;
-
-    margin-bottom: 18px;
-
-    border-radius: 12px;
-}
-
-.campanhas-carrossel .campanha-card-imagem img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-
-/* TOPO */
-
-.campanhas-carrossel .campanha-card-topo {
-    margin-bottom: 16px;
-}
-
-
-/* TÍTULO */
-
-.campanhas-carrossel .campanha-publica-card h3 {
-    margin: 0 0 12px;
-
-    font-size: 22px;
-    line-height: 1.2;
-}
-
-
-/* DESCRIÇÃO MAIS COMPACTA */
-
-.campanhas-carrossel .campanha-descricao {
-    margin-bottom: 18px;
-
-    font-size: 15px;
-    line-height: 1.6;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-
-    overflow: hidden;
-}
-
-
-/* INFORMAÇÕES */
-
-.campanhas-carrossel .campanha-informacoes {
-    margin-top: 0;
-}
-
-.campanhas-carrossel .campanha-informacoes > div {
-    padding: 11px 0;
-}
-
-
-/* ARRECADAÇÃO */
-
-.campanhas-carrossel .campanha-arrecadacao {
-    margin-top: 14px;
-    padding-top: 14px;
-}
-
-
-/* BOTÃO SEMPRE NO FINAL */
-
-.campanhas-carrossel .campanha-card-rodape {
-    margin-top: auto;
-    padding-top: 18px;
-}
-
-.campanhas-carrossel .campanha-card-rodape .btn-principal {
-    width: 100%;
-
-    padding: 13px 18px;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .campanhas-carrossel .campanha-card-imagem {
-        height: 180px;
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .campanhas-carrossel .campanha-publica-card {
-        padding: 20px;
-    }
-
-    .campanhas-carrossel .campanha-card-imagem {
-        height: 190px;
-    }
-
-    .campanhas-carrossel .campanha-publica-card h3 {
-        font-size: 21px;
-    }
-
-    .campanhas-carrossel .campanha-descricao {
-        -webkit-line-clamp: 4;
-    }
-
-}
-/* =========================================================
    NOVO CARROSSEL DE CAMPANHAS
    1 CAMPANHA POR VEZ
 ========================================================= */
@@ -4633,7 +4251,7 @@ body.modo-escuro .campanha-progresso-dados strong {
 }
 
 #campanha-indicador {
-    color: #6d3fd4;
+    color: var(--lilas-escuro);
 
     font-weight: 700;
     font-size: 14px;
@@ -4699,9 +4317,9 @@ body.modo-escuro .campanha-progresso-dados strong {
 
     min-height: 500px;
 
-    background: #ffffff;
+    background: var(--branco);
 
-    border: 1px solid #dfccff;
+    border: 1px solid var(--borda);
     border-radius: 22px;
 
     overflow: hidden;
@@ -4720,7 +4338,7 @@ body.modo-escuro .campanha-progresso-dados strong {
 
     min-height: 500px;
 
-    background: #f3edfc;
+    background: var(--lilas-claro);
 
     overflow: hidden;
 }
@@ -4742,7 +4360,7 @@ body.modo-escuro .campanha-progresso-dados strong {
     align-items: center;
     justify-content: center;
 
-    color: #6d3fd4;
+    color: var(--lilas-escuro);
 
     font-weight: 700;
 }
@@ -4767,7 +4385,7 @@ body.modo-escuro .campanha-progresso-dados strong {
 .campanha-slide-conteudo h3 {
     margin: 0 0 12px;
 
-    color: #4b2d7f;
+    color: var(--lilas-muito-escuro);
 
     font-size: 28px;
     line-height: 1.2;
@@ -4780,7 +4398,7 @@ body.modo-escuro .campanha-progresso-dados strong {
     font-size: 15px;
     line-height: 1.6;
 
-    color: #755f7f;
+    color: var(--texto-claro);
 }
 
 
