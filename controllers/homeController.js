@@ -150,3 +150,11 @@ ${mensagem}
     }
 
 };
+
+exports.privacidade = (req, res) => {
+
+    res.render('privacidade', {
+        titulo: 'Privacidade e Cookies'
+    });
+
+};

@@ -1,20 +1,192 @@
 <footer class="footer">
 
-    <div class="container">
+    <div class="container footer-grid">
 
-        <h3> Instituto Solidarize</h3>
+        <div class="footer-coluna footer-sobre">
+
+            <h3>
+                Instituto Solidarize
+            </h3>
+
+            <p>
+                Uma iniciativa voltada à solidariedade,
+                organização de ações sociais e apoio
+                à comunidade.
+            </p>
+
+        </div>
+
+
+        <div class="footer-coluna">
+
+            <h4>
+                Navegação
+            </h4>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/sobre">
+                Sobre
+            </a>
+
+            <a href="/campanhas">
+                Campanhas
+            </a>
+
+            <a href="/como-ajudar">
+                Como Ajudar
+            </a>
+
+            <a href="/contato">
+                Contato
+            </a>
+
+        </div>
+
+
+        <div class="footer-coluna">
+
+            <h4>
+                Participe
+            </h4>
+
+            <a href="/quero-ser-voluntario">
+                Seja voluntário
+            </a>
+
+            <a href="/campanhas">
+                Apoie uma campanha
+            </a>
+
+            <a href="/cadastro">
+                Criar conta
+            </a>
+
+        </div>
+
+
+        <div class="footer-coluna">
+
+            <h4>
+                Contato
+            </h4>
+
+            <p>
+                institutosolidarizeong@gmail.com
+            </p>
+
+            <a href="/privacidade">
+                Privacidade e Cookies
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-base">
 
         <p>
-            Juntos podemos transformar vidas.
+            © <%= new Date().getFullYear() %>
+            Instituto Solidarize.
+            Todos os direitos reservados.
         </p>
 
         <p>
-            © 2026 Instituto Solidarize
+            Projeto desenvolvido para o Curso Técnico
+            em Desenvolvimento de Sistemas.
         </p>
 
     </div>
 
 </footer>
+
+
+<!-- =====================================
+     WHATSAPP
+===================================== -->
+
+<a
+    href="https://wa.me/55DDDNUMERO?text=Olá%21%20Vim%20pelo%20site%20do%20Instituto%20Solidarize."
+    class="whatsapp-flutuante"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Fale conosco pelo WhatsApp"
+    title="Fale conosco pelo WhatsApp"
+>
+
+    <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+    >
+        <path
+            d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02z"
+        />
+    </svg>
+
+</a>
+
+
+<!-- =====================================
+     AVISO DE COOKIES
+===================================== -->
+
+<div
+    id="cookie-banner"
+    class="cookie-banner"
+    role="dialog"
+    aria-label="Aviso sobre cookies"
+    hidden
+>
+
+    <div class="cookie-conteudo">
+
+        <div>
+
+            <strong>
+                Privacidade e Cookies
+            </strong>
+
+            <p>
+                Utilizamos cookies essenciais e armazenamento
+                local para manter sua sessão e suas preferências,
+                como o modo claro ou escuro.
+            </p>
+
+        </div>
+
+
+        <div class="cookie-acoes">
+
+            <a href="/privacidade">
+                Saiba mais
+            </a>
+
+            <button
+                type="button"
+                id="aceitar-cookies"
+                class="btn-principal"
+            >
+                Entendi
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     VLIBRAS
+===================================== -->
+
+<script
+    src="https://vlibras.gov.br/app/vlibras-plugin.js"
+></script>
+
 
 <script src="/js/main.js"></script>
 

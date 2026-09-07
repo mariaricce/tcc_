@@ -79,3 +79,119 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+// ===============================
+// MENU MOBILE
+// ===============================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const botaoMenu =
+        document.getElementById('menu-toggle');
+
+    const menu =
+        document.getElementById('menu-principal');
+
+
+    if (botaoMenu && menu) {
+
+        botaoMenu.addEventListener('click', () => {
+
+            const aberto =
+                menu.classList.toggle('aberto');
+
+
+            botaoMenu.setAttribute(
+                'aria-expanded',
+                aberto
+            );
+
+
+            botaoMenu.setAttribute(
+                'aria-label',
+                aberto
+                    ? 'Fechar menu'
+                    : 'Abrir menu'
+            );
+
+        });
+
+
+        menu.querySelectorAll('a').forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                menu.classList.remove('aberto');
+
+                botaoMenu.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+            });
+
+        });
+
+
+        document.addEventListener('keydown', event => {
+
+            if (event.key === 'Escape') {
+
+                menu.classList.remove('aberto');
+
+                botaoMenu.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+            }
+
+        });
+
+    }
+
+});
+
+
+// ===============================
+// AVISO DE COOKIES
+// ===============================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const aviso =
+        document.getElementById('cookie-banner');
+
+    const botao =
+        document.getElementById('aceitar-cookies');
+
+
+    if (!aviso || !botao) {
+        return;
+    }
+
+
+    const avisoAceito =
+        localStorage.getItem(
+            'solidarize_aviso_cookies'
+        );
+
+
+    if (!avisoAceito) {
+
+        aviso.hidden = false;
+
+    }
+
+
+    botao.addEventListener('click', () => {
+
+        localStorage.setItem(
+            'solidarize_aviso_cookies',
+            'aceito'
+        );
+
+        aviso.hidden = true;
+
+    });
+
+});

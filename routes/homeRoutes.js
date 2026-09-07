@@ -15,5 +15,10 @@ router.get('/contato', homeController.contato);
 
 router.post('/contato', homeController.enviarContato);
 
+router.get(
+    '/privacidade',
+    homeController.privacidade
+);
+
 
 module.exports = router;

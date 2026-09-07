@@ -3170,3 +3170,474 @@ body.modo-escuro .btn-tema:hover {
 
     color: var(--lilas-escuro);
 }
+/* =========================================================
+   MENU RESPONSIVO
+========================================================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 46px;
+    height: 42px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    background: transparent;
+
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+
+.menu-toggle span {
+    width: 22px;
+    height: 2px;
+
+    background: var(--texto);
+
+    border-radius: 10px;
+}
+
+
+.menu-principal {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   RODAPÉ COMPLETO
+========================================================= */
+
+.footer {
+    padding: 65px 0 0;
+
+    background: #352252;
+
+    color: white;
+
+    text-align: left;
+}
+
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1.4fr;
+
+    gap: 45px;
+
+    padding-bottom: 45px;
+}
+
+
+.footer-coluna {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.footer-coluna h3 {
+    font-size: 23px;
+
+    margin-bottom: 6px;
+}
+
+
+.footer-coluna h4 {
+    font-size: 15px;
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+
+.footer-coluna p {
+    color: #ded1f5;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.footer-coluna a {
+    color: #ded1f5;
+
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+
+.footer-coluna a:hover {
+    color: white;
+
+    text-decoration: underline;
+}
+
+
+.footer-sobre p {
+    max-width: 350px;
+}
+
+
+.footer-base {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 22px 0;
+
+    border-top:
+        1px solid rgba(255,255,255,0.15);
+}
+
+
+.footer-base p {
+    color: #cfc2e4;
+
+    font-size: 12px;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp-flutuante {
+    width: 58px;
+    height: 58px;
+
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    z-index: 1500;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #25d366;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.22);
+
+    transition: 0.2s;
+}
+
+
+.whatsapp-flutuante:hover {
+    transform: translateY(-3px);
+}
+
+
+.whatsapp-flutuante svg {
+    width: 27px;
+    height: 27px;
+
+    fill: white;
+}
+
+
+/* =========================================================
+   COOKIES
+========================================================= */
+
+.cookie-banner {
+    position: fixed;
+
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 1400;
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 20px 22px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.20);
+}
+
+
+.cookie-banner[hidden] {
+    display: none;
+}
+
+
+.cookie-conteudo {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.cookie-conteudo strong {
+    display: block;
+
+    color: var(--lilas-muito-escuro);
+
+    margin-bottom: 5px;
+}
+
+
+.cookie-conteudo p {
+    max-width: 680px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.cookie-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-shrink: 0;
+}
+
+
+.cookie-acoes a {
+    color: var(--lilas-escuro);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.cookie-acoes .btn-principal {
+    padding: 9px 16px;
+}
+
+
+/* =========================================================
+   PRIVACIDADE
+========================================================= */
+
+.privacidade-conteudo {
+    padding: 80px 0;
+
+    background: var(--branco);
+}
+
+
+.privacidade-box {
+    max-width: 850px;
+}
+
+
+.privacidade-box h2 {
+    color: var(--lilas-muito-escuro);
+
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+
+.privacidade-box h2:first-child {
+    margin-top: 0;
+}
+
+
+.privacidade-box p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+
+    outline:
+        3px solid var(--lilas-principal);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .navbar-container {
+        display: grid;
+
+        grid-template-columns:
+            1fr auto;
+
+        align-items: center;
+
+        gap: 15px;
+    }
+
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    .menu-principal {
+        display: none;
+
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 5px;
+
+        padding-top: 15px;
+
+        border-top:
+            1px solid var(--borda);
+    }
+
+
+    .menu-principal.aberto {
+        display: flex;
+    }
+
+
+    .menu-principal a,
+    .menu-principal .btn-tema,
+    .menu-principal .btn-login,
+    .menu-principal .btn-sair-nav {
+
+        width: 100%;
+
+        padding: 12px;
+
+        text-align: left;
+    }
+
+
+    .form-logout-nav {
+        width: 100%;
+    }
+
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .cookie-conteudo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .footer-base {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .cookie-banner {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+
+        padding: 17px;
+    }
+
+
+    .cookie-acoes {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+
+    .whatsapp-flutuante {
+        width: 53px;
+        height: 53px;
+
+        right: 15px;
+        bottom: 15px;
+    }
+
+}
+
+
+/* MODO ESCURO */
+
+body.modo-escuro .footer {
+    background: #17131f;
+}
+
+
+body.modo-escuro .privacidade-conteudo {
+    background: var(--branco);
+}

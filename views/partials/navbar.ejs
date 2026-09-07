@@ -6,7 +6,26 @@
             Instituto Solidarize
         </a>
 
-        <nav>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menu"
+            aria-controls="menu-principal"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+
+        <nav
+            id="menu-principal"
+            class="menu-principal"
+            aria-label="Menu principal"
+        >
 
             <a href="/">Home</a>
 
@@ -18,18 +37,22 @@
 
             <a href="/contato">Contato</a>
 
+
             <button
-                     type="button"
-                    id="toggle-tema"
-                     class="btn-tema"
+                type="button"
+                id="toggle-tema"
+                class="btn-tema"
             >
-                       Modo escuro
+                Modo escuro
             </button>
 
 
             <% if (!usuarioLogado) { %>
 
-                <a href="/login" class="btn-login">
+                <a
+                    href="/login"
+                    class="btn-login"
+                >
                     Login
                 </a>
 
@@ -37,13 +60,19 @@
 
                 <% if (usuarioLogado.tipo === 'admin') { %>
 
-                    <a href="/admin" class="link-painel">
+                    <a
+                        href="/admin"
+                        class="link-painel"
+                    >
                         Painel Admin
                     </a>
 
                 <% } else { %>
 
-                    <a href="/usuario" class="link-painel">
+                    <a
+                        href="/usuario"
+                        class="link-painel"
+                    >
                         Minha Conta
                     </a>
 
