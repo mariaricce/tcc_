@@ -9858,3 +9858,832 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   DASHBOARD ADMIN - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.admin-conteudo-novo {
+    min-width: 0;
+
+    background: #f8f6fc;
+}
+
+
+/* =========================================================
+   TOPO
+========================================================= */
+
+.admin-topo-novo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 35px 40px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.admin-topo-texto {
+    max-width: 750px;
+}
+
+
+.admin-topo-texto h1 {
+    margin: 0 0 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 34px;
+
+    line-height: 1.2;
+}
+
+
+.admin-topo-texto > p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    line-height: 1.65;
+}
+
+
+.admin-topo-texto > p strong {
+    color: var(--lilas-escuro);
+}
+
+
+/* PERFIL */
+
+.admin-perfil-novo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 220px;
+
+    padding: 12px 16px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 14px;
+}
+
+
+.admin-avatar-novo {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-principal);
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+
+.admin-perfil-novo div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.admin-perfil-novo span {
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.admin-perfil-novo strong {
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 14px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.admin-dashboard-novo {
+    padding: 40px;
+}
+
+
+.admin-resumo-novo,
+.admin-dashboard-secao-nova,
+.admin-registros-recentes {
+    margin-bottom: 55px;
+}
+
+
+/* CABEÇALHOS */
+
+.admin-secao-cabecalho-novo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 30px;
+
+    margin-bottom: 25px;
+}
+
+
+.admin-secao-cabecalho-novo h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 27px;
+
+    line-height: 1.25;
+
+    margin-bottom: 5px;
+}
+
+
+.admin-secao-cabecalho-novo p {
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   INDICADORES
+========================================================= */
+
+.admin-indicadores-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.admin-indicador-card {
+    min-width: 0;
+
+    padding: 24px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.06);
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.admin-indicador-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #ceb9f8;
+
+    box-shadow:
+        0 15px 35px
+        rgba(109, 63, 212, 0.11);
+}
+
+
+.admin-indicador-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 27px;
+}
+
+
+.admin-indicador-numero {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 10px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.admin-indicador-link {
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.admin-indicador-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.admin-indicador-valor {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 38px;
+
+    line-height: 1.1;
+}
+
+
+.admin-indicador-card > p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ACESSO RÁPIDO
+========================================================= */
+
+.admin-acoes-novas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.admin-acao-nova {
+    display: grid;
+
+    grid-template-columns: 48px 1fr;
+
+    gap: 15px;
+
+    align-items: center;
+
+    min-height: 100px;
+
+    padding: 20px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+
+.admin-acao-nova:hover {
+    transform: translateY(-3px);
+
+    background: var(--lilas-suave);
+
+    border-color: #ceb9f8;
+}
+
+
+.admin-acao-nova > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 11px;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.admin-acao-nova div {
+    min-width: 0;
+}
+
+
+.admin-acao-nova strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+}
+
+
+.admin-acao-nova small {
+    display: block;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   REGISTROS RECENTES
+========================================================= */
+
+.admin-registros-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+}
+
+
+.admin-registro-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.admin-registro-card-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 24px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.admin-registro-tipo {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.admin-registro-card-topo h3 {
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 19px;
+}
+
+
+.admin-ver-todos {
+    flex-shrink: 0;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.admin-ver-todos:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   TABELAS
+========================================================= */
+
+.admin-tabela-nova {
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.admin-tabela-nova table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.admin-tabela-nova th {
+    padding: 13px 16px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    text-align: left;
+}
+
+
+.admin-tabela-nova td {
+    padding: 15px 16px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.admin-tabela-nova tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.admin-tabela-nova tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+.admin-tabela-nova td strong {
+    color: var(--lilas-muito-escuro);
+}
+
+
+.admin-valor-doacao {
+    color: var(--lilas-escuro);
+
+    font-weight: 800;
+}
+
+
+/* VAZIO */
+
+.admin-vazio-novo {
+    margin: 0;
+
+    padding: 45px 25px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.admin-vazio-novo h3 {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.admin-dashboard-final {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+}
+
+
+.admin-dashboard-final > div {
+    max-width: 650px;
+}
+
+
+.admin-dashboard-final h2 {
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+
+    line-height: 1.3;
+}
+
+
+.admin-dashboard-final p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.admin-conteudo-novo {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.admin-topo-novo,
+body.modo-escuro
+.admin-indicador-card,
+body.modo-escuro
+.admin-acao-nova,
+body.modo-escuro
+.admin-registro-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.admin-perfil-novo,
+body.modo-escuro
+.admin-indicador-numero,
+body.modo-escuro
+.admin-acao-nova > span,
+body.modo-escuro
+.admin-tabela-nova th {
+    background: var(--lilas-suave);
+}
+
+
+body.modo-escuro
+.admin-dashboard-final {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .admin-indicadores-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .admin-acoes-novas {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .admin-registros-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .admin-topo-novo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 28px;
+    }
+
+
+    .admin-perfil-novo {
+        width: 100%;
+    }
+
+
+    .admin-dashboard-novo {
+        padding: 28px;
+    }
+
+
+    .admin-dashboard-final {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-topo-novo {
+        padding: 22px 18px;
+    }
+
+
+    .admin-topo-texto h1 {
+        font-size: 28px;
+    }
+
+
+    .admin-dashboard-novo {
+        padding: 25px 18px;
+    }
+
+
+    .admin-indicadores-grid,
+    .admin-acoes-novas {
+        grid-template-columns: 1fr;
+    }
+
+
+    .admin-acao-nova {
+        grid-template-columns: 45px 1fr;
+    }
+
+
+    .admin-registro-card-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .admin-tabela-nova {
+        overflow-x: auto;
+    }
+
+
+    .admin-tabela-nova table {
+        min-width: 550px;
+    }
+
+
+    .admin-dashboard-final {
+        padding: 28px 22px;
+    }
+
+
+    .admin-dashboard-final
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
