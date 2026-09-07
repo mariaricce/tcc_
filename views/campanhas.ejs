@@ -81,6 +81,25 @@
 
                     <% campanhas.forEach(campanha => { %>
 
+                        <%
+                            const meta =
+                                Number(campanha.meta) || 0;
+
+                            const arrecadado =
+                                Number(campanha.valor_arrecadado) || 0;
+
+                            const percentual =
+                                meta > 0
+                                    ? (arrecadado / meta) * 100
+                                    : 0;
+
+                            const percentualExibido =
+                                Math.round(percentual);
+
+                            const larguraBarra =
+                                Math.min(percentual, 100);
+                        %>
+
                         <article class="campanha-publica-card">
 
                             <div class="campanha-card-topo">
@@ -156,10 +175,10 @@
 
                                     <strong>
 
-                                        <% if (campanha.meta) { %>
+                                        <% if (meta > 0) { %>
 
                                             R$
-                                            <%= Number(campanha.meta)
+                                            <%= meta
                                                 .toFixed(2)
                                                 .replace('.', ',') %>
 
@@ -172,6 +191,74 @@
                                     </strong>
 
                                 </div>
+
+                            </div>
+
+
+                            <div class="campanha-arrecadacao">
+
+                                <div class="campanha-arrecadacao-topo">
+
+                                    <span>
+                                        Arrecadado
+                                    </span>
+
+                                    <strong>
+                                        R$
+                                        <%= arrecadado
+                                            .toFixed(2)
+                                            .replace('.', ',') %>
+                                    </strong>
+
+                                </div>
+
+
+                                <% if (meta > 0) { %>
+
+                                    <div
+                                        class="campanha-progresso"
+                                        role="progressbar"
+                                        aria-label="Progresso da arrecadação"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        aria-valuenow="<%= Math.min(percentualExibido, 100) %>"
+                                    >
+
+                                        <div
+                                            class="campanha-progresso-preenchimento"
+                                            style="width: <%= larguraBarra %>%"
+                                        ></div>
+
+                                    </div>
+
+
+                                    <div class="campanha-progresso-dados">
+
+                                        <span>
+                                            R$
+                                            <%= arrecadado
+                                                .toFixed(2)
+                                                .replace('.', ',') %>
+                                            de R$
+                                            <%= meta
+                                                .toFixed(2)
+                                                .replace('.', ',') %>
+                                        </span>
+
+                                        <strong>
+                                            <%= percentualExibido %>%
+                                        </strong>
+
+                                    </div>
+
+                                <% } else { %>
+
+                                    <p class="campanha-sem-meta">
+                                        Esta campanha não possui uma meta
+                                        financeira definida.
+                                    </p>
+
+                                <% } %>
 
                             </div>
 

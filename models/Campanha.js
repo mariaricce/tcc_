@@ -1,54 +1,141 @@
 const pool = require('../config/database');
 
+
 const Campanha = {
+
+    // ========================================
+    // LISTAR TODAS AS CAMPANHAS
+    // ADMIN
+    // ========================================
 
     async listarTodas() {
 
         const [campanhas] = await pool.execute(`
-            SELECT *
-            FROM campanhas
-            ORDER BY id DESC
+
+            SELECT
+                c.*,
+
+                COALESCE(
+                    (
+                        SELECT SUM(d.valor)
+
+                        FROM doacoes d
+
+                        WHERE d.campanha_id = c.id
+                        AND d.status = 'Recebida'
+                    ),
+                    0
+                ) AS valor_arrecadado
+
+            FROM campanhas c
+
+            ORDER BY c.id DESC
+
         `);
 
         return campanhas;
     },
 
+
+    // ========================================
+    // LISTAR CAMPANHAS ATIVAS
+    // SITE PÚBLICO
+    // ========================================
 
     async listarAtivas() {
 
         const [campanhas] = await pool.execute(`
-            SELECT *
-            FROM campanhas
-            WHERE status = 'Ativa'
-            ORDER BY id DESC
+
+            SELECT
+                c.*,
+
+                COALESCE(
+                    (
+                        SELECT SUM(d.valor)
+
+                        FROM doacoes d
+
+                        WHERE d.campanha_id = c.id
+                        AND d.status = 'Recebida'
+                    ),
+                    0
+                ) AS valor_arrecadado
+
+            FROM campanhas c
+
+            WHERE c.status = 'Ativa'
+
+            ORDER BY c.id DESC
+
         `);
 
         return campanhas;
     },
 
 
+    // ========================================
+    // BUSCAR CAMPANHA POR ID
+    // ========================================
+
     async buscarPorId(id) {
 
         const [campanhas] = await pool.execute(`
+
             SELECT
-                id,
-                titulo,
-                descricao,
-                DATE_FORMAT(data_inicio, '%Y-%m-%d') AS data_inicio,
-                DATE_FORMAT(data_fim, '%Y-%m-%d') AS data_fim,
-                meta,
-                status
-            FROM campanhas
-            WHERE id = ?
+                c.id,
+                c.titulo,
+                c.descricao,
+
+                DATE_FORMAT(
+                    c.data_inicio,
+                    '%Y-%m-%d'
+                ) AS data_inicio,
+
+                DATE_FORMAT(
+                    c.data_fim,
+                    '%Y-%m-%d'
+                ) AS data_fim,
+
+                c.meta,
+                c.status,
+
+                COALESCE(
+                    (
+                        SELECT SUM(d.valor)
+
+                        FROM doacoes d
+
+                        WHERE d.campanha_id = c.id
+                        AND d.status = 'Recebida'
+                    ),
+                    0
+                ) AS valor_arrecadado
+
+            FROM campanhas c
+
+            WHERE c.id = ?
+
         `, [id]);
 
         return campanhas[0];
     },
 
 
-    async criar(titulo, descricao, dataInicio, dataFim, meta, status) {
+    // ========================================
+    // CRIAR CAMPANHA
+    // ========================================
+
+    async criar(
+        titulo,
+        descricao,
+        dataInicio,
+        dataFim,
+        meta,
+        status
+    ) {
 
         const [resultado] = await pool.execute(`
+
             INSERT INTO campanhas
             (
                 titulo,
@@ -58,19 +145,27 @@ const Campanha = {
                 meta,
                 status
             )
+
             VALUES (?, ?, ?, ?, ?, ?)
+
         `, [
+
             titulo,
             descricao,
             dataInicio,
             dataFim || null,
             meta || null,
             status
+
         ]);
 
         return resultado;
     },
 
+
+    // ========================================
+    // ATUALIZAR CAMPANHA
+    // ========================================
 
     async atualizar(
         id,
@@ -83,7 +178,9 @@ const Campanha = {
     ) {
 
         const [resultado] = await pool.execute(`
+
             UPDATE campanhas
+
             SET
                 titulo = ?,
                 descricao = ?,
@@ -91,8 +188,11 @@ const Campanha = {
                 data_fim = ?,
                 meta = ?,
                 status = ?
+
             WHERE id = ?
+
         `, [
+
             titulo,
             descricao,
             dataInicio,
@@ -100,16 +200,24 @@ const Campanha = {
             meta || null,
             status,
             id
+
         ]);
 
         return resultado;
     },
 
 
+    // ========================================
+    // EXCLUIR CAMPANHA
+    // ========================================
+
     async excluir(id) {
 
         const [resultado] = await pool.execute(
-            `DELETE FROM campanhas WHERE id = ?`,
+            `
+                DELETE FROM campanhas
+                WHERE id = ?
+            `,
             [id]
         );
 

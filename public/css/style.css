@@ -4034,3 +4034,147 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   PROGRESSO DAS CAMPANHAS
+========================================================= */
+
+.campanha-arrecadacao {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid #eadfff;
+}
+
+
+/* TÍTULO E VALOR ARRECADADO */
+
+.campanha-arrecadacao-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.campanha-arrecadacao-topo span {
+    color: #755f7f;
+    font-size: 14px;
+}
+
+.campanha-arrecadacao-topo strong {
+    color: #4b2d7f;
+    font-size: 16px;
+}
+
+
+/* BARRA */
+
+.campanha-progresso {
+    width: 100%;
+    height: 10px;
+
+    background: #eee7fa;
+
+    border-radius: 999px;
+    overflow: hidden;
+
+    margin-bottom: 10px;
+}
+
+
+/* PARTE PREENCHIDA */
+
+.campanha-progresso-preenchimento {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #713dd8
+    );
+
+    border-radius: 999px;
+
+    transition: width 0.5s ease;
+}
+
+
+/* VALORES ABAIXO DA BARRA */
+
+.campanha-progresso-dados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    font-size: 13px;
+}
+
+.campanha-progresso-dados span {
+    color: #755f7f;
+}
+
+.campanha-progresso-dados strong {
+    color: #713dd8;
+    font-size: 14px;
+}
+
+
+/* CAMPANHA SEM META */
+
+.campanha-sem-meta {
+    margin: 0;
+
+    color: #755f7f;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ESPAÇO ENTRE PROGRESSO E BOTÃO */
+
+.campanha-arrecadacao
++ .campanha-card-rodape {
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro .campanha-arrecadacao {
+    border-top-color: #57446d;
+}
+
+body.modo-escuro .campanha-progresso {
+    background: #3b2d4d;
+}
+
+body.modo-escuro .campanha-arrecadacao-topo span,
+body.modo-escuro .campanha-progresso-dados span,
+body.modo-escuro .campanha-sem-meta {
+    color: #cbbbd8;
+}
+
+body.modo-escuro .campanha-arrecadacao-topo strong,
+body.modo-escuro .campanha-progresso-dados strong {
+    color: #b995ff;
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .campanha-arrecadacao-topo {
+        align-items: flex-start;
+    }
+
+    .campanha-progresso-dados {
+        align-items: flex-start;
+    }
+
+}
