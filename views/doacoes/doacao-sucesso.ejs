@@ -1,4 +1,4 @@
-﻿<%- include('../partials/header') %>
+<%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
 
 <main class="doacao-sucesso-page">
@@ -8,7 +8,7 @@
         <div class="container">
 
             <span class="secao-etiqueta">
-                DOAÃ‡ÃƒO REGISTRADA
+                DOAÇÃO REGISTRADA
             </span>
 
             <h1>
@@ -16,7 +16,7 @@
             </h1>
 
             <p>
-                Sua intenÃ§Ã£o de doaÃ§Ã£o jÃ¡ foi registrada
+                Sua intenção de doação já foi registrada
                 no Instituto Solidarize.
             </p>
 
@@ -31,15 +31,14 @@
 
             <div class="doacao-sucesso-card">
 
-
                 <div class="doacao-resumo">
 
                     <span>
-                        DoaÃ§Ã£o #<%= doacao.id %>
+                        Doação #<%= doacao.id %>
                     </span>
 
                     <h2>
-                        <%= doacao.campanha %>
+                        <%= doacao.campanha || 'Instituto Solidarize' %>
                     </h2>
 
 
@@ -75,11 +74,24 @@
                     <div class="doacao-resumo-linha">
 
                         <span>
+                            Data
+                        </span>
+
+                        <strong>
+                            <%= doacao.data_doacao_formatada %>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="doacao-resumo-linha">
+
+                        <span>
                             Status
                         </span>
 
                         <strong>
-                            Pendente
+                            <%= doacao.status %>
                         </strong>
 
                     </div>
@@ -101,8 +113,7 @@
                     <% if (pixChave) { %>
 
                         <p>
-                            Envie o valor da doaÃ§Ã£o para
-                            a chave PIX abaixo:
+                            Envie o valor da doação para a chave PIX abaixo:
                         </p>
 
 
@@ -149,6 +160,12 @@
                         </p>
 
 
+                        <p class="pix-orientacao">
+                            Após realizar o pagamento, envie o comprovante
+                            pelo WhatsApp para que a doação possa ser confirmada.
+                        </p>
+
+
                         <a
                             href="<%= whatsappLink %>"
                             target="_blank"
@@ -158,26 +175,30 @@
                             Enviar comprovante pelo WhatsApp
                         </a>
 
-
                     <% } else { %>
 
                         <div class="mensagem erro">
-
-                            A chave PIX ainda nÃ£o foi
-                            configurada no sistema.
-
+                            A chave PIX ainda não foi configurada no sistema.
                         </div>
 
                         <a
                             href="<%= whatsappLink %>"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn-principal"
+                            class="btn-principal doacao-whatsapp"
                         >
                             Falar com o Instituto
                         </a>
 
                     <% } %>
+
+
+                    <a
+                        href="/campanhas"
+                        class="doacao-voltar"
+                    >
+                        Voltar para campanhas
+                    </a>
 
                 </div>
 
