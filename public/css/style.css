@@ -9119,3 +9119,742 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   PAINEL DO USUÁRIO - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.usuario-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.usuario-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.usuario-hero-conteudo h1 {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.usuario-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.15em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.usuario-hero-conteudo > p {
+    max-width: 620px;
+
+    margin: 25px 0 28px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+.usuario-hero-acoes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   CARD DO USUÁRIO
+========================================================= */
+
+.usuario-hero-card {
+    position: relative;
+
+    padding: 40px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+
+    text-align: center;
+}
+
+
+.usuario-hero-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+}
+
+
+.usuario-hero-card-etiqueta {
+    display: block;
+
+    margin-bottom: 25px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.usuario-avatar-novo {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    background: var(--lilas-claro);
+
+    border:
+        4px solid rgba(
+            139,
+            92,
+            246,
+            0.16
+        );
+
+    border-radius: 50%;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 34px;
+
+    font-weight: 800;
+}
+
+
+.usuario-hero-card h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+
+    margin-bottom: 5px;
+}
+
+
+.usuario-hero-card p {
+    color: var(--texto-claro);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.usuario-conteudo-novo {
+    padding: 95px 0;
+
+    background: var(--fundo);
+}
+
+
+/* =========================================================
+   CONTA
+========================================================= */
+
+.usuario-conta-nova {
+    margin-bottom: 80px;
+
+    padding: 35px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+
+    box-shadow: var(--sombra);
+}
+
+
+.usuario-conta-cabecalho {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 40px;
+
+    margin-bottom: 30px;
+}
+
+
+.usuario-conta-cabecalho h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+}
+
+
+.usuario-conta-cabecalho > p {
+    max-width: 350px;
+
+    color: var(--texto-claro);
+
+    text-align: right;
+
+    font-size: 14px;
+}
+
+
+.usuario-dados-novos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.usuario-dado-novo {
+    padding: 22px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 13px;
+}
+
+
+.usuario-dado-novo span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.usuario-dado-novo strong {
+    display: block;
+
+    color: var(--texto);
+
+    font-size: 15px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.usuario-secao-nova {
+    margin-bottom: 80px;
+}
+
+
+.usuario-secao-cabecalho {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 40px;
+
+    margin-bottom: 35px;
+}
+
+
+.usuario-secao-cabecalho h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 34px;
+
+    line-height: 1.25;
+}
+
+
+.usuario-secao-cabecalho > p {
+    max-width: 400px;
+
+    color: var(--texto-claro);
+
+    text-align: right;
+
+    line-height: 1.7;
+}
+
+
+.usuario-acoes-novas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.usuario-acao-nova {
+    display: grid;
+
+    grid-template-columns:
+        65px 1fr;
+
+    gap: 22px;
+
+    min-height: 230px;
+
+    padding: 30px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow: var(--sombra);
+
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+
+.usuario-acao-nova:hover {
+    transform: translateY(-4px);
+
+    border-color: #cfb9fc;
+
+    box-shadow:
+        0 16px 38px
+        rgba(109, 63, 212, 0.14);
+}
+
+
+.usuario-acao-numero {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-claro);
+
+    border-radius: 14px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.usuario-acao-nova
+.secao-etiqueta {
+    margin-bottom: 8px;
+}
+
+
+.usuario-acao-nova h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+
+.usuario-acao-nova p {
+    margin-bottom: 18px;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+.usuario-acao-nova strong {
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CHAMADA
+========================================================= */
+
+.usuario-chamada {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 50px;
+
+    margin-bottom: 35px;
+
+    padding: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+}
+
+
+.usuario-chamada > div {
+    max-width: 650px;
+}
+
+
+.usuario-chamada h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 30px;
+
+    line-height: 1.25;
+
+    margin-bottom: 10px;
+}
+
+
+.usuario-chamada h2 span {
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.18em;
+
+    font-weight: 600;
+}
+
+
+.usuario-chamada p {
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SAIR
+========================================================= */
+
+.usuario-sair-novo {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 25px 30px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+}
+
+
+.usuario-sair-novo h3 {
+    color: var(--lilas-muito-escuro);
+
+    margin-bottom: 4px;
+}
+
+
+.usuario-sair-novo p {
+    color: var(--texto-claro);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.usuario-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.usuario-hero-card {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.usuario-conteudo-novo {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.usuario-conta-nova,
+body.modo-escuro
+.usuario-acao-nova,
+body.modo-escuro
+.usuario-sair-novo {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.usuario-dado-novo {
+    background: var(--lilas-suave);
+}
+
+
+body.modo-escuro
+.usuario-chamada {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .usuario-hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .usuario-acoes-novas {
+        grid-template-columns: 1fr;
+    }
+
+
+    .usuario-chamada {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .usuario-hero {
+        padding: 65px 0;
+    }
+
+
+    .usuario-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .usuario-hero-acoes {
+        flex-direction: column;
+    }
+
+
+    .usuario-hero-acoes
+    .btn-principal,
+    .usuario-hero-acoes
+    .btn-secundario {
+        width: 100%;
+    }
+
+
+    .usuario-hero-card {
+        padding: 30px 22px;
+    }
+
+
+    .usuario-conteudo-novo {
+        padding: 70px 0;
+    }
+
+
+    .usuario-conta-cabecalho,
+    .usuario-secao-cabecalho {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .usuario-conta-cabecalho > p,
+    .usuario-secao-cabecalho > p {
+        text-align: left;
+    }
+
+
+    .usuario-dados-novos {
+        grid-template-columns: 1fr;
+    }
+
+
+    .usuario-acao-nova {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding: 25px;
+    }
+
+
+    .usuario-chamada {
+        padding: 30px 22px;
+    }
+
+
+    .usuario-sair-novo {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .usuario-sair-novo
+    .btn-sair-conta {
+        width: 100%;
+    }
+
+}

@@ -1,36 +1,75 @@
 <%- include('../partials/header') %>
+
 <%- include('../partials/navbar') %>
 
-<main class="usuario-painel">
+<main class="usuario-painel usuario-painel-novo">
 
-    <section class="usuario-boas-vindas">
+    <!-- =====================================================
+         BOAS-VINDAS
+    ====================================================== -->
 
-        <div class="container">
+    <section class="usuario-hero">
 
-            <div class="usuario-boas-conteudo">
+        <div class="container usuario-hero-grid">
 
-                <div>
+            <div class="usuario-hero-conteudo">
 
-                    <span class="usuario-etiqueta">
-                        INSTITUTO SOLIDARIZE
-                    </span>
+                <span class="secao-etiqueta">
+                    SUA ÁREA
+                </span>
 
-                    <h1>
-                        Olá, <%= usuario.nome %>!
-                    </h1>
+                <h1>
+                    Olá,
+                    <span><%= usuario.nome %></span>
+                </h1>
 
-                    <p>
-                        Seja bem-vindo à sua área no Instituto Solidarize.
-                        Aqui você pode acompanhar nossas campanhas e descobrir
-                        maneiras de participar das nossas ações.
-                    </p>
+                <p>
+                    Bem-vindo à sua área no Instituto Solidarize.
+                    Aqui você pode conhecer nossas campanhas,
+                    participar das ações e descobrir novas
+                    maneiras de contribuir.
+                </p>
+
+                <div class="usuario-hero-acoes">
+
+                    <a
+                        href="/campanhas"
+                        class="btn-principal"
+                    >
+                        Ver campanhas
+                    </a>
+
+                    <a
+                        href="/como-ajudar"
+                        class="btn-secundario"
+                    >
+                        Como ajudar
+                    </a>
 
                 </div>
 
+            </div>
 
-                <div class="usuario-avatar-grande">
+
+            <div class="usuario-hero-card">
+
+                <span class="usuario-hero-card-etiqueta">
+                    MINHA CONTA
+                </span>
+
+                <div class="usuario-avatar-novo">
+
                     <%= usuario.nome.charAt(0).toUpperCase() %>
+
                 </div>
+
+                <h2>
+                    <%= usuario.nome %>
+                </h2>
+
+                <p>
+                    Conta de usuário do Instituto Solidarize.
+                </p>
 
             </div>
 
@@ -39,30 +78,48 @@
     </section>
 
 
-    <section class="usuario-conteudo">
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <section class="usuario-conteudo usuario-conteudo-novo">
 
         <div class="container">
 
-            <div class="usuario-card-conta">
+            <!-- =================================================
+                 DADOS DA CONTA
+            ================================================== -->
 
-                <div class="usuario-card-titulo">
+            <section class="usuario-conta-nova">
+
+                <div class="usuario-conta-cabecalho">
 
                     <div>
-                        <h2>Minha Conta</h2>
 
-                        <p>
-                            Informações do seu cadastro.
-                        </p>
+                        <span class="secao-etiqueta">
+                            MINHA CONTA
+                        </span>
+
+                        <h2>
+                            Informações do cadastro
+                        </h2>
+
                     </div>
+
+                    <p>
+                        Estes são os dados associados à sua conta.
+                    </p>
 
                 </div>
 
 
-                <div class="usuario-dados">
+                <div class="usuario-dados-novos">
 
-                    <div class="usuario-dado">
+                    <div class="usuario-dado-novo">
 
-                        <span>Nome</span>
+                        <span>
+                            NOME
+                        </span>
 
                         <strong>
                             <%= usuario.nome %>
@@ -71,9 +128,11 @@
                     </div>
 
 
-                    <div class="usuario-dado">
+                    <div class="usuario-dado-novo">
 
-                        <span>E-mail</span>
+                        <span>
+                            E-MAIL
+                        </span>
 
                         <strong>
                             <%= usuario.email %>
@@ -82,9 +141,11 @@
                     </div>
 
 
-                    <div class="usuario-dado">
+                    <div class="usuario-dado-novo">
 
-                        <span>Tipo de conta</span>
+                        <span>
+                            TIPO DE CONTA
+                        </span>
 
                         <strong>
                             Usuário
@@ -94,132 +155,220 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="usuario-secao">
+            <!-- =================================================
+                 AÇÕES
+            ================================================== -->
 
-                <div class="usuario-secao-titulo">
+            <section class="usuario-secao usuario-secao-nova">
 
-                    <h2>
-                        O que você pode fazer?
-                    </h2>
+                <div class="usuario-secao-cabecalho">
+
+                    <div>
+
+                        <span class="secao-etiqueta">
+                            PARTICIPE
+                        </span>
+
+                        <h2>
+                            O que você pode fazer?
+                        </h2>
+
+                    </div>
 
                     <p>
-                        Conheça algumas maneiras de participar
-                        das ações do Instituto.
+                        Escolha uma das opções e faça parte
+                        das ações do Instituto Solidarize.
                     </p>
 
                 </div>
 
 
-                <div class="usuario-acoes">
+                <div class="usuario-acoes-novas">
+
 
                     <a
                         href="/campanhas"
-                        class="usuario-acao-card"
+                        class="usuario-acao-nova"
                     >
 
-                        <span class="secao-etiqueta">
-                            CAMPANHAS
+                        <span class="usuario-acao-numero">
+                            01
                         </span>
 
-                        <h3>
-                            Conheça nossas campanhas
-                        </h3>
+                        <div>
 
-                        <p>
-                            Conheça as campanhas que estão sendo
-                            realizadas pelo Instituto.
-                        </p>
+                            <span class="secao-etiqueta">
+                                CAMPANHAS
+                            </span>
 
-                        <span>
-                            Ver campanhas
-                        </span>
+                            <h3>
+                                Conheça nossas campanhas
+                            </h3>
+
+                            <p>
+                                Veja as campanhas ativas,
+                                acompanhe as metas e escolha
+                                uma ação para apoiar.
+                            </p>
+
+                            <strong>
+                                Ver campanhas
+                            </strong>
+
+                        </div>
 
                     </a>
 
 
                     <a
                         href="/quero-ser-voluntario"
-                        class="usuario-acao-card"
+                        class="usuario-acao-nova"
                     >
 
-                        <span class="secao-etiqueta">
-                            VOLUNTARIADO
+                        <span class="usuario-acao-numero">
+                            02
                         </span>
 
-                        <h3>
-                            Seja voluntário
-                        </h3>
+                        <div>
 
-                        <p>
-                            Cadastre-se para participar das ações
-                            e ajudar nossa comunidade.
-                        </p>
+                            <span class="secao-etiqueta">
+                                VOLUNTARIADO
+                            </span>
 
-                        <span>
-                            Quero participar
-                        </span>
+                            <h3>
+                                Seja voluntário
+                            </h3>
+
+                            <p>
+                                Cadastre-se para participar
+                                das ações e contribuir com seu
+                                tempo e suas habilidades.
+                            </p>
+
+                            <strong>
+                                Quero participar
+                            </strong>
+
+                        </div>
 
                     </a>
 
 
                     <a
                         href="/como-ajudar"
-                        class="usuario-acao-card"
+                        class="usuario-acao-nova"
                     >
 
-                        <span class="secao-etiqueta">
-                            PARTICIPAÇÃO
+                        <span class="usuario-acao-numero">
+                            03
                         </span>
 
-                        <h3>
-                            Como ajudar
-                        </h3>
+                        <div>
 
-                        <p>
-                            Veja outras formas de contribuir
-                            com o Instituto Solidarize.
-                        </p>
+                            <span class="secao-etiqueta">
+                                PARTICIPAÇÃO
+                            </span>
 
-                        <span>
-                            Saiba mais
-                        </span>
+                            <h3>
+                                Outras formas de ajudar
+                            </h3>
+
+                            <p>
+                                Descubra outras maneiras
+                                de colaborar com o Instituto
+                                e fortalecer nossas ações.
+                            </p>
+
+                            <strong>
+                                Saiba mais
+                            </strong>
+
+                        </div>
 
                     </a>
 
 
                     <a
                         href="/contato"
-                        class="usuario-acao-card"
+                        class="usuario-acao-nova"
                     >
 
-                        <span class="secao-etiqueta">
-                            CONTATO
+                        <span class="usuario-acao-numero">
+                            04
                         </span>
 
-                        <h3>
-                            Entre em contato
-                        </h3>
+                        <div>
 
-                        <p>
-                            Fale com nossa equipe caso tenha
-                            alguma dúvida.
-                        </p>
+                            <span class="secao-etiqueta">
+                                CONTATO
+                            </span>
 
-                        <span>
-                            Falar conosco
-                        </span>
+                            <h3>
+                                Fale com nossa equipe
+                            </h3>
+
+                            <p>
+                                Entre em contato caso tenha
+                                dúvidas sobre campanhas,
+                                doações ou voluntariado.
+                            </p>
+
+                            <strong>
+                                Falar conosco
+                            </strong>
+
+                        </div>
 
                     </a>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="usuario-rodape-painel">
+            <!-- =================================================
+                 CHAMADA
+            ================================================== -->
+
+            <section class="usuario-chamada">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        SOLIDARIZE
+                    </span>
+
+                    <h2>
+                        Sua participação pode
+                        <span>transformar histórias</span>
+                    </h2>
+
+                    <p>
+                        Cada contribuição ajuda a fortalecer
+                        as ações do Instituto e ampliar
+                        nosso impacto na comunidade.
+                    </p>
+
+                </div>
+
+                <a
+                    href="/campanhas"
+                    class="btn-principal"
+                >
+                    Apoiar uma campanha
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 SAIR
+            ================================================== -->
+
+            <section class="usuario-sair-novo">
 
                 <div>
 
@@ -228,8 +377,8 @@
                     </h3>
 
                     <p>
-                        Você poderá entrar novamente utilizando
-                        seu e-mail e senha.
+                        Você poderá entrar novamente usando
+                        seu e-mail e sua senha.
                     </p>
 
                 </div>
@@ -249,7 +398,7 @@
 
                 </form>
 
-            </div>
+            </section>
 
         </div>
 
