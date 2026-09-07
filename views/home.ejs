@@ -1,40 +1,199 @@
 <%- include('partials/header') %>
+
 <%- include('partials/navbar') %>
 
-<main>
+<main class="home-page">
 
-    <section class="hero">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="home-hero">
 
-            <span class="home-etiqueta">
-                INSTITUTO SOLIDARIZE
-            </span>
+        <div class="container home-hero-container">
 
-            <h1>
-                Juntos podemos transformar vidas
-            </h1>
+            <div class="home-hero-conteudo">
 
-            <p>
-                O Instituto Solidarize conecta pessoas, voluntários
-                e ações sociais para apoiar quem mais precisa e
-                fortalecer nossa comunidade.
-            </p>
+                <span class="home-etiqueta">
+                    JUNTOS POR UM AMANHÃ MELHOR
+                </span>
 
-            <div class="hero-botoes">
+                <h1>
+                    Transformando vidas através da
+                    <span>solidariedade</span>
+                </h1>
+
+                <p>
+                    O Instituto Solidarize atua para apoiar pessoas
+                    e famílias em situação de vulnerabilidade,
+                    promovendo ações que geram oportunidades,
+                    acolhimento e esperança.
+                </p>
+
+                <div class="hero-botoes">
+
+                    <a
+                        href="/como-ajudar"
+                        class="btn-principal"
+                    >
+                        Quero ajudar
+                    </a>
+
+                    <a
+                        href="/sobre"
+                        class="btn-secundario"
+                    >
+                        Conheça nosso trabalho
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="home-hero-visual">
+
+                <img
+                    src="/images/home-solidarize.png"
+                    alt="Ação social promovida pelo Instituto Solidarize"
+                >
+
+                <div class="home-hero-frase">
+                    <strong>
+                        Mais pessoas.
+                    </strong>
+
+                    <span>
+                        Mais histórias.
+                    </span>
+
+                    <span>
+                        Mais oportunidades.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESTAQUES -->
+
+        <div class="container home-destaques">
+
+            <div class="home-destaque-card">
+
+                <span>
+                    APOIO
+                </span>
+
+                <div>
+
+                    <h3>
+                        Apoio às famílias
+                    </h3>
+
+                    <p>
+                        Ações que levam acolhimento,
+                        recursos e oportunidades para
+                        quem mais precisa.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="home-destaque-card">
+
+                <span>
+                    AÇÕES
+                </span>
+
+                <div>
+
+                    <h3>
+                        Campanhas solidárias
+                    </h3>
+
+                    <p>
+                        Mobilizações que unem pessoas
+                        e geram resultados reais na
+                        comunidade.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="home-destaque-card">
+
+                <span>
+                    FUTURO
+                </span>
+
+                <div>
+
+                    <h3>
+                        Mais oportunidades
+                    </h3>
+
+                    <p>
+                        Iniciativas que promovem inclusão,
+                        dignidade e um futuro melhor.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUEM SOMOS
+    ====================================================== -->
+
+    <section class="sobre-home">
+
+        <div class="container sobre-home-novo">
+
+            <div>
+
+                <span class="secao-etiqueta">
+                    QUEM SOMOS
+                </span>
+
+                <h2>
+                    Solidariedade que gera transformação
+                </h2>
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    O Instituto Solidarize nasceu com o propósito de
+                    aproximar pessoas dispostas a ajudar de iniciativas
+                    que fazem diferença na vida da comunidade.
+                </p>
+
+                <p>
+                    Por meio de campanhas, doações, voluntariado e
+                    atendimentos, buscamos promover solidariedade,
+                    inclusão e apoio social.
+                </p>
 
                 <a
-                    href="/campanhas"
-                    class="btn-principal"
+                    href="/sobre"
+                    class="sobre-home-link"
                 >
-                    Conhecer campanhas
-                </a>
-
-                <a
-                    href="/como-ajudar"
-                    class="btn-secundario"
-                >
-                    Quero ajudar
+                    Conheça nossa história
                 </a>
 
             </div>
@@ -44,38 +203,9 @@
     </section>
 
 
-    <section class="sobre-home">
-
-        <div class="container">
-
-            <span class="secao-etiqueta">
-                QUEM SOMOS
-            </span>
-
-            <h2>
-                Solidariedade que gera transformação
-            </h2>
-
-            <p>
-                O Instituto Solidarize nasceu com o propósito de
-                aproximar pessoas dispostas a ajudar de iniciativas
-                que fazem diferença na vida da comunidade.
-            </p>
-
-            <p>
-                Por meio de campanhas, doações, voluntariado e
-                atendimentos, buscamos promover solidariedade,
-                inclusão e apoio social.
-            </p>
-
-            <a href="/sobre">
-                Conheça nossa história
-            </a>
-
-        </div>
-
-    </section>
-
+    <!-- =====================================================
+         FORMAS DE AJUDAR
+    ====================================================== -->
 
     <section class="home-ajudar">
 
@@ -106,18 +236,23 @@
                     class="home-card"
                 >
 
+                    <span class="home-card-numero">
+                        01
+                    </span>
+
                     <h3>
                         Seja voluntário
                     </h3>
 
                     <p>
-                        Doe seu tempo e suas habilidades participando
-                        das ações promovidas pelo Instituto.
+                        Doe seu tempo e suas habilidades
+                        participando das ações promovidas
+                        pelo Instituto.
                     </p>
 
-                    <span>
+                    <strong>
                         Quero participar
-                    </span>
+                    </strong>
 
                 </a>
 
@@ -127,18 +262,22 @@
                     class="home-card"
                 >
 
+                    <span class="home-card-numero">
+                        02
+                    </span>
+
                     <h3>
                         Apoie uma campanha
                     </h3>
 
                     <p>
-                        Conheça nossas campanhas e descubra onde sua
-                        contribuição pode ajudar.
+                        Conheça nossas campanhas e descubra
+                        onde sua contribuição pode ajudar.
                     </p>
 
-                    <span>
+                    <strong>
                         Ver campanhas
-                    </span>
+                    </strong>
 
                 </a>
 
@@ -148,18 +287,22 @@
                     class="home-card"
                 >
 
+                    <span class="home-card-numero">
+                        03
+                    </span>
+
                     <h3>
                         Faça uma doação
                     </h3>
 
                     <p>
-                        Alimentos, roupas, materiais e outras
-                        contribuições podem transformar vidas.
+                        Sua contribuição pode ajudar nossas
+                        campanhas a alcançar ainda mais pessoas.
                     </p>
 
-                    <span>
+                    <strong>
                         Como ajudar
-                    </span>
+                    </strong>
 
                 </a>
 
@@ -169,6 +312,10 @@
 
     </section>
 
+
+    <!-- =====================================================
+         CAMPANHAS
+    ====================================================== -->
 
     <section class="home-campanhas">
 
@@ -187,11 +334,13 @@
                     </h2>
 
                     <p>
-                        Acompanhe as iniciativas realizadas pelo Instituto
-                        Solidarize e descubra como fazer parte delas.
+                        Acompanhe as iniciativas realizadas pelo
+                        Instituto Solidarize e descubra como fazer
+                        parte delas.
                     </p>
 
                 </div>
+
 
                 <a
                     href="/campanhas"
@@ -206,6 +355,10 @@
 
     </section>
 
+
+    <!-- =====================================================
+         CHAMADA FINAL
+    ====================================================== -->
 
     <section class="home-cta">
 

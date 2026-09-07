@@ -1,14 +1,18 @@
-// ===============================
+// =========================================================
+// INSTITUTO SOLIDARIZE
+// JAVASCRIPT PRINCIPAL
+// =========================================================
+
+
+// =========================================================
 // MODO ESCURO
-// ===============================
+// =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const botaoTema =
-        document.getElementById('toggle-tema');
+        document.getElementById('btn-tema');
 
-
-    // Recupera a escolha salva
     const temaSalvo =
         localStorage.getItem('tema');
 
@@ -22,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    function atualizarTextoBotao() {
+    function atualizarBotaoTema() {
 
         if (!botaoTema) {
             return;
@@ -40,10 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? 'Modo claro'
                 : 'Modo escuro';
 
+
+        botaoTema.setAttribute(
+            'aria-pressed',
+            modoEscuro
+                ? 'true'
+                : 'false'
+        );
+
     }
 
 
-    atualizarTextoBotao();
+    atualizarBotaoTema();
 
 
     if (botaoTema) {
@@ -71,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
 
 
-                atualizarTextoBotao();
+                atualizarBotaoTema();
 
             }
         );
@@ -79,30 +91,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
-// ===============================
+
+
+// =========================================================
 // MENU MOBILE
-// ===============================
+// =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const botaoMenu =
-        document.getElementById('menu-toggle');
+        document.getElementById(
+            'menu-toggle'
+        );
 
     const menu =
-        document.getElementById('menu-principal');
+        document.getElementById(
+            'menu-principal'
+        );
 
 
-    if (botaoMenu && menu) {
+    if (!botaoMenu || !menu) {
+        return;
+    }
 
-        botaoMenu.addEventListener('click', () => {
+
+    botaoMenu.addEventListener(
+        'click',
+        () => {
 
             const aberto =
-                menu.classList.toggle('aberto');
+                menu.classList.toggle(
+                    'aberto'
+                );
 
 
             botaoMenu.setAttribute(
                 'aria-expanded',
                 aberto
+                    ? 'true'
+                    : 'false'
             );
 
 
@@ -113,98 +140,139 @@ document.addEventListener('DOMContentLoaded', () => {
                     : 'Abrir menu'
             );
 
+        }
+    );
+
+
+    menu
+        .querySelectorAll('a')
+        .forEach(link => {
+
+            link.addEventListener(
+                'click',
+                () => {
+
+                    menu.classList.remove(
+                        'aberto'
+                    );
+
+
+                    botaoMenu.setAttribute(
+                        'aria-expanded',
+                        'false'
+                    );
+
+
+                    botaoMenu.setAttribute(
+                        'aria-label',
+                        'Abrir menu'
+                    );
+
+                }
+            );
+
         });
 
 
-        menu.querySelectorAll('a').forEach(link => {
+    document.addEventListener(
+        'keydown',
+        event => {
 
-            link.addEventListener('click', () => {
+            if (event.key === 'Escape') {
 
-                menu.classList.remove('aberto');
+                menu.classList.remove(
+                    'aberto'
+                );
+
 
                 botaoMenu.setAttribute(
                     'aria-expanded',
                     'false'
                 );
 
-            });
-
-        });
-
-
-        document.addEventListener('keydown', event => {
-
-            if (event.key === 'Escape') {
-
-                menu.classList.remove('aberto');
 
                 botaoMenu.setAttribute(
-                    'aria-expanded',
-                    'false'
+                    'aria-label',
+                    'Abrir menu'
                 );
 
             }
 
-        });
-
-    }
+        }
+    );
 
 });
 
 
-// ===============================
+// =========================================================
 // AVISO DE COOKIES
-// ===============================
+// =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const aviso =
-        document.getElementById('cookie-banner');
+        document.getElementById(
+            'cookie-banner'
+        );
 
-    const botao =
-        document.getElementById('aceitar-cookies');
+    const botaoAceitar =
+        document.getElementById(
+            'aceitar-cookies'
+        );
 
 
-    if (!aviso || !botao) {
+    if (!aviso || !botaoAceitar) {
         return;
     }
 
 
-    const avisoAceito =
-        localStorage.getItem(
-            'solidarize_aviso_cookies'
+    const cookiesAceitos =
+        sessionStorage.getItem(
+            'solidarize_cookies_aceitos'
         );
 
 
-    if (!avisoAceito) {
+    if (cookiesAceitos === 'sim') {
+
+        aviso.hidden = true;
+
+    } else {
 
         aviso.hidden = false;
 
     }
 
 
-    botao.addEventListener('click', () => {
+    botaoAceitar.addEventListener(
+        'click',
+        () => {
 
-        localStorage.setItem(
-            'solidarize_aviso_cookies',
-            'aceito'
-        );
+            sessionStorage.setItem(
+                'solidarize_cookies_aceitos',
+                'sim'
+            );
 
-        aviso.hidden = true;
 
-    });
+            aviso.hidden = true;
+
+        }
+    );
 
 });
-// ===============================
+
+
+// =========================================================
 // DOAÇÃO - VALORES SUGERIDOS
-// ===============================
+// =========================================================
 
 document.addEventListener(
     'DOMContentLoaded',
     () => {
 
         const campoValor =
-            document.getElementById('valor');
+            document.getElementById(
+                'valor'
+            );
 
 
         const botoes =
@@ -213,127 +281,16 @@ document.addEventListener(
             );
 
 
-        botoes.forEach(botao => {
-
-            botao.addEventListener(
-                'click',
-                () => {
-
-                    if (!campoValor) {
-                        return;
-                    }
-
-
-                    campoValor.value =
-                        botao.dataset.valorDoacao;
-
-
-                    campoValor.focus();
-
-                }
-            );
-
-        });
-
-    }
-);
-
-
-// ===============================
-// COPIAR PIX
-// ===============================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-
-        const botao =
-            document.getElementById(
-                'copiar-pix'
-            );
-
-
-        const chave =
-            document.getElementById(
-                'pix-chave'
-            );
-
-
-        const aviso =
-            document.getElementById(
-                'pix-copiado'
-            );
-
-
-        if (!botao || !chave) {
+        if (!campoValor) {
             return;
         }
 
 
-        botao.addEventListener(
-            'click',
-            async () => {
-
-                try {
-
-                    await navigator.clipboard.writeText(
-                        chave.textContent.trim()
-                    );
-
-
-                    if (aviso) {
-
-                        aviso.hidden = false;
-
-                    }
-
-
-                    botao.textContent =
-                        'Chave copiada';
-
-
-                } catch (erro) {
-
-                    console.error(
-                        'Erro ao copiar PIX:',
-                        erro
-                    );
-
-                }
-
-            }
-        );
-
-    }
-);
-// ===============================
-// DOAÇÃO - VALORES SUGERIDOS
-// ===============================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-
-        const campoValor =
-            document.getElementById('valor');
-
-
-        const botoes =
-            document.querySelectorAll(
-                '[data-valor-doacao]'
-            );
-
-
         botoes.forEach(botao => {
 
             botao.addEventListener(
                 'click',
                 () => {
-
-                    if (!campoValor) {
-                        return;
-                    }
-
 
                     campoValor.value =
                         botao.dataset.valorDoacao;
@@ -350,9 +307,9 @@ document.addEventListener(
 );
 
 
-// ===============================
+// =========================================================
 // COPIAR CHAVE PIX
-// ===============================
+// =========================================================
 
 document.addEventListener(
     'DOMContentLoaded',
@@ -363,12 +320,10 @@ document.addEventListener(
                 'copiar-pix'
             );
 
-
         const chave =
             document.getElementById(
                 'pix-chave'
             );
-
 
         const aviso =
             document.getElementById(
@@ -387,13 +342,17 @@ document.addEventListener(
 
                 try {
 
-                    await navigator.clipboard.writeText(
-                        chave.textContent.trim()
-                    );
+                    await navigator
+                        .clipboard
+                        .writeText(
+                            chave.textContent.trim()
+                        );
 
 
                     if (aviso) {
+
                         aviso.hidden = false;
+
                     }
 
 
