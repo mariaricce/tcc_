@@ -1,265 +1,52 @@
 <%- include('partials/header') %>
+
 <%- include('partials/navbar') %>
 
 <main class="contato-page">
 
-    <section class="pagina-topo">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="contato-hero">
 
-            <span class="secao-etiqueta">
-                FALE CONOSCO
-            </span>
+        <div class="container contato-hero-grid">
 
-            <h1>
-                Entre em contato
-            </h1>
+            <div class="contato-hero-conteudo">
 
-            <p>
-                Tem alguma dúvida sobre nossas campanhas,
-                doações ou trabalho voluntário? Entre em contato
-                com o Instituto Solidarize.
-            </p>
+                <span class="secao-etiqueta">
+                    FALE CONOSCO
+                </span>
 
-        </div>
+                <h1>
+                    Estamos aqui para
+                    <span>ouvir você</span>
+                </h1>
 
-    </section>
+                <p>
+                    Tem alguma dúvida sobre nossas campanhas,
+                    doações, voluntariado ou ações sociais?
+                    Entre em contato com o Instituto Solidarize.
+                </p>
 
+            </div>
 
-    <section class="contato-conteudo">
 
-        <div class="container">
+            <div class="contato-hero-destaque">
 
-            <div class="contato-grid">
+                <span class="contato-hero-etiqueta">
+                    INSTITUTO SOLIDARIZE
+                </span>
 
+                <h2>
+                    Aproximar pessoas também faz parte da nossa missão
+                </h2>
 
-                <!-- APRESENTAÇÃO -->
-
-                <div class="contato-informacoes">
-
-                    <span class="secao-etiqueta">
-                        CONTATO
-                    </span>
-
-                    <h2>
-                        Estamos à disposição para ajudar
-                    </h2>
-
-                    <p>
-                        Nosso objetivo é facilitar a comunicação entre
-                        a comunidade, voluntários, doadores e o Instituto
-                        Solidarize.
-                    </p>
-
-                    <p>
-                        Você pode entrar em contato para tirar dúvidas,
-                        conhecer nossas ações ou obter mais informações
-                        sobre como participar.
-                    </p>
-
-
-                    <div class="contato-opcoes">
-
-                        <div class="contato-opcao">
-
-                            <span>
-                                Campanhas
-                            </span>
-
-                            <p>
-                                Tire dúvidas sobre campanhas e ações
-                                realizadas pelo Instituto.
-                            </p>
-
-                            <a href="/campanhas">
-                                Conhecer campanhas
-                            </a>
-
-                        </div>
-
-
-                        <div class="contato-opcao">
-
-                            <span>
-                                Voluntariado
-                            </span>
-
-                            <p>
-                                Saiba como participar das nossas ações
-                                como voluntário.
-                            </p>
-
-                            <a href="/quero-ser-voluntario">
-                                Quero ser voluntário
-                            </a>
-
-                        </div>
-
-
-                        <div class="contato-opcao">
-
-                            <span>
-                                Doações
-                            </span>
-
-                            <p>
-                                Conheça as diferentes maneiras de
-                                contribuir com nossas ações sociais.
-                            </p>
-
-                            <a href="/como-ajudar">
-                                Como ajudar
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- FORMULÁRIO -->
-
-                <div class="contato-form-card">
-
-                    <span class="secao-etiqueta">
-                        MENSAGEM
-                    </span>
-
-                    <h2>
-                        Envie sua mensagem
-                    </h2>
-
-                    <p class="contato-form-texto">
-                        Preencha os campos abaixo para entrar em contato
-                        com nossa equipe.
-                    </p>
-
-
-                    <% if (typeof sucesso !== 'undefined' && sucesso) { %>
-
-                        <div class="mensagem sucesso">
-                            Mensagem enviada com sucesso.
-                            Em breve entraremos em contato.
-                        </div>
-
-                    <% } %>
-
-
-                    <% if (typeof erro !== 'undefined' && erro) { %>
-
-                        <div class="mensagem erro">
-                            Não foi possível enviar sua mensagem.
-                            Tente novamente.
-                        </div>
-
-                    <% } %>
-
-
-                    <form
-                        action="/contato"
-                        method="POST"
-                        class="formulario contato-formulario"
-                    >
-
-                        <div class="campo">
-
-                            <label for="contato_nome">
-                                Nome
-                            </label>
-
-                            <input
-                                type="text"
-                                id="contato_nome"
-                                name="nome"
-                                placeholder="Digite seu nome"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="campo">
-
-                            <label for="contato_email">
-                                E-mail
-                            </label>
-
-                            <input
-                                type="email"
-                                id="contato_email"
-                                name="email"
-                                placeholder="exemplo@email.com"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="campo">
-
-                            <label for="contato_assunto">
-                                Assunto
-                            </label>
-
-                            <select
-                                id="contato_assunto"
-                                name="assunto"
-                                required
-                            >
-
-                                <option value="">
-                                    Selecione
-                                </option>
-
-                                <option value="Campanhas">
-                                    Campanhas
-                                </option>
-
-                                <option value="Voluntariado">
-                                    Voluntariado
-                                </option>
-
-                                <option value="Doacoes">
-                                    Doações
-                                </option>
-
-                                <option value="Outros">
-                                    Outros
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="campo">
-
-                            <label for="contato_mensagem">
-                                Mensagem
-                            </label>
-
-                            <textarea
-                                id="contato_mensagem"
-                                name="mensagem"
-                                rows="6"
-                                placeholder="Digite sua mensagem"
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            class="btn-principal contato-btn"
-                        >
-                            Enviar mensagem
-                        </button>
-
-                    </form>
-
-                </div>
+                <p>
+                    Nossa equipe está disponível para orientar,
+                    esclarecer dúvidas e ajudar você a encontrar
+                    a melhor forma de participar.
+                </p>
 
             </div>
 
@@ -268,11 +55,307 @@
     </section>
 
 
-    <section class="contato-final">
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <section class="contato-conteudo-novo">
+
+        <div class="container contato-grid-novo">
+
+
+            <!-- =================================================
+                 INFORMAÇÕES
+            ================================================== -->
+
+            <div class="contato-informacoes-novo">
+
+                <span class="secao-etiqueta">
+                    CONTATO
+                </span>
+
+                <h2>
+                    Como podemos ajudar?
+                </h2>
+
+                <p>
+                    Nosso objetivo é facilitar a comunicação
+                    entre a comunidade, voluntários, doadores
+                    e o Instituto Solidarize.
+                </p>
+
+                <p>
+                    Escolha uma das opções abaixo ou envie
+                    uma mensagem diretamente pelo formulário.
+                </p>
+
+
+                <div class="contato-opcoes-novas">
+
+                    <a
+                        href="/campanhas"
+                        class="contato-opcao-nova"
+                    >
+
+                        <span class="contato-opcao-numero">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Campanhas
+                            </h3>
+
+                            <p>
+                                Tire dúvidas e conheça
+                                as campanhas ativas do Instituto.
+                            </p>
+
+                            <strong>
+                                Conhecer campanhas
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="/quero-ser-voluntario"
+                        class="contato-opcao-nova"
+                    >
+
+                        <span class="contato-opcao-numero">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Voluntariado
+                            </h3>
+
+                            <p>
+                                Saiba como participar
+                                das nossas ações como voluntário.
+                            </p>
+
+                            <strong>
+                                Quero ser voluntário
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="/como-ajudar"
+                        class="contato-opcao-nova"
+                    >
+
+                        <span class="contato-opcao-numero">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Doações
+                            </h3>
+
+                            <p>
+                                Conheça as formas de contribuir
+                                com nossas ações e campanhas.
+                            </p>
+
+                            <strong>
+                                Como ajudar
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="contato-email-box">
+
+                    <span>
+                        E-MAIL
+                    </span>
+
+                    <a href="mailto:institutosolidarizeong@gmail.com">
+                        institutosolidarizeong@gmail.com
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORMULÁRIO
+            ================================================== -->
+
+            <div class="contato-form-card-novo">
+
+                <span class="secao-etiqueta">
+                    ENVIE UMA MENSAGEM
+                </span>
+
+                <h2>
+                    Fale com nossa equipe
+                </h2>
+
+                <p class="contato-form-texto">
+                    Preencha os campos abaixo e envie sua mensagem.
+                </p>
+
+
+                <% if (typeof sucesso !== 'undefined' && sucesso) { %>
+
+                    <div class="mensagem sucesso">
+                        Mensagem enviada com sucesso.
+                        Em breve entraremos em contato.
+                    </div>
+
+                <% } %>
+
+
+                <% if (typeof erro !== 'undefined' && erro) { %>
+
+                    <div class="mensagem erro">
+                        Não foi possível enviar sua mensagem.
+                        Tente novamente.
+                    </div>
+
+                <% } %>
+
+
+                <form
+                    action="/contato"
+                    method="POST"
+                    class="formulario contato-formulario"
+                >
+
+                    <div class="campo">
+
+                        <label for="contato_nome">
+                            Nome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contato_nome"
+                            name="nome"
+                            placeholder="Digite seu nome"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="contato_email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="contato_email"
+                            name="email"
+                            placeholder="exemplo@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="contato_assunto">
+                            Assunto
+                        </label>
+
+                        <select
+                            id="contato_assunto"
+                            name="assunto"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Campanhas">
+                                Campanhas
+                            </option>
+
+                            <option value="Voluntariado">
+                                Voluntariado
+                            </option>
+
+                            <option value="Doacoes">
+                                Doações
+                            </option>
+
+                            <option value="Outros">
+                                Outros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="contato_mensagem">
+                            Mensagem
+                        </label>
+
+                        <textarea
+                            id="contato_mensagem"
+                            name="mensagem"
+                            rows="6"
+                            placeholder="Digite sua mensagem"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal contato-btn"
+                    >
+                        Enviar mensagem
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHAMADA FINAL
+    ====================================================== -->
+
+    <section class="home-cta">
 
         <div class="container">
 
-            <div class="contato-final-box">
+            <div class="home-cta-box">
 
                 <span class="secao-etiqueta">
                     SOLIDARIZE
@@ -283,8 +366,9 @@
                 </h2>
 
                 <p>
-                    Conheça nossas campanhas e descubra como você
-                    também pode contribuir com as ações do Instituto.
+                    Conheça nossas campanhas e descubra
+                    como você também pode contribuir
+                    com as ações do Instituto.
                 </p>
 
                 <div class="hero-botoes">

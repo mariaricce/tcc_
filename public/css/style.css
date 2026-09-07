@@ -6683,3 +6683,561 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   CONTATO - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.contato-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.contato-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.contato-hero-conteudo h1 {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.contato-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.18em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.contato-hero-conteudo > p {
+    max-width: 600px;
+
+    margin-top: 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* DESTAQUE */
+
+.contato-hero-destaque {
+    position: relative;
+
+    padding: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+}
+
+
+.contato-hero-destaque::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius:
+        22px 0 0 22px;
+}
+
+
+.contato-hero-etiqueta {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.contato-hero-destaque h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+
+.contato-hero-destaque p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.contato-conteudo-novo {
+    padding: 100px 0;
+
+    background: var(--branco);
+}
+
+
+.contato-grid-novo {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
+
+    gap: 75px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
+
+.contato-informacoes-novo h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 36px;
+
+    line-height: 1.25;
+
+    margin-bottom: 18px;
+}
+
+
+.contato-informacoes-novo > p {
+    max-width: 540px;
+
+    margin-bottom: 14px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+.contato-opcoes-novas {
+    display: grid;
+
+    gap: 14px;
+
+    margin-top: 35px;
+}
+
+
+.contato-opcao-nova {
+    display: grid;
+
+    grid-template-columns:
+        55px 1fr;
+
+    gap: 18px;
+
+    align-items: start;
+
+    padding: 20px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+
+.contato-opcao-nova:hover {
+    transform: translateX(5px);
+
+    background: var(--lilas-claro);
+
+    border-color: #cfb9fc;
+}
+
+
+.contato-opcao-numero {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--branco);
+
+    border-radius: 12px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.contato-opcao-nova h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.contato-opcao-nova p {
+    margin-bottom: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.contato-opcao-nova strong {
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+}
+
+
+/* E-MAIL */
+
+.contato-email-box {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border: 1px solid var(--borda);
+
+    border-radius: 14px;
+
+    background: var(--lilas-suave);
+}
+
+
+.contato-email-box span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.contato-email-box a {
+    color: var(--lilas-muito-escuro);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    word-break: break-word;
+}
+
+
+.contato-email-box a:hover {
+    color: var(--lilas-principal);
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.contato-form-card-novo {
+    position: relative;
+
+    padding: 40px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.10);
+
+    overflow: hidden;
+}
+
+
+.contato-form-card-novo::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+}
+
+
+.contato-form-card-novo h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.contato-form-card-novo
+.contato-form-texto {
+    margin-bottom: 25px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+.contato-form-card-novo
+.contato-formulario {
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+.contato-form-card-novo
+.campo input,
+.contato-form-card-novo
+.campo select {
+    min-height: 48px;
+}
+
+
+.contato-form-card-novo
+.campo textarea {
+    min-height: 150px;
+}
+
+
+.contato-btn {
+    width: 100%;
+
+    min-height: 48px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.contato-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.contato-hero-destaque {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.contato-conteudo-novo {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.contato-opcao-nova,
+body.modo-escuro
+.contato-email-box,
+body.modo-escuro
+.contato-form-card-novo {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .contato-hero-grid,
+    .contato-grid-novo {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .contato-hero {
+        padding: 65px 0;
+    }
+
+
+    .contato-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .contato-hero-destaque {
+        padding: 30px 25px;
+    }
+
+
+    .contato-conteudo-novo {
+        padding: 70px 0;
+    }
+
+
+    .contato-informacoes-novo h2 {
+        font-size: 29px;
+    }
+
+
+    .contato-form-card-novo {
+        padding: 30px 22px;
+    }
+
+
+    .contato-opcao-nova {
+        grid-template-columns: 1fr;
+    }
+
+}
