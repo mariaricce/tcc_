@@ -77,240 +77,288 @@
 
             <% } else { %>
 
-                <div class="campanhas-grid">
-
-                    <% campanhas.forEach(campanha => { %>
-
-                        <%
-                            const meta =
-                                Number(campanha.meta) || 0;
-
-                            const arrecadado =
-                                Number(campanha.valor_arrecadado) || 0;
-
-                            const percentual =
-                                meta > 0
-                                    ? (arrecadado / meta) * 100
-                                    : 0;
-
-                            const percentualExibido =
-                                Math.round(percentual);
-
-                            const larguraBarra =
-                                Math.min(percentual, 100);
-                        %>
+                <div class="campanhas-carrossel-area">
 
 
-                        <article class="campanha-publica-card">
+                    <div class="campanhas-carrossel-barra">
+
+                        <span id="campanha-indicador">
+                            1 de <%= campanhas.length %>
+                        </span>
 
 
-                            <!-- IMAGEM DA CAMPANHA -->
+                        <div class="campanhas-carrossel-controles">
 
-                            <% if (campanha.imagem) { %>
-
-                                <div class="campanha-card-imagem">
-
-                                    <img
-                                        src="/images/campanhas/<%= campanha.imagem %>"
-                                        alt="Imagem da campanha <%= campanha.titulo %>"
-                                        loading="lazy"
-                                    >
-
-                                </div>
-
-                            <% } %>
+                            <button
+                                type="button"
+                                id="campanha-anterior"
+                                class="btn-secundario carrossel-btn"
+                            >
+                                Anterior
+                            </button>
 
 
-                            <!-- TOPO DO CARD -->
+                            <button
+                                type="button"
+                                id="campanha-proxima"
+                                class="btn-principal carrossel-btn"
+                            >
+                                Próxima
+                            </button>
 
-                            <div class="campanha-card-topo">
+                        </div>
 
-                                <span class="campanha-status">
-                                    <%= campanha.status %>
-                                </span>
-
-                                <span class="campanha-id">
-                                    Campanha #<%= campanha.id %>
-                                </span>
-
-                            </div>
+                    </div>
 
 
-                            <!-- TÍTULO -->
+                    <div
+                        class="campanhas-carrossel"
+                        id="campanhas-carrossel"
+                    >
 
-                            <h3>
-                                <%= campanha.titulo %>
-                            </h3>
+                        <% campanhas.forEach(campanha => { %>
+
+                            <%
+                                const meta =
+                                    Number(campanha.meta) || 0;
+
+                                const arrecadado =
+                                    Number(campanha.valor_arrecadado) || 0;
+
+                                const percentual =
+                                    meta > 0
+                                        ? (arrecadado / meta) * 100
+                                        : 0;
+
+                                const percentualExibido =
+                                    Math.round(percentual);
+
+                                const larguraBarra =
+                                    Math.min(percentual, 100);
+                            %>
 
 
-                            <!-- DESCRIÇÃO -->
-
-                            <p class="campanha-descricao">
-                                <%= campanha.descricao %>
-                            </p>
+                            <article class="campanha-slide-card">
 
 
-                            <!-- INFORMAÇÕES -->
+                                <!-- IMAGEM -->
 
-                            <div class="campanha-informacoes">
+                                <div class="campanha-slide-imagem">
 
-                                <div>
+                                    <% if (campanha.imagem) { %>
 
-                                    <span>
-                                        Início
-                                    </span>
+                                        <img
+                                            src="/images/campanhas/<%= campanha.imagem %>"
+                                            alt="Imagem da campanha <%= campanha.titulo %>"
+                                            loading="lazy"
+                                        >
 
-                                    <strong>
-                                        <%= new Date(
-                                            campanha.data_inicio
-                                        ).toLocaleDateString('pt-BR') %>
-                                    </strong>
+                                    <% } else { %>
+
+                                        <div class="campanha-slide-sem-imagem">
+                                            Instituto Solidarize
+                                        </div>
+
+                                    <% } %>
 
                                 </div>
 
 
-                                <div>
+                                <!-- CONTEÚDO -->
 
-                                    <span>
-                                        Término
-                                    </span>
-
-                                    <strong>
-
-                                        <% if (campanha.data_fim) { %>
-
-                                            <%= new Date(
-                                                campanha.data_fim
-                                            ).toLocaleDateString('pt-BR') %>
-
-                                        <% } else { %>
-
-                                            Não definido
-
-                                        <% } %>
-
-                                    </strong>
-
-                                </div>
+                                <div class="campanha-slide-conteudo">
 
 
-                                <div>
+                                    <div class="campanha-card-topo">
 
-                                    <span>
-                                        Meta
-                                    </span>
+                                        <span class="campanha-status">
+                                            <%= campanha.status %>
+                                        </span>
 
-                                    <strong>
+                                        <span class="campanha-id">
+                                            Campanha #<%= campanha.id %>
+                                        </span>
+
+                                    </div>
+
+
+                                    <h3>
+                                        <%= campanha.titulo %>
+                                    </h3>
+
+
+                                    <p class="campanha-descricao">
+                                        <%= campanha.descricao %>
+                                    </p>
+
+
+                                    <div class="campanha-informacoes">
+
+                                        <div>
+
+                                            <span>
+                                                Início
+                                            </span>
+
+                                            <strong>
+                                                <%= new Date(
+                                                    campanha.data_inicio
+                                                ).toLocaleDateString('pt-BR') %>
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <span>
+                                                Término
+                                            </span>
+
+                                            <strong>
+
+                                                <% if (campanha.data_fim) { %>
+
+                                                    <%= new Date(
+                                                        campanha.data_fim
+                                                    ).toLocaleDateString('pt-BR') %>
+
+                                                <% } else { %>
+
+                                                    Não definido
+
+                                                <% } %>
+
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <span>
+                                                Meta
+                                            </span>
+
+                                            <strong>
+
+                                                <% if (meta > 0) { %>
+
+                                                    R$
+                                                    <%= meta
+                                                        .toFixed(2)
+                                                        .replace('.', ',') %>
+
+                                                <% } else { %>
+
+                                                    Não definida
+
+                                                <% } %>
+
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="campanha-arrecadacao">
+
+                                        <div class="campanha-arrecadacao-topo">
+
+                                            <span>
+                                                Arrecadado
+                                            </span>
+
+                                            <strong>
+
+                                                R$
+
+                                                <%= arrecadado
+                                                    .toFixed(2)
+                                                    .replace('.', ',') %>
+
+                                            </strong>
+
+                                        </div>
+
 
                                         <% if (meta > 0) { %>
 
-                                            R$
-                                            <%= meta
-                                                .toFixed(2)
-                                                .replace('.', ',') %>
+                                            <div
+                                                class="campanha-progresso"
+                                                role="progressbar"
+                                                aria-label="Progresso da arrecadação"
+                                                aria-valuemin="0"
+                                                aria-valuemax="100"
+                                                aria-valuenow="<%= Math.min(
+                                                    percentualExibido,
+                                                    100
+                                                ) %>"
+                                            >
+
+                                                <div
+                                                    class="campanha-progresso-preenchimento"
+                                                    style="width: <%= larguraBarra %>%"
+                                                ></div>
+
+                                            </div>
+
+
+                                            <div class="campanha-progresso-dados">
+
+                                                <span>
+
+                                                    R$
+
+                                                    <%= arrecadado
+                                                        .toFixed(2)
+                                                        .replace('.', ',') %>
+
+                                                    de R$
+
+                                                    <%= meta
+                                                        .toFixed(2)
+                                                        .replace('.', ',') %>
+
+                                                </span>
+
+                                                <strong>
+                                                    <%= percentualExibido %>%
+                                                </strong>
+
+                                            </div>
 
                                         <% } else { %>
 
-                                            Não definida
+                                            <p class="campanha-sem-meta">
+                                                Esta campanha não possui
+                                                uma meta financeira definida.
+                                            </p>
 
                                         <% } %>
 
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- ARRECADAÇÃO -->
-
-                            <div class="campanha-arrecadacao">
-
-                                <div class="campanha-arrecadacao-topo">
-
-                                    <span>
-                                        Arrecadado
-                                    </span>
-
-                                    <strong>
-                                        R$
-                                        <%= arrecadado
-                                            .toFixed(2)
-                                            .replace('.', ',') %>
-                                    </strong>
-
-                                </div>
-
-
-                                <% if (meta > 0) { %>
-
-                                    <div
-                                        class="campanha-progresso"
-                                        role="progressbar"
-                                        aria-label="Progresso da arrecadação"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                        aria-valuenow="<%= Math.min(percentualExibido, 100) %>"
-                                    >
-
-                                        <div
-                                            class="campanha-progresso-preenchimento"
-                                            style="width: <%= larguraBarra %>%"
-                                        ></div>
-
                                     </div>
 
 
-                                    <div class="campanha-progresso-dados">
+                                    <div class="campanha-slide-acao">
 
-                                        <span>
-                                            R$
-                                            <%= arrecadado
-                                                .toFixed(2)
-                                                .replace('.', ',') %>
-
-                                            de R$
-
-                                            <%= meta
-                                                .toFixed(2)
-                                                .replace('.', ',') %>
-                                        </span>
-
-
-                                        <strong>
-                                            <%= percentualExibido %>%
-                                        </strong>
+                                        <a
+                                            href="/doar/<%= campanha.id %>"
+                                            class="btn-principal"
+                                        >
+                                            Quero ajudar
+                                        </a>
 
                                     </div>
 
-                                <% } else { %>
+                                </div>
 
-                                    <p class="campanha-sem-meta">
-                                        Esta campanha não possui uma meta
-                                        financeira definida.
-                                    </p>
+                            </article>
 
-                                <% } %>
+                        <% }) %>
 
-                            </div>
-
-
-                            <!-- BOTÃO -->
-
-                            <div class="campanha-card-rodape">
-
-                                <a
-                                    href="/doar/<%= campanha.id %>"
-                                    class="btn-principal"
-                                >
-                                    Quero ajudar
-                                </a>
-
-                            </div>
-
-                        </article>
-
-                    <% }) %>
+                    </div>
 
                 </div>
 
@@ -367,5 +415,186 @@
     </section>
 
 </main>
+
+
+<script>
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const carrossel =
+            document.getElementById(
+                'campanhas-carrossel'
+            );
+
+        const anterior =
+            document.getElementById(
+                'campanha-anterior'
+            );
+
+        const proxima =
+            document.getElementById(
+                'campanha-proxima'
+            );
+
+        const indicador =
+            document.getElementById(
+                'campanha-indicador'
+            );
+
+
+        if (
+            !carrossel ||
+            !anterior ||
+            !proxima ||
+            !indicador
+        ) {
+            return;
+        }
+
+
+        const slides =
+            carrossel.querySelectorAll(
+                '.campanha-slide-card'
+            );
+
+
+        let indiceAtual = 0;
+
+
+        function atualizarCarrossel() {
+
+            const largura =
+                carrossel.clientWidth;
+
+
+            carrossel.scrollTo({
+
+                left:
+                    largura * indiceAtual,
+
+                behavior:
+                    'smooth'
+
+            });
+
+
+            indicador.textContent =
+                `${indiceAtual + 1} de ${slides.length}`;
+
+
+            anterior.disabled =
+                indiceAtual === 0;
+
+
+            proxima.disabled =
+                indiceAtual ===
+                slides.length - 1;
+
+        }
+
+
+        anterior.addEventListener(
+            'click',
+            () => {
+
+                if (indiceAtual > 0) {
+
+                    indiceAtual--;
+
+                    atualizarCarrossel();
+
+                }
+
+            }
+        );
+
+
+        proxima.addEventListener(
+            'click',
+            () => {
+
+                if (
+                    indiceAtual <
+                    slides.length - 1
+                ) {
+
+                    indiceAtual++;
+
+                    atualizarCarrossel();
+
+                }
+
+            }
+        );
+
+
+        carrossel.addEventListener(
+            'scroll',
+            () => {
+
+                if (!carrossel.clientWidth) {
+                    return;
+                }
+
+
+                const novoIndice =
+                    Math.round(
+                        carrossel.scrollLeft /
+                        carrossel.clientWidth
+                    );
+
+
+                if (
+                    novoIndice >= 0 &&
+                    novoIndice < slides.length
+                ) {
+
+                    indiceAtual =
+                        novoIndice;
+
+
+                    indicador.textContent =
+                        `${indiceAtual + 1} de ${slides.length}`;
+
+
+                    anterior.disabled =
+                        indiceAtual === 0;
+
+
+                    proxima.disabled =
+                        indiceAtual ===
+                        slides.length - 1;
+
+                }
+
+            }
+        );
+
+
+        window.addEventListener(
+            'resize',
+            () => {
+
+                carrossel.scrollTo({
+
+                    left:
+                        carrossel.clientWidth *
+                        indiceAtual
+
+                });
+
+            }
+        );
+
+
+        atualizarCarrossel();
+
+    }
+);
+
+</script>
+
 
 <%- include('partials/footer') %>

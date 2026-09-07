@@ -18,9 +18,7 @@ const Campanha = {
                 COALESCE(
                     (
                         SELECT SUM(d.valor)
-
                         FROM doacoes d
-
                         WHERE d.campanha_id = c.id
                         AND d.status = 'Recebida'
                     ),
@@ -52,9 +50,7 @@ const Campanha = {
                 COALESCE(
                     (
                         SELECT SUM(d.valor)
-
                         FROM doacoes d
-
                         WHERE d.campanha_id = c.id
                         AND d.status = 'Recebida'
                     ),
@@ -103,9 +99,7 @@ const Campanha = {
                 COALESCE(
                     (
                         SELECT SUM(d.valor)
-
                         FROM doacoes d
-
                         WHERE d.campanha_id = c.id
                         AND d.status = 'Recebida'
                     ),
@@ -119,6 +113,55 @@ const Campanha = {
         `, [id]);
 
         return campanhas[0];
+    },
+
+
+    // ========================================
+    // CONTAR REGISTROS VINCULADOS
+    // ========================================
+
+    async contarVinculos(id) {
+
+        const [resultado] = await pool.execute(`
+
+            SELECT
+
+                (
+                    SELECT COUNT(*)
+                    FROM doacoes
+                    WHERE campanha_id = ?
+                ) AS doacoes,
+
+                (
+                    SELECT COUNT(*)
+                    FROM participacoes
+                    WHERE campanha_id = ?
+                ) AS participacoes,
+
+                (
+                    SELECT COUNT(*)
+                    FROM atendimentos
+                    WHERE campanha_id = ?
+                ) AS atendimentos
+
+        `, [
+            id,
+            id,
+            id
+        ]);
+
+
+        return {
+            doacoes:
+                Number(resultado[0].doacoes) || 0,
+
+            participacoes:
+                Number(resultado[0].participacoes) || 0,
+
+            atendimentos:
+                Number(resultado[0].atendimentos) || 0
+        };
+
     },
 
 

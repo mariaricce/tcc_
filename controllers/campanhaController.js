@@ -1,5 +1,47 @@
+const fs = require('fs');
+const path = require('path');
+
 const Campanha =
     require('../models/Campanha');
+
+
+// ========================================
+// REMOVER IMAGEM DO SERVIDOR
+// ========================================
+
+function removerImagemCampanha(nomeImagem) {
+
+    if (!nomeImagem) {
+        return;
+    }
+
+
+    try {
+
+        const caminhoImagem =
+            path.join(
+                __dirname,
+                '../public/images/campanhas',
+                nomeImagem
+            );
+
+
+        if (fs.existsSync(caminhoImagem)) {
+
+            fs.unlinkSync(caminhoImagem);
+
+        }
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao remover imagem da campanha:',
+            erro
+        );
+
+    }
+
+}
 
 
 // ========================================
@@ -14,7 +56,7 @@ exports.publicas = async (req, res) => {
             await Campanha.listarAtivas();
 
 
-        res.render(
+        return res.render(
             'campanhas',
             {
 
@@ -35,7 +77,7 @@ exports.publicas = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar campanhas.'
         );
 
@@ -56,14 +98,20 @@ exports.listar = async (req, res) => {
             await Campanha.listarTodas();
 
 
-        res.render(
+        return res.render(
             'campanhas/index',
             {
 
                 titulo:
                     'Gerenciar Campanhas | Instituto Solidarize',
 
-                campanhas
+                campanhas,
+
+                erroExclusao:
+                    req.query.erro === 'vinculos',
+
+                sucessoExclusao:
+                    req.query.excluida === '1'
 
             }
         );
@@ -77,7 +125,7 @@ exports.listar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao listar campanhas.'
         );
 
@@ -92,7 +140,7 @@ exports.listar = async (req, res) => {
 
 exports.exibirNova = (req, res) => {
 
-    res.render(
+    return res.render(
         'campanhas/nova',
         {
 
@@ -125,14 +173,11 @@ exports.criar = async (req, res) => {
         } = req.body;
 
 
-        // Nome do arquivo enviado
         const imagem =
             req.file
                 ? req.file.filename
                 : null;
 
-
-        // CAMPOS OBRIGATÓRIOS
 
         if (
             !titulo ||
@@ -140,6 +185,15 @@ exports.criar = async (req, res) => {
             !data_inicio ||
             !status
         ) {
+
+            if (imagem) {
+
+                removerImagemCampanha(
+                    imagem
+                );
+
+            }
+
 
             return res.render(
                 'campanhas/nova',
@@ -158,13 +212,21 @@ exports.criar = async (req, res) => {
 
 
         await Campanha.criar(
+
             titulo.trim(),
+
             descricao.trim(),
+
             imagem,
+
             data_inicio,
+
             data_fim,
+
             meta,
+
             status
+
         );
 
 
@@ -179,6 +241,18 @@ exports.criar = async (req, res) => {
             'Erro ao cadastrar campanha:',
             erro
         );
+
+
+        if (
+            req.file &&
+            req.file.filename
+        ) {
+
+            removerImagemCampanha(
+                req.file.filename
+            );
+
+        }
 
 
         return res.render(
@@ -224,7 +298,7 @@ exports.exibirEditar = async (req, res) => {
         }
 
 
-        res.render(
+        return res.render(
             'campanhas/editar',
             {
 
@@ -247,7 +321,7 @@ exports.exibirEditar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar campanha.'
         );
 
@@ -262,6 +336,9 @@ exports.exibirEditar = async (req, res) => {
 
 exports.atualizar = async (req, res) => {
 
+    let campanhaAtual = null;
+
+
     try {
 
         const {
@@ -274,15 +351,25 @@ exports.atualizar = async (req, res) => {
         } = req.body;
 
 
-        // BUSCA A CAMPANHA ATUAL
-
-        const campanhaAtual =
+        campanhaAtual =
             await Campanha.buscarPorId(
                 req.params.id
             );
 
 
         if (!campanhaAtual) {
+
+            if (
+                req.file &&
+                req.file.filename
+            ) {
+
+                removerImagemCampanha(
+                    req.file.filename
+                );
+
+            }
+
 
             return res
                 .status(404)
@@ -293,17 +380,11 @@ exports.atualizar = async (req, res) => {
         }
 
 
-        // SE UMA NOVA IMAGEM FOI ENVIADA,
-        // USA A NOVA.
-        // CASO CONTRÁRIO, MANTÉM A ANTIGA.
-
         const imagem =
             req.file
                 ? req.file.filename
                 : campanhaAtual.imagem;
 
-
-        // VALIDAÇÃO
 
         if (
             !titulo ||
@@ -311,6 +392,18 @@ exports.atualizar = async (req, res) => {
             !data_inicio ||
             !status
         ) {
+
+            if (
+                req.file &&
+                req.file.filename
+            ) {
+
+                removerImagemCampanha(
+                    req.file.filename
+                );
+
+            }
+
 
             return res.render(
                 'campanhas/editar',
@@ -332,15 +425,42 @@ exports.atualizar = async (req, res) => {
 
 
         await Campanha.atualizar(
+
             req.params.id,
+
             titulo.trim(),
+
             descricao.trim(),
+
             imagem,
+
             data_inicio,
+
             data_fim,
+
             meta,
+
             status
+
         );
+
+
+        // Remove a imagem antiga somente
+        // depois de atualizar o banco com sucesso.
+
+        if (
+            req.file &&
+            req.file.filename &&
+            campanhaAtual.imagem &&
+            campanhaAtual.imagem !==
+                req.file.filename
+        ) {
+
+            removerImagemCampanha(
+                campanhaAtual.imagem
+            );
+
+        }
 
 
         return res.redirect(
@@ -354,6 +474,18 @@ exports.atualizar = async (req, res) => {
             'Erro ao atualizar campanha:',
             erro
         );
+
+
+        if (
+            req.file &&
+            req.file.filename
+        ) {
+
+            removerImagemCampanha(
+                req.file.filename
+            );
+
+        }
 
 
         return res.status(500).send(
@@ -373,13 +505,80 @@ exports.excluir = async (req, res) => {
 
     try {
 
+        const campanha =
+            await Campanha.buscarPorId(
+                req.params.id
+            );
+
+
+        if (!campanha) {
+
+            return res
+                .status(404)
+                .send(
+                    'Campanha não encontrada.'
+                );
+
+        }
+
+
+        // ========================================
+        // VERIFICAR HISTÓRICO DA CAMPANHA
+        // ========================================
+
+        const vinculos =
+            await Campanha.contarVinculos(
+                req.params.id
+            );
+
+
+        const possuiHistorico =
+            vinculos.doacoes > 0 ||
+            vinculos.participacoes > 0 ||
+            vinculos.atendimentos > 0;
+
+
+        if (possuiHistorico) {
+
+            console.log(
+                `Campanha ${campanha.id} não excluída. ` +
+                `Doações: ${vinculos.doacoes}, ` +
+                `Participações: ${vinculos.participacoes}, ` +
+                `Atendimentos: ${vinculos.atendimentos}`
+            );
+
+
+            return res.redirect(
+                '/admin/campanhas?erro=vinculos'
+            );
+
+        }
+
+
+        // ========================================
+        // EXCLUIR DO BANCO
+        // ========================================
+
         await Campanha.excluir(
             req.params.id
         );
 
 
+        // ========================================
+        // REMOVER IMAGEM
+        // ========================================
+
+        if (campanha.imagem) {
+
+            removerImagemCampanha(
+                campanha.imagem
+            );
+
+        }
+
+
         return res.redirect(
-            '/admin/campanhas'
+            '/admin/campanhas?excluida=1'
         );
 
 

@@ -9,37 +9,77 @@
         <div class="admin-cabecalho">
 
             <div>
+
                 <p class="admin-subtitulo">
                     Instituto Solidarize
                 </p>
 
-                <h1>Campanhas</h1>
+                <h1>
+                    Campanhas
+                </h1>
 
                 <p>
                     Gerencie todas as campanhas da instituição.
                 </p>
+
             </div>
+
 
             <a
                 href="/admin/campanhas/nova"
                 class="btn-principal"
             >
-                + Nova campanha
+                Nova campanha
             </a>
 
         </div>
 
 
+        <!-- MENSAGENS -->
+
+        <% if (erroExclusao) { %>
+
+            <div class="mensagem erro">
+
+                Esta campanha possui registros vinculados
+                e não pode ser excluída.
+
+                Altere o status para Encerrada caso
+                ela não esteja mais ativa.
+
+            </div>
+
+        <% } %>
+
+
+        <% if (sucessoExclusao) { %>
+
+            <div class="mensagem sucesso">
+
+                Campanha excluída com sucesso.
+
+            </div>
+
+        <% } %>
+
+
         <section class="admin-pagina-card">
 
-            <% if (campanhas.length === 0) { %>
+            <% if (!campanhas || campanhas.length === 0) { %>
 
                 <div class="admin-vazio">
-                    <span>📢</span>
 
                     <p>
                         Nenhuma campanha cadastrada.
                     </p>
+
+                    <a
+                        href="/admin/campanhas/nova"
+                        class="btn-principal"
+                    >
+                        Cadastrar campanha
+                    </a>
+
                 </div>
 
             <% } else { %>
@@ -49,15 +89,47 @@
                     <table>
 
                         <thead>
+
                             <tr>
-                                <th>ID</th>
-                                <th>Título</th>
-                                <th>Início</th>
-                                <th>Fim</th>
-                                <th>Meta</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Imagem
+                                </th>
+
+                                <th>
+                                    Título
+                                </th>
+
+                                <th>
+                                    Início
+                                </th>
+
+                                <th>
+                                    Fim
+                                </th>
+
+                                <th>
+                                    Meta
+                                </th>
+
+                                <th>
+                                    Arrecadado
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
+
                         </thead>
 
 
@@ -67,21 +139,63 @@
 
                                 <tr>
 
+                                    <!-- ID -->
+
                                     <td>
                                         <%= campanha.id %>
                                     </td>
 
+
+                                    <!-- IMAGEM -->
+
                                     <td>
+
+                                        <% if (campanha.imagem) { %>
+
+                                            <div class="campanha-admin-imagem">
+
+                                                <img
+                                                    src="/images/campanhas/<%= campanha.imagem %>"
+                                                    alt="Imagem da campanha <%= campanha.titulo %>"
+                                                    loading="lazy"
+                                                >
+
+                                            </div>
+
+                                        <% } else { %>
+
+                                            <span class="campanha-sem-imagem">
+                                                Sem imagem
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- TÍTULO -->
+
+                                    <td>
+
                                         <strong>
                                             <%= campanha.titulo %>
                                         </strong>
+
                                     </td>
 
+
+                                    <!-- DATA INÍCIO -->
+
                                     <td>
+
                                         <%= new Date(
                                             campanha.data_inicio
                                         ).toLocaleDateString('pt-BR') %>
+
                                     </td>
+
+
+                                    <!-- DATA FIM -->
 
                                     <td>
 
@@ -93,39 +207,68 @@
 
                                         <% } else { %>
 
-                                            -
+                                            Não definida
 
                                         <% } %>
 
                                     </td>
 
+
+                                    <!-- META -->
 
                                     <td>
 
                                         <% if (campanha.meta) { %>
 
                                             R$
-                                            <%= Number(campanha.meta)
+                                            <%= Number(
+                                                campanha.meta
+                                            )
                                                 .toFixed(2)
                                                 .replace('.', ',') %>
 
                                         <% } else { %>
 
-                                            -
+                                            Não definida
 
                                         <% } %>
 
                                     </td>
 
 
+                                    <!-- ARRECADADO -->
+
                                     <td>
 
-                                        <span class="status-admin">
+                                        <strong class="campanha-admin-arrecadado">
+
+                                            R$
+
+                                            <%= Number(
+                                                campanha.valor_arrecadado || 0
+                                            )
+                                                .toFixed(2)
+                                                .replace('.', ',') %>
+
+                                        </strong>
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+                                        <span
+                                            class="status-admin status-<%= campanha.status.toLowerCase() %>"
+                                        >
                                             <%= campanha.status %>
                                         </span>
 
                                     </td>
 
+
+                                    <!-- AÇÕES -->
 
                                     <td class="acoes-tabela">
 
