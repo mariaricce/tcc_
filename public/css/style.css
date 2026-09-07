@@ -6160,3 +6160,526 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   COMO AJUDAR - NOVA IDENTIDADE VISUAL
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.ajudar-hero {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8ff,
+            #eee5ff
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.ajudar-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 0.9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.ajudar-hero-conteudo h1 {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(
+        43px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -1.7px;
+}
+
+
+.ajudar-hero-conteudo h1 span {
+    color: var(--lilas-principal);
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.2em;
+
+    font-weight: 600;
+
+    letter-spacing: 0;
+}
+
+
+.ajudar-hero-conteudo > p {
+    max-width: 600px;
+
+    margin: 25px 0 28px;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* CARD DO HERO */
+
+.ajudar-hero-destaque {
+    position: relative;
+
+    padding: 45px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(109, 63, 212, 0.12);
+}
+
+
+.ajudar-hero-destaque::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 6px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            var(--lilas-principal),
+            var(--lilas-escuro)
+        );
+
+    border-radius:
+        22px 0 0 22px;
+}
+
+
+.ajudar-hero-numero {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.ajudar-hero-destaque h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 15px;
+}
+
+
+.ajudar-hero-destaque p {
+    color: var(--texto-claro);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.ajudar-formas {
+    padding: 100px 0;
+
+    background: var(--lilas-suave);
+}
+
+
+.ajudar-cards-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+.ajudar-card {
+    min-height: 520px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 35px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow: var(--sombra);
+
+    transition: 0.25s;
+}
+
+
+.ajudar-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #cfb9fc;
+}
+
+
+.ajudar-card-numero {
+    display: block;
+
+    margin-bottom: 30px;
+
+    color: var(--lilas-principal);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.ajudar-card h3 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+
+    margin-bottom: 14px;
+}
+
+
+.ajudar-card > p {
+    color: var(--texto-claro);
+
+    line-height: 1.75;
+
+    margin-bottom: 25px;
+}
+
+
+.ajudar-card-detalhe {
+    margin-bottom: 30px;
+
+    padding: 20px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 12px;
+}
+
+
+.ajudar-card-detalhe strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 14px;
+}
+
+
+.ajudar-card-detalhe p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.ajudar-card > .btn-principal,
+.ajudar-card > .btn-secundario {
+    width: 100%;
+
+    margin-top: auto;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PASSOS
+========================================================= */
+
+.ajudar-passos {
+    padding: 100px 0;
+
+    background: var(--branco);
+}
+
+
+.ajudar-passos-cabecalho {
+    max-width: 680px;
+
+    margin-bottom: 45px;
+}
+
+
+.ajudar-passos-cabecalho h2 {
+    color: var(--lilas-muito-escuro);
+
+    font-size: 36px;
+
+    margin-bottom: 12px;
+}
+
+
+.ajudar-passos-cabecalho p {
+    color: var(--texto-claro);
+
+    line-height: 1.75;
+}
+
+
+.ajudar-passos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+.ajudar-passo {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    padding: 28px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 15px;
+}
+
+
+.ajudar-passo > span {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--branco);
+
+    border-radius: 13px;
+
+    color: var(--lilas-escuro);
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.ajudar-passo h3 {
+    color: var(--lilas-muito-escuro);
+
+    margin-bottom: 7px;
+
+    font-size: 18px;
+}
+
+
+.ajudar-passo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.ajudar-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #17131f,
+            #21182d
+        );
+}
+
+
+body.modo-escuro
+.ajudar-hero-destaque {
+    background:
+        rgba(33, 28, 41, 0.95);
+}
+
+
+body.modo-escuro
+.ajudar-formas {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.ajudar-passos {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.ajudar-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.ajudar-card-detalhe,
+body.modo-escuro
+.ajudar-passo {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .ajudar-hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .ajudar-cards-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .ajudar-passos-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .ajudar-hero {
+        padding: 65px 0;
+    }
+
+
+    .ajudar-hero-conteudo h1 {
+        font-size: 38px;
+    }
+
+
+    .ajudar-hero-destaque {
+        padding: 30px 25px;
+    }
+
+
+    .ajudar-formas,
+    .ajudar-passos {
+        padding: 70px 0;
+    }
+
+
+    .ajudar-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .ajudar-card {
+        min-height: auto;
+
+        padding: 28px 24px;
+    }
+
+
+    .ajudar-passo {
+        grid-template-columns: 1fr;
+    }
+
+}
