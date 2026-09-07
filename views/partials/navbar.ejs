@@ -1,19 +1,31 @@
-<header class="navbar">
+<nav class="navbar">
 
     <div class="container navbar-container">
 
-        <a href="/" class="logo">
-            Instituto Solidarize
+        <!-- LOGO -->
+
+        <a
+            href="/"
+            class="logo logo-site"
+            aria-label="Instituto Solidarize - Página inicial"
+        >
+            <img
+                src="/images/logo-solidarize.png"
+                alt="Instituto Solidarize"
+                class="logo-imagem"
+            >
         </a>
 
+
+        <!-- BOTÃO MENU MOBILE -->
 
         <button
             type="button"
             class="menu-toggle"
             id="menu-toggle"
             aria-label="Abrir menu"
-            aria-controls="menu-principal"
             aria-expanded="false"
+            aria-controls="menu-principal"
         >
             <span></span>
             <span></span>
@@ -21,44 +33,62 @@
         </button>
 
 
-        <nav
-            id="menu-principal"
+        <!-- MENU -->
+
+        <div
             class="menu-principal"
-            aria-label="Menu principal"
+            id="menu-principal"
         >
 
-            <a href="/">Home</a>
+            <a href="/">
+                Home
+            </a>
 
-            <a href="/sobre">Sobre</a>
+            <a href="/sobre">
+                Sobre
+            </a>
 
-            <a href="/campanhas">Campanhas</a>
+            <a href="/campanhas">
+                Campanhas
+            </a>
 
-            <a href="/como-ajudar">Como Ajudar</a>
+            <a href="/como-ajudar">
+                Como Ajudar
+            </a>
 
-            <a href="/contato">Contato</a>
+            <a href="/contato">
+                Contato
+            </a>
 
+
+            <!-- MODO ESCURO -->
 
             <button
                 type="button"
-                id="toggle-tema"
                 class="btn-tema"
+                id="btn-tema"
             >
                 Modo escuro
             </button>
 
 
-            <% if (!usuarioLogado) { %>
+            <%
+                const usuarioAtual =
+                    typeof usuarioLogado !== 'undefined'
+                        ? usuarioLogado
+                        : (
+                            typeof usuario !== 'undefined'
+                                ? usuario
+                                : null
+                        );
+            %>
 
-                <a
-                    href="/login"
-                    class="btn-login"
-                >
-                    Login
-                </a>
 
-            <% } else { %>
+            <!-- USUÁRIO LOGADO -->
 
-                <% if (usuarioLogado.tipo === 'admin') { %>
+            <% if (usuarioAtual) { %>
+
+                <% if (usuarioAtual.tipo === 'admin') { %>
 
                     <a
                         href="/admin"
@@ -70,10 +100,10 @@
                 <% } else { %>
 
                     <a
-                        href="/usuario"
+                        href="/usuario/painel"
                         class="link-painel"
                     >
-                        Minha Conta
+                        Minha conta
                     </a>
 
                 <% } %>
@@ -94,10 +124,20 @@
 
                 </form>
 
+
+            <% } else { %>
+
+                <a
+                    href="/login"
+                    class="btn-login"
+                >
+                    Login
+                </a>
+
             <% } %>
 
-        </nav>
+        </div>
 
     </div>
 
-</header>
+</nav>
