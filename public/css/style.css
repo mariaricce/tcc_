@@ -18737,3 +18737,679 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   PÚBLICO - PRIVACIDADE E COOKIES
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.privacidade-hero {
+    padding: 90px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4eeff 0%,
+            #ffffff 65%,
+            #f8f5ff 100%
+        );
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.privacidade-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(300px, 0.8fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+.privacidade-hero-conteudo {
+    max-width: 750px;
+}
+
+
+.privacidade-hero-conteudo h1 {
+    max-width: 750px;
+
+    margin: 12px 0 20px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(40px, 5vw, 66px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2.5px;
+}
+
+
+.privacidade-hero-conteudo h1 span {
+    display: block;
+
+    color: var(--lilas-principal);
+
+    font-family: "Caveat", cursive;
+
+    font-size: 1.08em;
+
+    font-weight: 700;
+
+    letter-spacing: 0;
+}
+
+
+.privacidade-hero-conteudo > p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+.privacidade-hero-card {
+    padding: 35px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(73, 43, 120, 0.08);
+}
+
+
+.privacidade-hero-card > span {
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.privacidade-hero-card strong {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 24px;
+
+    line-height: 1.35;
+}
+
+
+.privacidade-hero-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   INTRODUÇÃO
+========================================================= */
+
+.privacidade-introducao {
+    padding: 75px 0;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.privacidade-introducao-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(300px, 0.8fr);
+
+    gap: 70px;
+
+    align-items: end;
+}
+
+
+.privacidade-introducao h2 {
+    max-width: 600px;
+
+    margin: 8px 0 0;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: clamp(30px, 4vw, 43px);
+
+    line-height: 1.2;
+}
+
+
+.privacidade-introducao-grid > p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.privacidade-conteudo-novo {
+    padding: 85px 0;
+
+    background: var(--fundo);
+}
+
+
+.privacidade-conteudo-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(300px, 0.55fr);
+
+    gap: 28px;
+
+    align-items: start;
+}
+
+
+.privacidade-blocos {
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.privacidade-bloco {
+    display: grid;
+
+    grid-template-columns:
+        55px 1fr;
+
+    gap: 20px;
+
+    padding: 32px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.privacidade-bloco:last-child {
+    border-bottom: none;
+}
+
+
+.privacidade-bloco-numero {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 12px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.privacidade-bloco h2 {
+    margin: 0 0 10px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 21px;
+}
+
+
+.privacidade-bloco p {
+    margin: 0 0 10px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+.privacidade-bloco p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LATERAL
+========================================================= */
+
+.privacidade-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.privacidade-lateral-card,
+.privacidade-contato-card {
+    padding: 28px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.privacidade-lateral-card h2 {
+    margin: 8px 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.privacidade-lateral-card > p {
+    margin: 0 0 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.privacidade-lateral-item {
+    display: grid;
+
+    grid-template-columns:
+        38px 1fr;
+
+    gap: 12px;
+
+    padding: 16px 0;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.privacidade-lateral-item > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 9px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.privacidade-lateral-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+}
+
+
+.privacidade-lateral-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* CONTATO */
+
+.privacidade-contato-card {
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+}
+
+
+.privacidade-contato-card > span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.privacidade-contato-card > strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+}
+
+
+.privacidade-contato-card p {
+    margin: 0 0 20px;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.privacidade-final {
+    padding: 75px 0;
+
+    background: var(--branco);
+}
+
+
+.privacidade-final-box {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 45px;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #efe7ff,
+            #fbf9ff
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+}
+
+
+.privacidade-final-box > div {
+    max-width: 720px;
+}
+
+
+.privacidade-final-box h2 {
+    margin: 7px 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 28px;
+}
+
+
+.privacidade-final-box p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.privacidade-atualizacao {
+    flex-shrink: 0;
+
+    padding: 8px 13px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.privacidade-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #21182c,
+            #151218
+        );
+}
+
+
+body.modo-escuro
+.privacidade-introducao,
+body.modo-escuro
+.privacidade-final {
+    background: var(--fundo);
+}
+
+
+body.modo-escuro
+.privacidade-hero-card,
+body.modo-escuro
+.privacidade-blocos,
+body.modo-escuro
+.privacidade-lateral-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.privacidade-contato-card,
+body.modo-escuro
+.privacidade-final-box {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .privacidade-hero-grid,
+    .privacidade-conteudo-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .privacidade-hero-card {
+        max-width: 650px;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .privacidade-introducao-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .privacidade-final-box {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 25px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .privacidade-hero {
+        padding: 65px 0;
+    }
+
+
+    .privacidade-hero-conteudo h1 {
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .privacidade-introducao,
+    .privacidade-conteudo-novo,
+    .privacidade-final {
+        padding: 60px 0;
+    }
+
+
+    .privacidade-bloco {
+        grid-template-columns:
+            44px 1fr;
+
+        gap: 14px;
+
+        padding: 25px 20px;
+    }
+
+
+    .privacidade-bloco-numero {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .privacidade-lateral-card,
+    .privacidade-contato-card {
+        padding: 25px 20px;
+    }
+
+
+    .privacidade-final-box {
+        padding: 30px 22px;
+    }
+
+
+    .privacidade-atualizacao {
+        white-space: normal;
+    }
+
+}
