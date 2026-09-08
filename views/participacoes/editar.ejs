@@ -4,187 +4,491 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const voluntarioAtual =
+                voluntarios.find(
+                    voluntario =>
+                        Number(voluntario.id) ===
+                        Number(participacao.voluntario_id)
+                );
+
+            const campanhaAtual =
+                campanhas.find(
+                    campanha =>
+                        Number(campanha.id) ===
+                        Number(participacao.campanha_id)
+                );
+
+            const statusFormatado =
+                participacao.status === 'Concluido'
+                    ? 'Concluído'
+                    : participacao.status;
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Participações
-                </p>
+                <span class="secao-etiqueta">
+                    PARTICIPAÇÕES
+                </span>
 
-                <h1>Editar Participação</h1>
+                <h1>
+                    Editar participação
+                </h1>
 
                 <p>
-                    Atualize o voluntário, a campanha ou o status.
+                    Atualize o voluntário, a campanha
+                    ou a situação desta participação.
                 </p>
 
             </div>
+
 
             <a
                 href="/admin/participacoes"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para participações
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="participacao-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="participacao-form-grid">
 
 
-            <form
-                action="/admin/participacoes/<%= participacao.id %>/editar"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="participacao-form-principal">
 
-                    <div class="campo">
+                    <div class="participacao-form-cabecalho">
 
-                        <label for="voluntario_id">
-                            Voluntário *
-                        </label>
+                        <span class="secao-etiqueta">
+                            EDITAR VÍNCULO
+                        </span>
 
-                        <select
-                            id="voluntario_id"
-                            name="voluntario_id"
-                            required
-                        >
+                        <h2>
+                            Informações da participação
+                        </h2>
 
-                            <% voluntarios.forEach(voluntario => { %>
-
-                                <option
-                                    value="<%= voluntario.id %>"
-                                    <%= Number(participacao.voluntario_id) === Number(voluntario.id)
-                                        ? 'selected'
-                                        : '' %>
-                                >
-                                    <%= voluntario.nome %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
+                        <p>
+                            Altere somente os dados necessários
+                            e salve as modificações.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="campanha_id">
-                            Campanha *
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <select
-                            id="campanha_id"
-                            name="campanha_id"
-                            required
-                        >
+                    <% } %>
 
-                            <% campanhas.forEach(campanha => { %>
 
-                                <option
-                                    value="<%= campanha.id %>"
-                                    <%= Number(participacao.campanha_id) === Number(campanha.id)
-                                        ? 'selected'
-                                        : '' %>
+                    <form
+                        action="/admin/participacoes/<%= participacao.id %>/editar"
+                        method="POST"
+                        class="formulario admin-formulario participacao-formulario"
+                    >
+
+                        <!-- =========================================
+                             VOLUNTÁRIO
+                        ========================================== -->
+
+                        <div class="participacao-form-bloco">
+
+                            <div class="participacao-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Voluntário
+                                    </h3>
+
+                                    <p>
+                                        Altere o voluntário vinculado
+                                        caso seja necessário.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="voluntario_id">
+                                    Voluntário *
+                                </label>
+
+                                <select
+                                    id="voluntario_id"
+                                    name="voluntario_id"
+                                    required
                                 >
-                                    <%= campanha.titulo %>
-                                </option>
 
-                            <% }) %>
+                                    <% voluntarios.forEach(voluntario => { %>
 
-                        </select>
+                                        <option
+                                            value="<%= voluntario.id %>"
+                                            <%= Number(participacao.voluntario_id) === Number(voluntario.id)
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            <%= voluntario.nome %>
+                                        </option>
+
+                                    <% }) %>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    O voluntário selecionado ficará
+                                    associado a esta participação.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             CAMPANHA
+                        ========================================== -->
+
+                        <div class="participacao-form-bloco">
+
+                            <div class="participacao-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Campanha
+                                    </h3>
+
+                                    <p>
+                                        Altere a campanha vinculada
+                                        à participação, se necessário.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="campanha_id">
+                                    Campanha *
+                                </label>
+
+                                <select
+                                    id="campanha_id"
+                                    name="campanha_id"
+                                    required
+                                >
+
+                                    <% campanhas.forEach(campanha => { %>
+
+                                        <option
+                                            value="<%= campanha.id %>"
+                                            <%= Number(participacao.campanha_id) === Number(campanha.id)
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            <%= campanha.titulo %>
+                                        </option>
+
+                                    <% }) %>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    A campanha define em qual ação
+                                    o voluntário está participando.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="participacao-form-bloco">
+
+                            <div class="participacao-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação da participação
+                                    </h3>
+
+                                    <p>
+                                        Atualize o estágio atual
+                                        da participação do voluntário.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option
+                                        value="Inscrito"
+                                        <%= participacao.status === 'Inscrito'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Inscrito
+                                    </option>
+
+                                    <option
+                                        value="Participando"
+                                        <%= participacao.status === 'Participando'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Participando
+                                    </option>
+
+                                    <option
+                                        value="Concluido"
+                                        <%= participacao.status === 'Concluido'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Concluído
+                                    </option>
+
+                                    <option
+                                        value="Cancelado"
+                                        <%= participacao.status === 'Cancelado'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Cancelado
+                                    </option>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    Atualize o status conforme
+                                    o andamento da participação.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes participacao-form-acoes">
+
+                            <a
+                                href="/admin/participacoes"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Salvar alterações
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="participacao-form-lateral">
+
+                    <div class="participacao-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            PARTICIPAÇÃO
+                        </span>
+
+                        <h2>
+                            Dados atuais
+                        </h2>
+
+                        <p>
+                            Confira as informações atuais
+                            antes de realizar alterações.
+                        </p>
+
+
+                        <div class="participacao-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Identificação
+                                </strong>
+
+                                <p>
+                                    Participação #<%= participacao.id %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="participacao-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Voluntário
+                                </strong>
+
+                                <p>
+                                    <%= voluntarioAtual
+                                        ? voluntarioAtual.nome
+                                        : 'Não encontrado' %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="participacao-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Campanha
+                                </strong>
+
+                                <p>
+                                    <%= campanhaAtual
+                                        ? campanhaAtual.titulo
+                                        : 'Não encontrada' %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="participacao-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Alterações
+                                </strong>
+
+                                <p>
+                                    O vínculo será atualizado
+                                    após salvar o formulário.
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="participacao-form-status-card">
 
-                <div class="campo">
+                        <span>
+                            STATUS ATUAL
+                        </span>
 
-                    <label for="status">
-                        Status *
-                    </label>
+                        <strong>
+                            <%= statusFormatado %>
+                        </strong>
 
-                    <select
-                        id="status"
-                        name="status"
-                        required
-                    >
+                        <p>
+                            Altere o status conforme a evolução
+                            da participação do voluntário
+                            na campanha.
+                        </p>
 
-                        <option
-                            value="Inscrito"
-                            <%= participacao.status === 'Inscrito'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Inscrito
-                        </option>
+                    </div>
 
-                        <option
-                            value="Participando"
-                            <%= participacao.status === 'Participando'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Participando
-                        </option>
+                </aside>
 
-                        <option
-                            value="Concluido"
-                            <%= participacao.status === 'Concluido'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Concluído
-                        </option>
-
-                        <option
-                            value="Cancelado"
-                            <%= participacao.status === 'Cancelado'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Cancelado
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/participacoes"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Salvar alterações
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 
