@@ -15586,3 +15586,1117 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   ADMIN - PARTICIPAÇÕES
+========================================================= */
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.participacoes-admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 40px 40px 0;
+}
+
+
+.participacoes-admin-resumo-card {
+    padding: 23px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.participacoes-admin-resumo-card > span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+}
+
+
+.participacoes-admin-resumo-card > strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+}
+
+
+.participacoes-admin-resumo-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LISTAGEM
+========================================================= */
+
+.participacoes-admin-listagem {
+    margin: 35px 40px 45px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.participacoes-admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 27px 28px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.participacoes-admin-listagem-topo h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.participacoes-admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.participacoes-admin-quantidade {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.participacoes-admin-tabela {
+    overflow-x: auto;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.participacoes-admin-tabela table {
+    width: 100%;
+
+    min-width: 950px;
+
+    border-collapse: collapse;
+}
+
+
+.participacoes-admin-tabela th {
+    padding: 13px 15px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+.participacoes-admin-tabela td {
+    padding: 16px 15px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.participacoes-admin-tabela
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.participacoes-admin-tabela
+tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.participacao-admin-id {
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   VOLUNTÁRIO
+========================================================= */
+
+.participacao-admin-voluntario {
+    display: grid;
+
+    grid-template-columns:
+        45px minmax(0, 1fr);
+
+    gap: 12px;
+
+    align-items: center;
+
+    min-width: 210px;
+}
+
+
+.participacao-admin-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 50%;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.participacao-admin-voluntario strong {
+    display: block;
+
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.participacao-admin-voluntario
+div:last-child > span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CAMPANHA E DATA
+========================================================= */
+
+.participacao-admin-campanha {
+    display: block;
+
+    max-width: 260px;
+
+    color: var(--texto);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.participacao-admin-data {
+    color: var(--texto);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-admin.status-inscrito {
+    background: #eee8ff;
+
+    color: #6940a5;
+}
+
+
+.status-admin.status-participando {
+    background: #e7f1ff;
+
+    color: #35649b;
+}
+
+
+.status-admin.status-concluido {
+    background: #e8f7ed;
+
+    color: #24753d;
+}
+
+
+.status-admin.status-cancelado {
+    background: #fdeaea;
+
+    color: #a63a3a;
+}
+
+
+body.modo-escuro
+.status-admin.status-inscrito {
+    background: rgba(137, 92, 200, 0.18);
+
+    color: #c5a7ee;
+}
+
+
+body.modo-escuro
+.status-admin.status-participando {
+    background: rgba(73, 126, 190, 0.18);
+
+    color: #99bee8;
+}
+
+
+body.modo-escuro
+.status-admin.status-concluido {
+    background: rgba(62, 155, 91, 0.16);
+
+    color: #86d59e;
+}
+
+
+body.modo-escuro
+.status-admin.status-cancelado {
+    background: rgba(205, 79, 79, 0.16);
+
+    color: #e99494;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.participacoes-admin-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.participacoes-admin-acoes form {
+    margin: 0;
+}
+
+
+.participacoes-admin-acoes
+.btn-editar,
+.participacoes-admin-acoes
+.btn-excluir {
+    min-height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   VAZIO
+========================================================= */
+
+.participacoes-admin-vazio {
+    margin: 0;
+
+    padding: 65px 30px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+.participacoes-admin-vazio h3 {
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+.participacoes-admin-vazio p {
+    max-width: 500px;
+
+    margin: 0 auto 22px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.participacoes-admin-resumo-card,
+
+body.modo-escuro
+.participacoes-admin-listagem {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.participacoes-admin-tabela th,
+
+body.modo-escuro
+.participacao-admin-avatar,
+
+body.modo-escuro
+.participacoes-admin-quantidade {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1300px) {
+
+    .participacoes-admin-resumo {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 950px) {
+
+    .participacoes-admin-resumo {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .participacoes-admin-resumo {
+        padding:
+            28px 28px 0;
+    }
+
+
+    .participacoes-admin-listagem {
+        margin:
+            30px 28px 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .participacoes-admin-resumo {
+        grid-template-columns: 1fr;
+
+        padding:
+            25px 18px 0;
+    }
+
+
+    .participacoes-admin-listagem {
+        margin:
+            25px 18px 35px;
+    }
+
+
+    .participacoes-admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 22px 20px;
+    }
+
+}
+/* =========================================================
+   ADMIN - FORMULÁRIO DE PARTICIPAÇÃO
+========================================================= */
+
+.participacao-form-area {
+    padding: 40px;
+    background: var(--fundo);
+}
+
+
+.participacao-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, 0.55fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   CARD PRINCIPAL
+========================================================= */
+
+.participacao-form-principal {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.participacao-form-cabecalho {
+    padding: 28px 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.participacao-form-cabecalho
+.secao-etiqueta {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 10px;
+}
+
+
+.participacao-form-cabecalho h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 24px;
+}
+
+
+.participacao-form-cabecalho p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.participacao-form-principal
+> .mensagem {
+    margin: 25px 30px 0;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.participacao-formulario {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   BLOCOS
+========================================================= */
+
+.participacao-form-bloco {
+    width: 100%;
+
+    padding: 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.participacao-form-bloco-titulo {
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 15px;
+
+    align-items: start;
+
+    margin-bottom: 25px;
+}
+
+
+.participacao-form-bloco-titulo > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 11px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.participacao-form-bloco-titulo h3 {
+    margin: 0 0 4px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+}
+
+
+.participacao-form-bloco-titulo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.participacao-formulario
+.campo {
+    margin: 0;
+}
+
+
+.participacao-formulario
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.participacao-formulario
+.campo select {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 0 16px;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+
+.participacao-formulario
+.campo select:focus {
+    outline: none;
+
+    border-color: var(--lilas-principal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.11);
+}
+
+
+.participacao-formulario
+.campo-ajuda {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.participacao-form-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin: 0;
+
+    padding: 25px 30px;
+
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   PAINEL LATERAL
+========================================================= */
+
+.participacao-form-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.participacao-form-ajuda-card,
+.participacao-form-status-card {
+    padding: 25px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.participacao-form-ajuda-card h2 {
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 21px;
+}
+
+
+.participacao-form-ajuda-card > p {
+    margin: 0 0 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+.participacao-form-ajuda-item {
+    display: grid;
+
+    grid-template-columns:
+        38px 1fr;
+
+    gap: 12px;
+
+    padding: 15px 0;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.participacao-form-ajuda-item > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 9px;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.participacao-form-ajuda-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+}
+
+
+.participacao-form-ajuda-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.participacao-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+}
+
+
+.participacao-form-status-card > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.participacao-form-status-card > strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+}
+
+
+.participacao-form-status-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.participacao-form-principal,
+
+body.modo-escuro
+.participacao-form-cabecalho,
+
+body.modo-escuro
+.participacao-form-bloco,
+
+body.modo-escuro
+.participacao-form-ajuda-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.participacao-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.participacao-formulario
+.campo select {
+    background: var(--fundo);
+
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .participacao-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .participacao-form-lateral {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .participacao-form-area {
+        padding: 28px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .participacao-form-area {
+        padding: 25px 18px;
+    }
+
+
+    .participacao-form-cabecalho,
+    .participacao-form-bloco {
+        padding: 24px 20px;
+    }
+
+
+    .participacao-form-bloco-titulo {
+        grid-template-columns:
+            44px 1fr;
+    }
+
+
+    .participacao-form-lateral {
+        grid-template-columns: 1fr;
+    }
+
+
+    .participacao-form-acoes {
+        flex-direction: column-reverse;
+
+        padding: 22px 20px;
+    }
+
+
+    .participacao-form-acoes
+    .btn-principal,
+
+    .participacao-form-acoes
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}

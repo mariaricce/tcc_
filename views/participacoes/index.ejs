@@ -4,100 +4,371 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaParticipacoes =
+                participacoes || [];
+
+            const totalParticipacoes =
+                listaParticipacoes.length;
+
+            const totalInscritos =
+                listaParticipacoes.filter(
+                    participacao =>
+                        participacao.status === 'Inscrito'
+                ).length;
+
+            const totalParticipando =
+                listaParticipacoes.filter(
+                    participacao =>
+                        participacao.status === 'Participando'
+                ).length;
+
+            const totalConcluidos =
+                listaParticipacoes.filter(
+                    participacao =>
+                        participacao.status === 'Concluido'
+                ).length;
+
+            const totalCancelados =
+                listaParticipacoes.filter(
+                    participacao =>
+                        participacao.status === 'Cancelado'
+                ).length;
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
 
-                <h1>Participações</h1>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
+
+                <h1>
+                    Participações
+                </h1>
 
                 <p>
-                    Gerencie a participação dos voluntários nas campanhas.
+                    Gerencie a participação dos voluntários
+                    nas campanhas do Instituto Solidarize.
                 </p>
+
             </div>
+
 
             <a
                 href="/admin/participacoes/nova"
                 class="btn-principal"
             >
-                + Nova participação
+                Nova participação
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (participacoes.length === 0) { %>
+        <section class="participacoes-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="participacoes-admin-resumo-card">
 
-                    <span>🔗</span>
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalParticipacoes %>
+                </strong>
+
+                <p>
+                    Participações cadastradas
+                </p>
+
+            </div>
+
+
+            <div class="participacoes-admin-resumo-card">
+
+                <span>
+                    INSCRITOS
+                </span>
+
+                <strong>
+                    <%= totalInscritos %>
+                </strong>
+
+                <p>
+                    Aguardando participação
+                </p>
+
+            </div>
+
+
+            <div class="participacoes-admin-resumo-card">
+
+                <span>
+                    PARTICIPANDO
+                </span>
+
+                <strong>
+                    <%= totalParticipando %>
+                </strong>
+
+                <p>
+                    Participações em andamento
+                </p>
+
+            </div>
+
+
+            <div class="participacoes-admin-resumo-card">
+
+                <span>
+                    CONCLUÍDOS
+                </span>
+
+                <strong>
+                    <%= totalConcluidos %>
+                </strong>
+
+                <p>
+                    Participações finalizadas
+                </p>
+
+            </div>
+
+
+            <div class="participacoes-admin-resumo-card">
+
+                <span>
+                    CANCELADOS
+                </span>
+
+                <strong>
+                    <%= totalCancelados %>
+                </strong>
+
+                <p>
+                    Participações canceladas
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card participacoes-admin-listagem">
+
+            <div class="participacoes-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Participações cadastradas
+                    </h2>
 
                     <p>
-                        Nenhuma participação cadastrada.
+                        Consulte os voluntários vinculados
+                        às campanhas e acompanhe a situação
+                        de cada participação.
                     </p>
+
+                </div>
+
+
+                <span class="participacoes-admin-quantidade">
+
+                    <%= totalParticipacoes %>
+
+                    <%= totalParticipacoes === 1
+                        ? 'participação'
+                        : 'participações' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaParticipacoes.length === 0) { %>
+
+                <div class="admin-vazio participacoes-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhuma participação cadastrada
+                    </h3>
+
+                    <p>
+                        Vincule um voluntário a uma campanha
+                        para começar a organizar as participações
+                        no Instituto.
+                    </p>
+
+                    <a
+                        href="/admin/participacoes/nova"
+                        class="btn-principal"
+                    >
+                        Cadastrar participação
+                    </a>
 
                 </div>
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container participacoes-admin-tabela">
 
                     <table>
 
                         <thead>
+
                             <tr>
-                                <th>ID</th>
-                                <th>Voluntário</th>
-                                <th>Campanha</th>
-                                <th>Data da inscrição</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Voluntário
+                                </th>
+
+                                <th>
+                                    Campanha
+                                </th>
+
+                                <th>
+                                    Data da inscrição
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
+
                         </thead>
+
 
                         <tbody>
 
-                            <% participacoes.forEach(participacao => { %>
+                            <% listaParticipacoes.forEach(participacao => { %>
 
                                 <tr>
 
-                                    <td>
-                                        <%= participacao.id %>
-                                    </td>
+                                    <!-- ID -->
 
                                     <td>
-                                        <strong>
-                                            <%= participacao.voluntario %>
-                                        </strong>
+
+                                        <span class="participacao-admin-id">
+                                            #<%= participacao.id %>
+                                        </span>
+
                                     </td>
 
-                                    <td>
-                                        <%= participacao.campanha %>
-                                    </td>
+
+                                    <!-- VOLUNTÁRIO -->
 
                                     <td>
-                                        <%= new Date(
-                                            participacao.data_inscricao
-                                        ).toLocaleDateString('pt-BR') %>
+
+                                        <div class="participacao-admin-voluntario">
+
+                                            <div class="participacao-admin-avatar">
+
+                                                <%= participacao.voluntario
+                                                    .charAt(0)
+                                                    .toUpperCase() %>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= participacao.voluntario %>
+                                                </strong>
+
+                                                <span>
+                                                    Voluntário
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
                                     </td>
 
+
+                                    <!-- CAMPANHA -->
+
                                     <td>
-                                        <span class="status-admin">
+
+                                        <span class="participacao-admin-campanha">
+                                            <%= participacao.campanha %>
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- DATA -->
+
+                                    <td>
+
+                                        <span class="participacao-admin-data">
+
+                                            <%= new Date(
+                                                participacao.data_inscricao
+                                            ).toLocaleDateString('pt-BR') %>
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+                                        <span
+                                            class="status-admin status-<%= participacao.status.toLowerCase() %>"
+                                        >
+
                                             <%= participacao.status === 'Concluido'
                                                 ? 'Concluído'
                                                 : participacao.status %>
+
                                         </span>
+
                                     </td>
+
+
+                                    <!-- AÇÕES -->
 
                                     <td>
 
-                                        <div class="acoes-tabela">
+                                        <div class="acoes-tabela participacoes-admin-acoes">
 
                                             <a
                                                 href="/admin/participacoes/<%= participacao.id %>/editar"
@@ -105,6 +376,7 @@
                                             >
                                                 Editar
                                             </a>
+
 
                                             <form
                                                 action="/admin/participacoes/<%= participacao.id %>/excluir"
