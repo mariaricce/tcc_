@@ -16700,3 +16700,1173 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   ADMIN - ATENDIMENTOS
+========================================================= */
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.atendimentos-admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 40px 40px 0;
+}
+
+
+.atendimentos-admin-resumo-card {
+    padding: 23px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.atendimentos-admin-resumo-card > span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+}
+
+
+.atendimentos-admin-resumo-card > strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+}
+
+
+.atendimentos-admin-resumo-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LISTAGEM
+========================================================= */
+
+.atendimentos-admin-listagem {
+    margin: 35px 40px 45px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.atendimentos-admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 27px 28px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.atendimentos-admin-listagem-topo h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.atendimentos-admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.atendimentos-admin-quantidade {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.atendimentos-admin-tabela {
+    overflow-x: auto;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.atendimentos-admin-tabela table {
+    width: 100%;
+
+    min-width: 1000px;
+
+    border-collapse: collapse;
+}
+
+
+.atendimentos-admin-tabela th {
+    padding: 13px 15px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+.atendimentos-admin-tabela td {
+    padding: 16px 15px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.atendimentos-admin-tabela
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.atendimentos-admin-tabela
+tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.atendimento-admin-id {
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BENEFICIÁRIO
+========================================================= */
+
+.atendimento-admin-beneficiario {
+    display: grid;
+
+    grid-template-columns:
+        45px minmax(0, 1fr);
+
+    gap: 12px;
+
+    align-items: center;
+
+    min-width: 210px;
+}
+
+
+.atendimento-admin-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 50%;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.atendimento-admin-beneficiario strong {
+    display: block;
+
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.atendimento-admin-beneficiario
+div:last-child > span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CAMPANHA E TIPO
+========================================================= */
+
+.atendimento-admin-campanha {
+    display: block;
+
+    max-width: 230px;
+
+    color: var(--texto);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.atendimento-admin-tipo {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    background: var(--lilas-suave);
+
+    border-radius: 20px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.atendimento-admin-data {
+    color: var(--texto);
+
+    white-space: nowrap;
+}
+
+
+.atendimento-admin-sem-dado {
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-admin.status-realizado {
+    background: #e8f7ed;
+
+    color: #24753d;
+}
+
+
+.status-admin.status-agendado {
+    background: #e7f1ff;
+
+    color: #35649b;
+}
+
+
+.status-admin.status-cancelado {
+    background: #fdeaea;
+
+    color: #a63a3a;
+}
+
+
+body.modo-escuro
+.status-admin.status-realizado {
+    background: rgba(62, 155, 91, 0.16);
+
+    color: #86d59e;
+}
+
+
+body.modo-escuro
+.status-admin.status-agendado {
+    background: rgba(73, 126, 190, 0.18);
+
+    color: #99bee8;
+}
+
+
+body.modo-escuro
+.status-admin.status-cancelado {
+    background: rgba(205, 79, 79, 0.16);
+
+    color: #e99494;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.atendimentos-admin-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.atendimentos-admin-acoes form {
+    margin: 0;
+}
+
+
+.atendimentos-admin-acoes
+.btn-editar,
+.atendimentos-admin-acoes
+.btn-excluir {
+    min-height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   VAZIO
+========================================================= */
+
+.atendimentos-admin-vazio {
+    margin: 0;
+
+    padding: 65px 30px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+.atendimentos-admin-vazio h3 {
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+.atendimentos-admin-vazio p {
+    max-width: 500px;
+
+    margin: 0 auto 22px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.atendimentos-admin-resumo-card,
+
+body.modo-escuro
+.atendimentos-admin-listagem {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.atendimentos-admin-tabela th,
+
+body.modo-escuro
+.atendimento-admin-avatar,
+
+body.modo-escuro
+.atendimento-admin-tipo,
+
+body.modo-escuro
+.atendimentos-admin-quantidade {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1300px) {
+
+    .atendimentos-admin-resumo {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 950px) {
+
+    .atendimentos-admin-resumo {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .atendimentos-admin-resumo {
+        padding:
+            28px 28px 0;
+    }
+
+
+    .atendimentos-admin-listagem {
+        margin:
+            30px 28px 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .atendimentos-admin-resumo {
+        grid-template-columns: 1fr;
+
+        padding:
+            25px 18px 0;
+    }
+
+
+    .atendimentos-admin-listagem {
+        margin:
+            25px 18px 35px;
+    }
+
+
+    .atendimentos-admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 22px 20px;
+    }
+
+}
+/* =========================================================
+   ADMIN - FORMULÁRIO DE ATENDIMENTO
+========================================================= */
+
+.atendimento-form-area {
+    padding: 40px;
+    background: var(--fundo);
+}
+
+
+.atendimento-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, 0.55fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* CARD PRINCIPAL */
+
+.atendimento-form-principal {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.atendimento-form-cabecalho {
+    padding: 28px 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.atendimento-form-cabecalho
+.secao-etiqueta {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 10px;
+}
+
+
+.atendimento-form-cabecalho h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 24px;
+}
+
+
+.atendimento-form-cabecalho p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.atendimento-form-principal
+> .mensagem {
+    margin: 25px 30px 0;
+}
+
+
+/* FORMULÁRIO */
+
+.atendimento-formulario {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* BLOCOS */
+
+.atendimento-form-bloco {
+    width: 100%;
+
+    padding: 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.atendimento-form-bloco-titulo {
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 15px;
+
+    align-items: start;
+
+    margin-bottom: 25px;
+}
+
+
+.atendimento-form-bloco-titulo > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 11px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.atendimento-form-bloco-titulo h3 {
+    margin: 0 0 4px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+}
+
+
+.atendimento-form-bloco-titulo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* CAMPOS */
+
+.atendimento-formulario
+.campo {
+    margin: 0 0 22px;
+}
+
+
+.atendimento-formulario
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+
+.atendimento-formulario
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.atendimento-formulario
+.campo input,
+
+.atendimento-formulario
+.campo select,
+
+.atendimento-formulario
+.campo textarea {
+    width: 100%;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+
+.atendimento-formulario
+.campo input,
+
+.atendimento-formulario
+.campo select {
+    min-height: 48px;
+
+    padding: 0 16px;
+}
+
+
+.atendimento-formulario
+.campo textarea {
+    min-height: 140px;
+
+    padding: 14px 16px;
+
+    resize: vertical;
+}
+
+
+.atendimento-formulario
+.campo input:focus,
+
+.atendimento-formulario
+.campo select:focus,
+
+.atendimento-formulario
+.campo textarea:focus {
+    outline: none;
+
+    border-color: var(--lilas-principal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.11);
+}
+
+
+.atendimento-formulario
+.campo-ajuda {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* GRID DOS CAMPOS */
+
+.atendimento-formulario
+.admin-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* AÇÕES */
+
+.atendimento-form-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin: 0;
+
+    padding: 25px 30px;
+
+    background: var(--lilas-suave);
+}
+
+
+/* PAINEL LATERAL */
+
+.atendimento-form-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.atendimento-form-ajuda-card,
+.atendimento-form-status-card {
+    padding: 25px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.atendimento-form-ajuda-card h2 {
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 21px;
+}
+
+
+.atendimento-form-ajuda-card > p {
+    margin: 0 0 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+.atendimento-form-ajuda-item {
+    display: grid;
+
+    grid-template-columns:
+        38px 1fr;
+
+    gap: 12px;
+
+    padding: 15px 0;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.atendimento-form-ajuda-item > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 9px;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.atendimento-form-ajuda-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+}
+
+
+.atendimento-form-ajuda-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* STATUS */
+
+.atendimento-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+}
+
+
+.atendimento-form-status-card > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.atendimento-form-status-card > strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+}
+
+
+.atendimento-form-status-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* MODO ESCURO */
+
+body.modo-escuro
+.atendimento-form-principal,
+
+body.modo-escuro
+.atendimento-form-cabecalho,
+
+body.modo-escuro
+.atendimento-form-bloco,
+
+body.modo-escuro
+.atendimento-form-ajuda-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.atendimento-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.atendimento-formulario
+.campo input,
+
+body.modo-escuro
+.atendimento-formulario
+.campo select,
+
+body.modo-escuro
+.atendimento-formulario
+.campo textarea {
+    background: var(--fundo);
+
+    color: var(--texto);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 1100px) {
+
+    .atendimento-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .atendimento-form-lateral {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .atendimento-form-area {
+        padding: 28px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .atendimento-form-area {
+        padding: 25px 18px;
+    }
+
+
+    .atendimento-form-cabecalho,
+    .atendimento-form-bloco {
+        padding: 24px 20px;
+    }
+
+
+    .atendimento-form-bloco-titulo {
+        grid-template-columns:
+            44px 1fr;
+    }
+
+
+    .atendimento-formulario
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .atendimento-form-lateral {
+        grid-template-columns: 1fr;
+    }
+
+
+    .atendimento-form-acoes {
+        flex-direction: column-reverse;
+
+        padding: 22px 20px;
+    }
+
+
+    .atendimento-form-acoes
+    .btn-principal,
+
+    .atendimento-form-acoes
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}

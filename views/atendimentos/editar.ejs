@@ -4,20 +4,44 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const beneficiarioAtual =
+                beneficiarios.find(
+                    beneficiario =>
+                        Number(beneficiario.id) ===
+                        Number(atendimento.beneficiario_id)
+                );
+
+            const campanhaAtual =
+                campanhas.find(
+                    campanha =>
+                        Number(campanha.id) ===
+                        Number(atendimento.campanha_id)
+                );
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Atendimentos
-                </p>
+                <span class="secao-etiqueta">
+                    ATENDIMENTOS
+                </span>
 
-                <h1>Editar Atendimento</h1>
+                <h1>
+                    Editar atendimento
+                </h1>
 
                 <p>
-                    Atualize as informações do atendimento.
+                    Atualize as informações do atendimento
+                    registrado no Instituto Solidarize.
                 </p>
 
             </div>
@@ -26,235 +50,550 @@
                 href="/admin/atendimentos"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para atendimentos
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="atendimento-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="atendimento-form-grid">
 
 
-            <form
-                action="/admin/atendimentos/<%= atendimento.id %>/editar"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="atendimento-form-principal">
 
-                    <div class="campo">
+                    <div class="atendimento-form-cabecalho">
 
-                        <label for="beneficiario_id">
-                            Beneficiário *
-                        </label>
+                        <span class="secao-etiqueta">
+                            EDITAR REGISTRO
+                        </span>
 
-                        <select
-                            id="beneficiario_id"
-                            name="beneficiario_id"
-                            required
-                        >
+                        <h2>
+                            Informações do atendimento
+                        </h2>
 
-                            <% beneficiarios.forEach(beneficiario => { %>
-
-                                <option
-                                    value="<%= beneficiario.id %>"
-                                    <%= Number(atendimento.beneficiario_id) === Number(beneficiario.id)
-                                        ? 'selected'
-                                        : '' %>
-                                >
-                                    <%= beneficiario.nome %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
+                        <p>
+                            Altere somente os dados necessários
+                            e salve as modificações.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="campanha_id">
-                            Campanha
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <select
-                            id="campanha_id"
-                            name="campanha_id"
-                        >
+                    <% } %>
 
-                            <option
-                                value=""
-                                <%= !atendimento.campanha_id ? 'selected' : '' %>
+
+                    <form
+                        action="/admin/atendimentos/<%= atendimento.id %>/editar"
+                        method="POST"
+                        class="formulario admin-formulario atendimento-formulario"
+                    >
+
+                        <!-- =========================================
+                             BENEFICIÁRIO E CAMPANHA
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Beneficiário e campanha
+                                    </h3>
+
+                                    <p>
+                                        Atualize o beneficiário atendido
+                                        ou a campanha relacionada.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="beneficiario_id">
+                                        Beneficiário *
+                                    </label>
+
+                                    <select
+                                        id="beneficiario_id"
+                                        name="beneficiario_id"
+                                        required
+                                    >
+
+                                        <% beneficiarios.forEach(beneficiario => { %>
+
+                                            <option
+                                                value="<%= beneficiario.id %>"
+                                                <%= Number(atendimento.beneficiario_id) === Number(beneficiario.id)
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= beneficiario.nome %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                    <small class="campo-ajuda">
+                                        Selecione a pessoa relacionada
+                                        a este atendimento.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="campanha_id">
+                                        Campanha
+                                    </label>
+
+                                    <select
+                                        id="campanha_id"
+                                        name="campanha_id"
+                                    >
+
+                                        <option
+                                            value=""
+                                            <%= !atendimento.campanha_id
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            Sem campanha específica
+                                        </option>
+
+                                        <% campanhas.forEach(campanha => { %>
+
+                                            <option
+                                                value="<%= campanha.id %>"
+                                                <%= Number(atendimento.campanha_id) === Number(campanha.id)
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= campanha.titulo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                    <small class="campo-ajuda">
+                                        O vínculo com uma campanha
+                                        continua sendo opcional.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             TIPO E DATA
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Tipo e data
+                                    </h3>
+
+                                    <p>
+                                        Atualize o tipo de atendimento
+                                        ou a data registrada.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="tipo_atendimento">
+                                        Tipo de atendimento *
+                                    </label>
+
+                                    <select
+                                        id="tipo_atendimento"
+                                        name="tipo_atendimento"
+                                        required
+                                    >
+
+                                        <% [
+                                            'Cesta básica',
+                                            'Roupas',
+                                            'Material escolar',
+                                            'Higiene',
+                                            'Orientação',
+                                            'Outro'
+                                        ].forEach(tipo => { %>
+
+                                            <option
+                                                value="<%= tipo %>"
+                                                <%= atendimento.tipo_atendimento === tipo
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= tipo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="data_atendimento">
+                                        Data do atendimento *
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_atendimento"
+                                        name="data_atendimento"
+                                        value="<%= atendimento.data_atendimento %>"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DESCRIÇÃO
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Detalhes do atendimento
+                                    </h3>
+
+                                    <p>
+                                        Atualize as informações adicionais
+                                        registradas sobre este atendimento.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="descricao">
+                                    Descrição
+                                </label>
+
+                                <textarea
+                                    id="descricao"
+                                    name="descricao"
+                                    rows="6"
+                                    placeholder="Descreva o atendimento realizado"
+                                ><%= atendimento.descricao || '' %></textarea>
+
+                                <small class="campo-ajuda">
+                                    Mantenha somente informações
+                                    relevantes para o acompanhamento.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação do atendimento
+                                    </h3>
+
+                                    <p>
+                                        Atualize a situação atual
+                                        deste atendimento.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option
+                                        value="Realizado"
+                                        <%= atendimento.status === 'Realizado'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Realizado
+                                    </option>
+
+                                    <option
+                                        value="Agendado"
+                                        <%= atendimento.status === 'Agendado'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Agendado
+                                    </option>
+
+                                    <option
+                                        value="Cancelado"
+                                        <%= atendimento.status === 'Cancelado'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Cancelado
+                                    </option>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    Atualize o status conforme
+                                    a situação real do atendimento.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes atendimento-form-acoes">
+
+                            <a
+                                href="/admin/atendimentos"
+                                class="btn-secundario"
                             >
-                                Sem campanha específica
-                            </option>
+                                Cancelar
+                            </a>
 
-                            <% campanhas.forEach(campanha => { %>
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Salvar alterações
+                            </button>
 
-                                <option
-                                    value="<%= campanha.id %>"
-                                    <%= Number(atendimento.campanha_id) === Number(campanha.id)
-                                        ? 'selected'
-                                        : '' %>
-                                >
-                                    <%= campanha.titulo %>
-                                </option>
+                        </div>
 
-                            <% }) %>
+                    </form>
 
-                        </select>
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="atendimento-form-lateral">
+
+                    <div class="atendimento-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            ATENDIMENTO
+                        </span>
+
+                        <h2>
+                            Dados atuais
+                        </h2>
+
+                        <p>
+                            Confira algumas informações do registro
+                            antes de realizar alterações.
+                        </p>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Identificação
+                                </strong>
+
+                                <p>
+                                    Atendimento #<%= atendimento.id %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Beneficiário
+                                </strong>
+
+                                <p>
+                                    <%= beneficiarioAtual
+                                        ? beneficiarioAtual.nome
+                                        : 'Não encontrado' %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Tipo de atendimento
+                                </strong>
+
+                                <p>
+                                    <%= atendimento.tipo_atendimento %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Campanha
+                                </strong>
+
+                                <p>
+                                    <%= campanhaAtual
+                                        ? campanhaAtual.titulo
+                                        : 'Sem campanha específica' %>
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="atendimento-form-status-card">
 
-                <div class="admin-form-grid">
+                        <span>
+                            STATUS ATUAL
+                        </span>
 
-                    <div class="campo">
+                        <strong>
+                            <%= atendimento.status %>
+                        </strong>
 
-                        <label for="tipo_atendimento">
-                            Tipo de atendimento *
-                        </label>
-
-                        <select
-                            id="tipo_atendimento"
-                            name="tipo_atendimento"
-                            required
-                        >
-
-                            <% [
-                                'Cesta básica',
-                                'Roupas',
-                                'Material escolar',
-                                'Higiene',
-                                'Orientação',
-                                'Outro'
-                            ].forEach(tipo => { %>
-
-                                <option
-                                    value="<%= tipo %>"
-                                    <%= atendimento.tipo_atendimento === tipo
-                                        ? 'selected'
-                                        : '' %>
-                                >
-                                    <%= tipo %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
+                        <p>
+                            O status pode ser alterado entre
+                            Realizado, Agendado e Cancelado
+                            conforme a situação do atendimento.
+                        </p>
 
                     </div>
 
+                </aside>
 
-                    <div class="campo">
-
-                        <label for="data_atendimento">
-                            Data do atendimento *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data_atendimento"
-                            name="data_atendimento"
-                            value="<%= atendimento.data_atendimento %>"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="descricao">
-                        Descrição
-                    </label>
-
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="5"
-                    ><%= atendimento.descricao || '' %></textarea>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="status">
-                        Status *
-                    </label>
-
-                    <select
-                        id="status"
-                        name="status"
-                        required
-                    >
-
-                        <option
-                            value="Realizado"
-                            <%= atendimento.status === 'Realizado'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Realizado
-                        </option>
-
-                        <option
-                            value="Agendado"
-                            <%= atendimento.status === 'Agendado'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Agendado
-                        </option>
-
-                        <option
-                            value="Cancelado"
-                            <%= atendimento.status === 'Cancelado'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Cancelado
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/atendimentos"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Salvar alterações
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 

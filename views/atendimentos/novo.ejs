@@ -4,20 +4,27 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Atendimentos
-                </p>
+                <span class="secao-etiqueta">
+                    ATENDIMENTOS
+                </span>
 
-                <h1>Novo Atendimento</h1>
+                <h1>
+                    Novo atendimento
+                </h1>
 
                 <p>
-                    Registre um novo atendimento realizado pelo Instituto Solidarize.
+                    Registre um novo atendimento realizado
+                    pelo Instituto Solidarize.
                 </p>
 
             </div>
@@ -26,219 +33,536 @@
                 href="/admin/atendimentos"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para atendimentos
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="atendimento-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="atendimento-form-grid">
 
 
-            <form
-                action="/admin/atendimentos/novo"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="atendimento-form-principal">
 
-                    <div class="campo">
+                    <div class="atendimento-form-cabecalho">
 
-                        <label for="beneficiario_id">
-                            Beneficiário *
-                        </label>
+                        <span class="secao-etiqueta">
+                            DADOS DO ATENDIMENTO
+                        </span>
 
-                        <select
-                            id="beneficiario_id"
-                            name="beneficiario_id"
-                            required
-                        >
+                        <h2>
+                            Informações do registro
+                        </h2>
 
-                            <option value="">
-                                Selecione um beneficiário
-                            </option>
-
-                            <% beneficiarios.forEach(beneficiario => { %>
-
-                                <option value="<%= beneficiario.id %>">
-                                    <%= beneficiario.nome %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
+                        <p>
+                            Preencha os dados abaixo para registrar
+                            o atendimento no sistema.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="campanha_id">
-                            Campanha
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <select
-                            id="campanha_id"
-                            name="campanha_id"
-                        >
-
-                            <option value="">
-                                Sem campanha específica
-                            </option>
-
-                            <% campanhas.forEach(campanha => { %>
-
-                                <option value="<%= campanha.id %>">
-                                    <%= campanha.titulo %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
-
-                    </div>
-
-                </div>
+                    <% } %>
 
 
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="tipo_atendimento">
-                            Tipo de atendimento *
-                        </label>
-
-                        <select
-                            id="tipo_atendimento"
-                            name="tipo_atendimento"
-                            required
-                        >
-
-                            <option value="">
-                                Selecione
-                            </option>
-
-                            <option value="Cesta básica">
-                                Cesta básica
-                            </option>
-
-                            <option value="Roupas">
-                                Roupas
-                            </option>
-
-                            <option value="Material escolar">
-                                Material escolar
-                            </option>
-
-                            <option value="Higiene">
-                                Higiene
-                            </option>
-
-                            <option value="Orientação">
-                                Orientação
-                            </option>
-
-                            <option value="Outro">
-                                Outro
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="data_atendimento">
-                            Data do atendimento *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data_atendimento"
-                            name="data_atendimento"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="descricao">
-                        Descrição
-                    </label>
-
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="5"
-                        placeholder="Descreva o atendimento realizado"
-                    ></textarea>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="status">
-                        Status *
-                    </label>
-
-                    <select
-                        id="status"
-                        name="status"
-                        required
+                    <form
+                        action="/admin/atendimentos/novo"
+                        method="POST"
+                        class="formulario admin-formulario atendimento-formulario"
                     >
 
-                        <option value="Realizado">
+                        <!-- =========================================
+                             BENEFICIÁRIO E CAMPANHA
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Beneficiário e campanha
+                                    </h3>
+
+                                    <p>
+                                        Selecione quem será atendido
+                                        e, se necessário, vincule
+                                        o registro a uma campanha.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="beneficiario_id">
+                                        Beneficiário *
+                                    </label>
+
+                                    <select
+                                        id="beneficiario_id"
+                                        name="beneficiario_id"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Selecione um beneficiário
+                                        </option>
+
+                                        <% beneficiarios.forEach(beneficiario => { %>
+
+                                            <option value="<%= beneficiario.id %>">
+                                                <%= beneficiario.nome %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                    <small class="campo-ajuda">
+                                        Escolha a pessoa que receberá
+                                        o atendimento.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="campanha_id">
+                                        Campanha
+                                    </label>
+
+                                    <select
+                                        id="campanha_id"
+                                        name="campanha_id"
+                                    >
+
+                                        <option value="">
+                                            Sem campanha específica
+                                        </option>
+
+                                        <% campanhas.forEach(campanha => { %>
+
+                                            <option value="<%= campanha.id %>">
+                                                <%= campanha.titulo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                    <small class="campo-ajuda">
+                                        O vínculo com uma campanha
+                                        é opcional.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             TIPO E DATA
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Tipo e data
+                                    </h3>
+
+                                    <p>
+                                        Informe qual atendimento
+                                        foi realizado e a data
+                                        correspondente.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="tipo_atendimento">
+                                        Tipo de atendimento *
+                                    </label>
+
+                                    <select
+                                        id="tipo_atendimento"
+                                        name="tipo_atendimento"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Selecione
+                                        </option>
+
+                                        <option value="Cesta básica">
+                                            Cesta básica
+                                        </option>
+
+                                        <option value="Roupas">
+                                            Roupas
+                                        </option>
+
+                                        <option value="Material escolar">
+                                            Material escolar
+                                        </option>
+
+                                        <option value="Higiene">
+                                            Higiene
+                                        </option>
+
+                                        <option value="Orientação">
+                                            Orientação
+                                        </option>
+
+                                        <option value="Outro">
+                                            Outro
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="data_atendimento">
+                                        Data do atendimento *
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_atendimento"
+                                        name="data_atendimento"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DESCRIÇÃO
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Detalhes do atendimento
+                                    </h3>
+
+                                    <p>
+                                        Registre informações adicionais
+                                        sobre o atendimento realizado.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="descricao">
+                                    Descrição
+                                </label>
+
+                                <textarea
+                                    id="descricao"
+                                    name="descricao"
+                                    rows="6"
+                                    placeholder="Descreva o atendimento realizado"
+                                ></textarea>
+
+                                <small class="campo-ajuda">
+                                    Utilize este campo para registrar
+                                    informações relevantes sobre
+                                    o atendimento.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="atendimento-form-bloco">
+
+                            <div class="atendimento-form-bloco-titulo">
+
+                                <span>
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação do atendimento
+                                    </h3>
+
+                                    <p>
+                                        Defina a situação atual
+                                        deste atendimento.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option value="Realizado">
+                                        Realizado
+                                    </option>
+
+                                    <option value="Agendado">
+                                        Agendado
+                                    </option>
+
+                                    <option value="Cancelado">
+                                        Cancelado
+                                    </option>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    Use Realizado quando o atendimento
+                                    já tiver sido concluído.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes atendimento-form-acoes">
+
+                            <a
+                                href="/admin/atendimentos"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Registrar atendimento
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="atendimento-form-lateral">
+
+                    <div class="atendimento-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            ORIENTAÇÕES
+                        </span>
+
+                        <h2>
+                            Sobre o atendimento
+                        </h2>
+
+                        <p>
+                            Registre corretamente as informações
+                            para manter o histórico dos atendimentos
+                            realizados pelo Instituto.
+                        </p>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Beneficiário
+                                </strong>
+
+                                <p>
+                                    Selecione a pessoa que recebeu
+                                    ou receberá o atendimento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Campanha
+                                </strong>
+
+                                <p>
+                                    O atendimento pode ser associado
+                                    a uma campanha específica.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Descrição
+                                </strong>
+
+                                <p>
+                                    Registre apenas informações úteis
+                                    para o acompanhamento do atendimento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="atendimento-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Status
+                                </strong>
+
+                                <p>
+                                    O status permite acompanhar
+                                    atendimentos realizados,
+                                    agendados ou cancelados.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="atendimento-form-status-card">
+
+                        <span>
+                            STATUS INICIAL
+                        </span>
+
+                        <strong>
                             Realizado
-                        </option>
+                        </strong>
 
-                        <option value="Agendado">
-                            Agendado
-                        </option>
+                        <p>
+                            O novo registro inicia com Realizado
+                            selecionado, mas você pode alterar
+                            para Agendado ou Cancelado antes de salvar.
+                        </p>
 
-                        <option value="Cancelado">
-                            Cancelado
-                        </option>
+                    </div>
 
-                    </select>
+                </aside>
 
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/atendimentos"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Registrar atendimento
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 

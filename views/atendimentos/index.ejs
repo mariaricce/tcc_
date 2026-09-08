@@ -4,20 +4,60 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaAtendimentos =
+                atendimentos || [];
+
+            const totalAtendimentos =
+                listaAtendimentos.length;
+
+            const totalRealizados =
+                listaAtendimentos.filter(
+                    atendimento =>
+                        atendimento.status === 'Realizado'
+                ).length;
+
+            const totalAgendados =
+                listaAtendimentos.filter(
+                    atendimento =>
+                        atendimento.status === 'Agendado'
+                ).length;
+
+            const totalCancelados =
+                listaAtendimentos.filter(
+                    atendimento =>
+                        atendimento.status === 'Cancelado'
+                ).length;
+
+            const comCampanha =
+                listaAtendimentos.filter(
+                    atendimento =>
+                        atendimento.campanha
+                ).length;
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
 
-                <h1>Atendimentos</h1>
+                <h1>
+                    Atendimentos
+                </h1>
 
                 <p>
-                    Consulte e gerencie os atendimentos realizados aos beneficiários.
+                    Consulte e gerencie os atendimentos
+                    realizados aos beneficiários do Instituto Solidarize.
                 </p>
 
             </div>
@@ -26,42 +66,208 @@
                 href="/admin/atendimentos/novo"
                 class="btn-principal"
             >
-                + Novo atendimento
+                Novo atendimento
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (atendimentos.length === 0) { %>
+        <section class="atendimentos-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="atendimentos-admin-resumo-card">
 
-                    <span>📝</span>
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalAtendimentos %>
+                </strong>
+
+                <p>
+                    Atendimentos cadastrados
+                </p>
+
+            </div>
+
+
+            <div class="atendimentos-admin-resumo-card">
+
+                <span>
+                    REALIZADOS
+                </span>
+
+                <strong>
+                    <%= totalRealizados %>
+                </strong>
+
+                <p>
+                    Atendimentos concluídos
+                </p>
+
+            </div>
+
+
+            <div class="atendimentos-admin-resumo-card">
+
+                <span>
+                    AGENDADOS
+                </span>
+
+                <strong>
+                    <%= totalAgendados %>
+                </strong>
+
+                <p>
+                    Atendimentos programados
+                </p>
+
+            </div>
+
+
+            <div class="atendimentos-admin-resumo-card">
+
+                <span>
+                    CANCELADOS
+                </span>
+
+                <strong>
+                    <%= totalCancelados %>
+                </strong>
+
+                <p>
+                    Atendimentos cancelados
+                </p>
+
+            </div>
+
+
+            <div class="atendimentos-admin-resumo-card">
+
+                <span>
+                    COM CAMPANHA
+                </span>
+
+                <strong>
+                    <%= comCampanha %>
+                </strong>
+
+                <p>
+                    Vinculados a campanhas
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card atendimentos-admin-listagem">
+
+            <div class="atendimentos-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Atendimentos cadastrados
+                    </h2>
 
                     <p>
-                        Nenhum atendimento cadastrado.
+                        Consulte o beneficiário, o tipo de atendimento,
+                        a campanha relacionada e a situação atual.
                     </p>
+
+                </div>
+
+
+                <span class="atendimentos-admin-quantidade">
+
+                    <%= totalAtendimentos %>
+
+                    <%= totalAtendimentos === 1
+                        ? 'atendimento'
+                        : 'atendimentos' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaAtendimentos.length === 0) { %>
+
+                <div class="admin-vazio atendimentos-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhum atendimento cadastrado
+                    </h3>
+
+                    <p>
+                        Cadastre um atendimento para começar
+                        a organizar o acompanhamento dos beneficiários.
+                    </p>
+
+                    <a
+                        href="/admin/atendimentos/novo"
+                        class="btn-principal"
+                    >
+                        Cadastrar atendimento
+                    </a>
 
                 </div>
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container atendimentos-admin-tabela">
 
                     <table>
 
                         <thead>
 
                             <tr>
-                                <th>ID</th>
-                                <th>Beneficiário</th>
-                                <th>Campanha</th>
-                                <th>Atendimento</th>
-                                <th>Data</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Beneficiário
+                                </th>
+
+                                <th>
+                                    Campanha
+                                </th>
+
+                                <th>
+                                    Atendimento
+                                </th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -69,43 +275,114 @@
 
                         <tbody>
 
-                            <% atendimentos.forEach(atendimento => { %>
+                            <% listaAtendimentos.forEach(atendimento => { %>
 
                                 <tr>
 
+                                    <!-- ID -->
+
                                     <td>
-                                        <%= atendimento.id %>
+
+                                        <span class="atendimento-admin-id">
+                                            #<%= atendimento.id %>
+                                        </span>
+
                                     </td>
 
+
+                                    <!-- BENEFICIÁRIO -->
+
                                     <td>
-                                        <strong>
-                                            <%= atendimento.beneficiario %>
-                                        </strong>
+
+                                        <div class="atendimento-admin-beneficiario">
+
+                                            <div class="atendimento-admin-avatar">
+
+                                                <%= atendimento.beneficiario
+                                                    .charAt(0)
+                                                    .toUpperCase() %>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= atendimento.beneficiario %>
+                                                </strong>
+
+                                                <span>
+                                                    Beneficiário
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
                                     </td>
 
+
+                                    <!-- CAMPANHA -->
+
                                     <td>
-                                        <%= atendimento.campanha || 'Sem campanha' %>
+
+                                        <% if (atendimento.campanha) { %>
+
+                                            <span class="atendimento-admin-campanha">
+                                                <%= atendimento.campanha %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="atendimento-admin-sem-dado">
+                                                Sem campanha
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
+
+                                    <!-- TIPO -->
+
                                     <td>
-                                        <%= atendimento.tipo_atendimento %>
+
+                                        <span class="atendimento-admin-tipo">
+                                            <%= atendimento.tipo_atendimento %>
+                                        </span>
+
                                     </td>
 
+
+                                    <!-- DATA -->
+
                                     <td>
-                                        <%= atendimento.data_formatada %>
+
+                                        <span class="atendimento-admin-data">
+                                            <%= atendimento.data_formatada %>
+                                        </span>
+
                                     </td>
 
+
+                                    <!-- STATUS -->
+
                                     <td>
 
-                                        <span class="status-admin">
+                                        <span
+                                            class="status-admin status-<%= atendimento.status.toLowerCase() %>"
+                                        >
                                             <%= atendimento.status %>
                                         </span>
 
                                     </td>
 
+
+                                    <!-- AÇÕES -->
+
                                     <td>
 
-                                        <div class="acoes-tabela">
+                                        <div class="acoes-tabela atendimentos-admin-acoes">
 
                                             <a
                                                 href="/admin/atendimentos/<%= atendimento.id %>/editar"
