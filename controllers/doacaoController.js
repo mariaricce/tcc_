@@ -7,7 +7,11 @@ const Campanha = require('../models/Campanha');
 // DOAÇÃO PÚBLICA
 // ========================================
 
+
+// ========================================
 // ABRIR PÁGINA DE DOAÇÃO
+// ========================================
+
 exports.exibirDoacaoPublica = async (req, res) => {
 
     try {
@@ -108,6 +112,10 @@ exports.criarDoacaoPublica = async (req, res) => {
         } = req.body;
 
 
+        // ========================================
+        // CAMPOS OBRIGATÓRIOS
+        // ========================================
+
         if (!doador_nome || !valor) {
 
             return res.render(
@@ -138,6 +146,10 @@ exports.criarDoacaoPublica = async (req, res) => {
             Number(valor);
 
 
+        // ========================================
+        // VALIDAR NOME
+        // ========================================
+
         if (doador_nome.length < 3) {
 
             return res.render(
@@ -159,6 +171,10 @@ exports.criarDoacaoPublica = async (req, res) => {
 
         }
 
+
+        // ========================================
+        // VALIDAR VALOR
+        // ========================================
 
         if (
             !Number.isFinite(valorNumerico) ||
@@ -186,6 +202,7 @@ exports.criarDoacaoPublica = async (req, res) => {
 
 
         // Evita valores absurdamente altos
+
         if (valorNumerico > 1000000) {
 
             return res.render(
@@ -208,7 +225,10 @@ exports.criarDoacaoPublica = async (req, res) => {
         }
 
 
+        // ========================================
         // DATA LOCAL
+        // ========================================
+
         const agora =
             new Date();
 
@@ -216,10 +236,12 @@ exports.criarDoacaoPublica = async (req, res) => {
         const ano =
             agora.getFullYear();
 
+
         const mes =
             String(
                 agora.getMonth() + 1
             ).padStart(2, '0');
+
 
         const dia =
             String(
@@ -230,6 +252,10 @@ exports.criarDoacaoPublica = async (req, res) => {
         const dataDoacao =
             `${ano}-${mes}-${dia}`;
 
+
+        // ========================================
+        // CADASTRAR DOAÇÃO
+        // ========================================
 
         const resultado =
             await Doacao.criar(
@@ -252,6 +278,26 @@ exports.criarDoacaoPublica = async (req, res) => {
 
             );
 
+
+        // ========================================
+        // PROTEGER A PÁGINA DO PIX
+        // ========================================
+
+        /*
+            Guarda na sessão o ID da doação
+            criada neste navegador.
+
+            Assim, a página de PIX só poderá
+            exibir esta doação.
+        */
+
+        req.session.doacaoPublicaId =
+            Number(resultado.insertId);
+
+
+        // ========================================
+        // REDIRECIONAR PARA PIX
+        // ========================================
 
         return res.redirect(
             `/doar/sucesso/${resultado.insertId}`
@@ -283,9 +329,62 @@ exports.exibirSucessoDoacao = async (req, res) => {
 
     try {
 
+        // ========================================
+        // VALIDAR ID DA URL
+        // ========================================
+
+        const doacaoId =
+            Number(req.params.id);
+
+
+        if (
+            !Number.isInteger(doacaoId) ||
+            doacaoId <= 0
+        ) {
+
+            return res.status(404).send(
+                'Doação não encontrada.'
+            );
+
+        }
+
+
+        // ========================================
+        // VALIDAR SESSÃO
+        // ========================================
+
+        const doacaoSessaoId =
+            Number(
+                req.session.doacaoPublicaId
+            );
+
+
+        /*
+            A página só pode ser acessada
+            quando o ID da URL for exatamente
+            o mesmo ID salvo na sessão após
+            a criação da doação.
+        */
+
+        if (
+            !doacaoSessaoId ||
+            doacaoSessaoId !== doacaoId
+        ) {
+
+            return res.status(403).send(
+                'Esta página de doação não está disponível nesta sessão.'
+            );
+
+        }
+
+
+        // ========================================
+        // BUSCAR DOAÇÃO
+        // ========================================
+
         const doacao =
             await Doacao.buscarPublicaPorId(
-                req.params.id
+                doacaoId
             );
 
 
@@ -298,6 +397,10 @@ exports.exibirSucessoDoacao = async (req, res) => {
         }
 
 
+        // ========================================
+        // CONFIGURAÇÕES DO PIX
+        // ========================================
+
         const pixChave =
             process.env.PIX_CHAVE || '';
 
@@ -306,6 +409,10 @@ exports.exibirSucessoDoacao = async (req, res) => {
             process.env.PIX_RECEBEDOR ||
             'Instituto Solidarize';
 
+
+        // ========================================
+        // WHATSAPP
+        // ========================================
 
         const whatsappNumero =
             process.env.WHATSAPP_NUMERO ||
@@ -330,6 +437,10 @@ Gostaria de enviar o comprovante do PIX.`
         const whatsappLink =
             `https://wa.me/${whatsappNumero}?text=${mensagemWhatsApp}`;
 
+
+        // ========================================
+        // EXIBIR PÁGINA
+        // ========================================
 
         return res.render(
             'doacoes/doacao-sucesso',
@@ -368,6 +479,11 @@ Gostaria de enviar o comprovante do PIX.`
 
 
 // ========================================
+// ADMINISTRADOR
+// ========================================
+
+
+// ========================================
 // LISTAR DOAÇÕES
 // ========================================
 
@@ -379,7 +495,7 @@ exports.listar = async (req, res) => {
             await Doacao.listarTodas();
 
 
-        res.render(
+        return res.render(
             'doacoes/index',
             {
 
@@ -400,7 +516,7 @@ exports.listar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao listar doações.'
         );
 
@@ -421,7 +537,7 @@ exports.exibirNova = async (req, res) => {
             await Campanha.listarTodas();
 
 
-        res.render(
+        return res.render(
             'doacoes/nova',
             {
 
@@ -444,7 +560,7 @@ exports.exibirNova = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar formulário.'
         );
 
@@ -503,14 +619,23 @@ exports.criar = async (req, res) => {
 
 
         await Doacao.criar(
+
             doador_nome,
+
             tipo,
+
             descricao,
+
             quantidade,
+
             valor,
+
             data_doacao,
+
             campanha_id,
+
             status
+
         );
 
 
@@ -563,7 +688,7 @@ exports.exibirEditar = async (req, res) => {
             await Campanha.listarTodas();
 
 
-        res.render(
+        return res.render(
             'doacoes/editar',
             {
 
@@ -588,7 +713,7 @@ exports.exibirEditar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar doação.'
         );
 
@@ -655,15 +780,25 @@ exports.atualizar = async (req, res) => {
 
 
         await Doacao.atualizar(
+
             req.params.id,
+
             doador_nome,
+
             tipo,
+
             descricao,
+
             quantidade,
+
             valor,
+
             data_doacao,
+
             campanha_id,
+
             status
+
         );
 
 

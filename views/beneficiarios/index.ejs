@@ -68,6 +68,24 @@
 
 
         <!-- =====================================================
+             MENSAGEM DE EXCLUSÃO
+        ====================================================== -->
+
+        <% if (
+            typeof erroExclusao !== 'undefined' &&
+            erroExclusao
+        ) { %>
+
+            <div class="mensagem erro admin-mensagem-listagem">
+
+                <%= erroExclusao %>
+
+            </div>
+
+        <% } %>
+
+
+        <!-- =====================================================
              RESUMO
         ====================================================== -->
 
@@ -254,8 +272,6 @@
 
                                 <tr>
 
-                                    <!-- ID -->
-
                                     <td>
 
                                         <span class="beneficiario-admin-id">
@@ -264,8 +280,6 @@
 
                                     </td>
 
-
-                                    <!-- BENEFICIÁRIO -->
 
                                     <td>
 
@@ -297,8 +311,6 @@
                                     </td>
 
 
-                                    <!-- TELEFONE -->
-
                                     <td>
 
                                         <% if (beneficiario.telefone) { %>
@@ -317,8 +329,6 @@
 
                                     </td>
 
-
-                                    <!-- ENDEREÇO -->
 
                                     <td>
 
@@ -339,8 +349,6 @@
                                     </td>
 
 
-                                    <!-- STATUS -->
-
                                     <td>
 
                                         <span
@@ -351,8 +359,6 @@
 
                                     </td>
 
-
-                                    <!-- AÇÕES -->
 
                                     <td>
 

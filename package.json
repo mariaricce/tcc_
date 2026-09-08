@@ -1,13 +1,19 @@
 {
   "name": "instituto-solidarize-tcc",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sistema web para gerenciamento do Instituto Solidarize.",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
+  "keywords": [
+    "solidarize",
+    "tcc",
+    "nodejs",
+    "express",
+    "mysql"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

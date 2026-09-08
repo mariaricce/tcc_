@@ -1,64 +1,176 @@
-require('dotenv').config();
+require('dotenv').config({
+    quiet: true
+});
 
 const bcrypt = require('bcryptjs');
-const pool = require('./config/database');
+const mysql = require('mysql2/promise');
+
 
 async function criarAdmin() {
 
+    let connection = null;
+
     try {
 
-        const nome = 'Administrador Solidarize';
-        const email = 'admin@solidarize.com';
-        const senha = '123456';
+        // =====================================================
+        // DADOS DO ADMINISTRADOR
+        // =====================================================
 
-        // Verificar se o administrador já existe
-        const [usuarios] = await pool.execute(
-            'SELECT id FROM usuarios WHERE email = ?',
-            [email]
-        );
+        const nome = process.env.ADMIN_NOME?.trim();
+        const email = process.env.ADMIN_EMAIL?.trim();
+        const senha = process.env.ADMIN_SENHA;
 
-        if (usuarios.length > 0) {
 
-            console.log(' Já existe um usuário com esse e-mail.');
+        // =====================================================
+        // VALIDAR CONFIGURAÇÕES
+        // =====================================================
 
-            await pool.end();
+        if (!nome || !email || !senha) {
+
+            console.error(
+                'Configure ADMIN_NOME, ADMIN_EMAIL e ADMIN_SENHA no arquivo .env.'
+            );
+
             return;
         }
 
 
-        // Criptografar a senha
-        const senhaCriptografada =
-            await bcrypt.hash(senha, 10);
+        if (senha.length < 8) {
+
+            console.error(
+                'A senha do administrador deve possuir pelo menos 8 caracteres.'
+            );
+
+            return;
+        }
 
 
-        // Criar administrador
-        await pool.execute(
-            `INSERT INTO usuarios
-            (nome, email, senha, tipo, status)
-            VALUES (?, ?, ?, 'admin', 'Ativo')`,
+        // =====================================================
+        // CONECTAR AO BANCO
+        // =====================================================
+
+        connection = await mysql.createConnection({
+
+            host: process.env.DB_HOST,
+
+            user: process.env.DB_USER,
+
+            password: process.env.DB_PASSWORD,
+
+            database: process.env.DB_NAME,
+
+            port: process.env.DB_PORT
+
+        });
+
+
+        console.log(
+            'Banco de dados conectado com sucesso.'
+        );
+
+
+        // =====================================================
+        // VERIFICAR SE O USUÁRIO JÁ EXISTE
+        // =====================================================
+
+        const [usuarios] = await connection.execute(
+            `
+                SELECT
+                    id,
+                    nome,
+                    email,
+                    tipo
+                FROM usuarios
+                WHERE email = ?
+                LIMIT 1
+            `,
+            [email]
+        );
+
+
+        if (usuarios.length > 0) {
+
+            const usuarioExistente = usuarios[0];
+
+            console.log(
+                `Já existe um usuário cadastrado com o e-mail ${usuarioExistente.email}.`
+            );
+
+            console.log(
+                `Tipo da conta: ${usuarioExistente.tipo}.`
+            );
+
+            return;
+        }
+
+
+        // =====================================================
+        // GERAR HASH DA SENHA
+        // =====================================================
+
+        const senhaHash = await bcrypt.hash(
+            senha,
+            10
+        );
+
+
+        // =====================================================
+        // CRIAR ADMINISTRADOR
+        // =====================================================
+
+        await connection.execute(
+            `
+                INSERT INTO usuarios
+                (
+                    nome,
+                    email,
+                    senha,
+                    tipo,
+                    status
+                )
+                VALUES
+                (
+                    ?,
+                    ?,
+                    ?,
+                    'admin',
+                    'Ativo'
+                )
+            `,
             [
                 nome,
                 email,
-                senhaCriptografada
+                senhaHash
             ]
         );
 
 
-        console.log('✅ Administrador criado com sucesso!');
-        console.log('📧 E-mail: admin@solidarize.com');
-        console.log('🔑 Senha: 123456');
+        console.log(
+            'Administrador criado com sucesso.'
+        );
+
+        console.log(
+            `E-mail: ${email}`
+        );
 
 
     } catch (erro) {
 
         console.error(
-            ' Erro ao criar administrador:',
+            'Erro ao criar administrador:',
             erro.message
         );
 
+
     } finally {
 
-        await pool.end();
+        // Fecha somente a conexão criada por este script.
+
+        if (connection) {
+
+            await connection.end();
+
+        }
 
     }
 

@@ -6,17 +6,25 @@ const Voluntario =
 // FORMULÁRIO PÚBLICO
 // =====================================
 
-exports.exibirFormularioPublico = (req, res) => {
+exports.exibirFormularioPublico = (
+    req,
+    res
+) => {
 
-    res.render('voluntarios/quero-ser-voluntario', {
+    res.render(
+        'voluntarios/quero-ser-voluntario',
+        {
 
-        titulo: 'Seja Voluntário | Instituto Solidarize',
+            titulo:
+                'Seja Voluntário | Instituto Solidarize',
 
-        erro: null,
+            erro: null,
 
-        sucesso: req.query.sucesso === '1'
+            sucesso:
+                req.query.sucesso === '1'
 
-    });
+        }
+    );
 
 };
 
@@ -25,7 +33,10 @@ exports.exibirFormularioPublico = (req, res) => {
 // CADASTRO PÚBLICO
 // =====================================
 
-exports.cadastrarPublico = async (req, res) => {
+exports.cadastrarPublico = async (
+    req,
+    res
+) => {
 
     try {
 
@@ -59,7 +70,9 @@ exports.cadastrarPublico = async (req, res) => {
 
 
         const existente =
-            await Voluntario.buscarPorEmail(email);
+            await Voluntario.buscarPorEmail(
+                email
+            );
 
 
         if (existente) {
@@ -92,7 +105,7 @@ exports.cadastrarPublico = async (req, res) => {
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/quero-ser-voluntario?sucesso=1'
         );
 
@@ -105,7 +118,7 @@ exports.cadastrarPublico = async (req, res) => {
         );
 
 
-        res.render(
+        return res.render(
             'voluntarios/quero-ser-voluntario',
             {
 
@@ -129,7 +142,10 @@ exports.cadastrarPublico = async (req, res) => {
 // ADMIN - LISTAR
 // =====================================
 
-exports.listar = async (req, res) => {
+exports.listar = async (
+    req,
+    res
+) => {
 
     try {
 
@@ -137,14 +153,30 @@ exports.listar = async (req, res) => {
             await Voluntario.listarTodos();
 
 
-        res.render(
+        let erroExclusao = null;
+
+
+        if (
+            req.query.erro ===
+            'participacoes'
+        ) {
+
+            erroExclusao =
+                'Este voluntário não pode ser excluído porque possui participações registradas. Remova ou altere os registros vinculados antes de excluir o voluntário.';
+
+        }
+
+
+        return res.render(
             'voluntarios/index',
             {
 
                 titulo:
                     'Gerenciar Voluntários | Instituto Solidarize',
 
-                voluntarios
+                voluntarios,
+
+                erroExclusao
 
             }
         );
@@ -158,7 +190,7 @@ exports.listar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao listar voluntários.'
         );
 
@@ -171,7 +203,10 @@ exports.listar = async (req, res) => {
 // ADMIN - NOVO
 // =====================================
 
-exports.exibirNovo = (req, res) => {
+exports.exibirNovo = (
+    req,
+    res
+) => {
 
     res.render(
         'voluntarios/novo',
@@ -192,7 +227,10 @@ exports.exibirNovo = (req, res) => {
 // ADMIN - CADASTRAR
 // =====================================
 
-exports.criar = async (req, res) => {
+exports.criar = async (
+    req,
+    res
+) => {
 
     try {
 
@@ -206,7 +244,11 @@ exports.criar = async (req, res) => {
         } = req.body;
 
 
-        if (!nome || !email || !status) {
+        if (
+            !nome ||
+            !email ||
+            !status
+        ) {
 
             return res.render(
                 'voluntarios/novo',
@@ -225,7 +267,9 @@ exports.criar = async (req, res) => {
 
 
         const existente =
-            await Voluntario.buscarPorEmail(email);
+            await Voluntario.buscarPorEmail(
+                email
+            );
 
 
         if (existente) {
@@ -256,7 +300,7 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/voluntarios'
         );
 
@@ -269,7 +313,7 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao cadastrar voluntário.'
         );
 
@@ -282,7 +326,10 @@ exports.criar = async (req, res) => {
 // ADMIN - EDITAR
 // =====================================
 
-exports.exibirEditar = async (req, res) => {
+exports.exibirEditar = async (
+    req,
+    res
+) => {
 
     try {
 
@@ -301,7 +348,7 @@ exports.exibirEditar = async (req, res) => {
         }
 
 
-        res.render(
+        return res.render(
             'voluntarios/editar',
             {
 
@@ -324,7 +371,7 @@ exports.exibirEditar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar voluntário.'
         );
 
@@ -337,7 +384,10 @@ exports.exibirEditar = async (req, res) => {
 // ADMIN - ATUALIZAR
 // =====================================
 
-exports.atualizar = async (req, res) => {
+exports.atualizar = async (
+    req,
+    res
+) => {
 
     try {
 
@@ -362,7 +412,7 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/voluntarios'
         );
 
@@ -375,7 +425,7 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao atualizar voluntário.'
         );
 
@@ -388,16 +438,58 @@ exports.atualizar = async (req, res) => {
 // ADMIN - EXCLUIR
 // =====================================
 
-exports.excluir = async (req, res) => {
+exports.excluir = async (
+    req,
+    res
+) => {
 
     try {
+
+        const voluntario =
+            await Voluntario.buscarPorId(
+                req.params.id
+            );
+
+
+        if (!voluntario) {
+
+            return res.status(404).send(
+                'Voluntário não encontrado.'
+            );
+
+        }
+
+
+        // =====================================
+        // VERIFICAR PARTICIPAÇÕES
+        // =====================================
+
+        const totalParticipacoes =
+            await Voluntario
+                .contarParticipacoes(
+                    req.params.id
+                );
+
+
+        if (totalParticipacoes > 0) {
+
+            return res.redirect(
+                '/admin/voluntarios?erro=participacoes'
+            );
+
+        }
+
+
+        // =====================================
+        // EXCLUIR
+        // =====================================
 
         await Voluntario.excluir(
             req.params.id
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/voluntarios'
         );
 
@@ -410,7 +502,28 @@ exports.excluir = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        /*
+            Proteção adicional.
+
+            Se o banco bloquear a exclusão
+            por alguma chave estrangeira,
+            o usuário volta para a listagem
+            em vez de receber erro 500.
+        */
+
+        if (
+            erro.code ===
+            'ER_ROW_IS_REFERENCED_2'
+        ) {
+
+            return res.redirect(
+                '/admin/voluntarios?erro=participacoes'
+            );
+
+        }
+
+
+        return res.status(500).send(
             'Erro ao excluir voluntário.'
         );
 

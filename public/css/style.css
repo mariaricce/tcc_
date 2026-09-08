@@ -13029,3 +13029,17 @@ body.modo-escuro .privacidade-contato-card, body.modo-escuro .privacidade-final-
         min-width: 200px;
     }
 }
+/* =========================================================
+   MENSAGEM DE ERRO
+========================================================= */
+
+.mensagem.erro {
+    background: var(--vermelho-claro);
+
+    color: var(--vermelho);
+
+    border: 1px solid
+        rgba(192, 57, 43, 0.22);
+
+    font-weight: 700;
+}

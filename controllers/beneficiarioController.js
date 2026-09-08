@@ -2,7 +2,10 @@ const Beneficiario =
     require('../models/Beneficiario');
 
 
-// LISTAR
+// =====================================
+// ADMIN - LISTAR
+// =====================================
+
 exports.listar = async (req, res) => {
 
     try {
@@ -10,14 +13,35 @@ exports.listar = async (req, res) => {
         const beneficiarios =
             await Beneficiario.listarTodos();
 
-        res.render('beneficiarios/index', {
 
-            titulo:
-                'Gerenciar Beneficiários | Instituto Solidarize',
+        let erroExclusao = null;
 
-            beneficiarios
 
-        });
+        if (
+            req.query.erro ===
+            'atendimentos'
+        ) {
+
+            erroExclusao =
+                'Este beneficiário não pode ser excluído porque possui atendimentos registrados. Remova ou altere os registros vinculados antes de excluir o beneficiário.';
+
+        }
+
+
+        return res.render(
+            'beneficiarios/index',
+            {
+
+                titulo:
+                    'Gerenciar Beneficiários | Instituto Solidarize',
+
+                beneficiarios,
+
+                erroExclusao
+
+            }
+        );
+
 
     } catch (erro) {
 
@@ -26,7 +50,8 @@ exports.listar = async (req, res) => {
             erro
         );
 
-        res.status(500).send(
+
+        return res.status(500).send(
             'Erro ao listar beneficiários.'
         );
 
@@ -35,22 +60,31 @@ exports.listar = async (req, res) => {
 };
 
 
-// EXIBIR FORMULÁRIO
+// =====================================
+// ADMIN - NOVO
+// =====================================
+
 exports.exibirNovo = (req, res) => {
 
-    res.render('beneficiarios/novo', {
+    return res.render(
+        'beneficiarios/novo',
+        {
 
-        titulo:
-            'Novo Beneficiário | Instituto Solidarize',
+            titulo:
+                'Novo Beneficiário | Instituto Solidarize',
 
-        erro: null
+            erro: null
 
-    });
+        }
+    );
 
 };
 
 
-// CADASTRAR
+// =====================================
+// ADMIN - CADASTRAR
+// =====================================
+
 exports.criar = async (req, res) => {
 
     try {
@@ -91,7 +125,7 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/beneficiarios'
         );
 
@@ -104,7 +138,7 @@ exports.criar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao cadastrar beneficiário.'
         );
 
@@ -113,7 +147,10 @@ exports.criar = async (req, res) => {
 };
 
 
-// EXIBIR EDIÇÃO
+// =====================================
+// ADMIN - EXIBIR EDIÇÃO
+// =====================================
+
 exports.exibirEditar = async (req, res) => {
 
     try {
@@ -133,7 +170,7 @@ exports.exibirEditar = async (req, res) => {
         }
 
 
-        res.render(
+        return res.render(
             'beneficiarios/editar',
             {
 
@@ -156,7 +193,7 @@ exports.exibirEditar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao carregar beneficiário.'
         );
 
@@ -165,7 +202,10 @@ exports.exibirEditar = async (req, res) => {
 };
 
 
-// ATUALIZAR
+// =====================================
+// ADMIN - ATUALIZAR
+// =====================================
+
 exports.atualizar = async (req, res) => {
 
     try {
@@ -215,7 +255,7 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/beneficiarios'
         );
 
@@ -228,7 +268,7 @@ exports.atualizar = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        return res.status(500).send(
             'Erro ao atualizar beneficiário.'
         );
 
@@ -237,17 +277,59 @@ exports.atualizar = async (req, res) => {
 };
 
 
-// EXCLUIR
+// =====================================
+// ADMIN - EXCLUIR
+// =====================================
+
 exports.excluir = async (req, res) => {
 
     try {
+
+        const beneficiario =
+            await Beneficiario.buscarPorId(
+                req.params.id
+            );
+
+
+        if (!beneficiario) {
+
+            return res.status(404).send(
+                'Beneficiário não encontrado.'
+            );
+
+        }
+
+
+        // =====================================
+        // VERIFICAR ATENDIMENTOS
+        // =====================================
+
+        const totalAtendimentos =
+            await Beneficiario
+                .contarAtendimentos(
+                    req.params.id
+                );
+
+
+        if (totalAtendimentos > 0) {
+
+            return res.redirect(
+                '/admin/beneficiarios?erro=atendimentos'
+            );
+
+        }
+
+
+        // =====================================
+        // EXCLUIR
+        // =====================================
 
         await Beneficiario.excluir(
             req.params.id
         );
 
 
-        res.redirect(
+        return res.redirect(
             '/admin/beneficiarios'
         );
 
@@ -260,7 +342,25 @@ exports.excluir = async (req, res) => {
         );
 
 
-        res.status(500).send(
+        /*
+            Proteção adicional caso o banco
+            bloqueie a exclusão por uma
+            chave estrangeira.
+        */
+
+        if (
+            erro.code ===
+            'ER_ROW_IS_REFERENCED_2'
+        ) {
+
+            return res.redirect(
+                '/admin/beneficiarios?erro=atendimentos'
+            );
+
+        }
+
+
+        return res.status(500).send(
             'Erro ao excluir beneficiário.'
         );
 

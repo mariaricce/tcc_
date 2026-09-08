@@ -1,2 +1,4 @@
 node_modules/
 .env
+# Backup local do banco com dados reais
+database/solidarize_tcc-backup-local.sql

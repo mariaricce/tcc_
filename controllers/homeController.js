@@ -1,5 +1,4 @@
 const transporter = require('../config/email');
-const Campanha = require('../models/Campanha');
 
 
 // ========================================
@@ -40,42 +39,6 @@ exports.sobre = (req, res) => {
     res.render('sobre', {
         titulo: 'Sobre | Instituto Solidarize'
     });
-
-};
-
-
-// ========================================
-// CAMPANHAS
-// ========================================
-
-exports.campanhas = async (req, res) => {
-
-    try {
-
-        const campanhas =
-            await Campanha.listarAtivas();
-
-        res.render('campanhas', {
-
-            titulo:
-                'Campanhas | Instituto Solidarize',
-
-            campanhas
-
-        });
-
-    } catch (erro) {
-
-        console.error(
-            'Erro ao carregar campanhas:',
-            erro
-        );
-
-        res.status(500).send(
-            'Erro ao carregar campanhas.'
-        );
-
-    }
 
 };
 
