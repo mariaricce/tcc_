@@ -4,64 +4,308 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaDoacoes =
+                doacoes || [];
+
+            const totalDoacoes =
+                listaDoacoes.length;
+
+            const doacoesRecebidas =
+                listaDoacoes.filter(
+                    doacao =>
+                        doacao.status === 'Recebida'
+                ).length;
+
+            const doacoesPendentes =
+                listaDoacoes.filter(
+                    doacao =>
+                        doacao.status === 'Pendente'
+                ).length;
+
+            const doacoesCanceladas =
+                listaDoacoes.filter(
+                    doacao =>
+                        doacao.status === 'Cancelada'
+                ).length;
+
+            const valorRecebido =
+                listaDoacoes.reduce(
+                    (total, doacao) => {
+
+                        if (
+                            doacao.status !== 'Recebida' ||
+                            doacao.valor === null ||
+                            doacao.valor === ''
+                        ) {
+                            return total;
+                        }
+
+                        return total + Number(doacao.valor || 0);
+
+                    },
+                    0
+                );
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
 
-                <h1>Doações</h1>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
+
+                <h1>
+                    Doações
+                </h1>
 
                 <p>
-                    Consulte e gerencie as doações recebidas pela instituição.
+                    Consulte e gerencie as contribuições
+                    registradas no Instituto Solidarize.
                 </p>
+
             </div>
+
 
             <a
                 href="/admin/doacoes/nova"
                 class="btn-principal"
             >
-                + Nova doação
+                Nova doação
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (doacoes.length === 0) { %>
+        <section class="doacoes-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="doacoes-admin-resumo-card">
 
-                    <span>❤️</span>
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalDoacoes %>
+                </strong>
+
+                <p>
+                    Doações registradas
+                </p>
+
+            </div>
+
+
+            <div class="doacoes-admin-resumo-card">
+
+                <span>
+                    RECEBIDAS
+                </span>
+
+                <strong>
+                    <%= doacoesRecebidas %>
+                </strong>
+
+                <p>
+                    Doações confirmadas
+                </p>
+
+            </div>
+
+
+            <div class="doacoes-admin-resumo-card">
+
+                <span>
+                    PENDENTES
+                </span>
+
+                <strong>
+                    <%= doacoesPendentes %>
+                </strong>
+
+                <p>
+                    Aguardando confirmação
+                </p>
+
+            </div>
+
+
+            <div class="doacoes-admin-resumo-card">
+
+                <span>
+                    CANCELADAS
+                </span>
+
+                <strong>
+                    <%= doacoesCanceladas %>
+                </strong>
+
+                <p>
+                    Doações canceladas
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VALOR RECEBIDO
+        ====================================================== -->
+
+        <section class="doacoes-admin-valor-total">
+
+            <div>
+
+                <span class="secao-etiqueta">
+                    ARRECADAÇÃO CONFIRMADA
+                </span>
+
+                <h2>
+                    Total em doações recebidas
+                </h2>
+
+                <p>
+                    Soma dos valores das doações
+                    marcadas como recebidas no sistema.
+                </p>
+
+            </div>
+
+
+            <strong>
+                R$
+                <%= valorRecebido
+                    .toFixed(2)
+                    .replace('.', ',') %>
+            </strong>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card doacoes-admin-listagem">
+
+            <div class="doacoes-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Doações cadastradas
+                    </h2>
 
                     <p>
-                        Nenhuma doação cadastrada.
+                        Consulte os dados, campanha vinculada
+                        e situação de cada contribuição.
                     </p>
+
+                </div>
+
+
+                <span class="doacoes-admin-quantidade">
+
+                    <%= totalDoacoes %>
+
+                    <%= totalDoacoes === 1
+                        ? 'doação'
+                        : 'doações' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaDoacoes.length === 0) { %>
+
+                <div class="admin-vazio doacoes-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhuma doação cadastrada
+                    </h3>
+
+                    <p>
+                        Cadastre uma nova doação ou aguarde
+                        contribuições realizadas pelo site.
+                    </p>
+
+                    <a
+                        href="/admin/doacoes/nova"
+                        class="btn-principal"
+                    >
+                        Cadastrar doação
+                    </a>
 
                 </div>
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container doacoes-admin-tabela">
 
                     <table>
 
                         <thead>
 
                             <tr>
-                                <th>ID</th>
-                                <th>Doador</th>
-                                <th>Tipo</th>
-                                <th>Quantidade</th>
-                                <th>Valor</th>
-                                <th>Campanha</th>
-                                <th>Data</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Doador
+                                </th>
+
+                                <th>
+                                    Tipo
+                                </th>
+
+                                <th>
+                                    Quantidade
+                                </th>
+
+                                <th>
+                                    Valor
+                                </th>
+
+                                <th>
+                                    Campanha
+                                </th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -69,64 +313,162 @@
 
                         <tbody>
 
-                            <% doacoes.forEach(doacao => { %>
+                            <% listaDoacoes.forEach(doacao => { %>
 
                                 <tr>
 
+                                    <!-- ID -->
+
                                     <td>
-                                        <%= doacao.id %>
+
+                                        <span class="doacao-admin-id">
+                                            #<%= doacao.id %>
+                                        </span>
+
                                     </td>
 
+
+                                    <!-- DOADOR -->
+
                                     <td>
-                                        <strong>
-                                            <%= doacao.doador_nome %>
-                                        </strong>
+
+                                        <div class="doacao-admin-doador">
+
+                                            <div class="doacao-admin-avatar">
+
+                                                <%= doacao.doador_nome
+                                                    .charAt(0)
+                                                    .toUpperCase() %>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= doacao.doador_nome %>
+                                                </strong>
+
+                                                <span>
+                                                    Doador
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
                                     </td>
 
+
+                                    <!-- TIPO -->
+
                                     <td>
-                                        <%= doacao.tipo %>
+
+                                        <span class="doacao-admin-tipo">
+                                            <%= doacao.tipo %>
+                                        </span>
+
                                     </td>
 
-                                    <td>
-                                        <%= doacao.quantidade || '-' %>
-                                    </td>
+
+                                    <!-- QUANTIDADE -->
 
                                     <td>
 
-                                        <% if (doacao.valor !== null && doacao.valor !== '') { %>
+                                        <% if (doacao.quantidade) { %>
 
-                                            R$
-                                            <%= Number(doacao.valor)
-                                                .toFixed(2)
-                                                .replace('.', ',') %>
+                                            <%= doacao.quantidade %>
 
                                         <% } else { %>
 
-                                            -
+                                            <span class="doacao-admin-sem-dado">
+                                                Não informada
+                                            </span>
 
                                         <% } %>
 
                                     </td>
 
+
+                                    <!-- VALOR -->
+
                                     <td>
-                                        <%= doacao.campanha || 'Sem campanha' %>
+
+                                        <% if (
+                                            doacao.valor !== null &&
+                                            doacao.valor !== ''
+                                        ) { %>
+
+                                            <strong class="doacao-admin-valor">
+
+                                                R$
+                                                <%= Number(doacao.valor)
+                                                    .toFixed(2)
+                                                    .replace('.', ',') %>
+
+                                            </strong>
+
+                                        <% } else { %>
+
+                                            <span class="doacao-admin-sem-dado">
+                                                Não informado
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
+
+                                    <!-- CAMPANHA -->
+
                                     <td>
-                                        <%= doacao.data_doacao_formatada %>
+
+                                        <% if (doacao.campanha) { %>
+
+                                            <span class="doacao-admin-campanha">
+                                                <%= doacao.campanha %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="doacao-admin-sem-dado">
+                                                Sem campanha
+                                            </span>
+
+                                        <% } %>
+
                                     </td>
 
+
+                                    <!-- DATA -->
+
                                     <td>
 
-                                        <span class="status-admin">
+                                        <span class="doacao-admin-data">
+                                            <%= doacao.data_doacao_formatada %>
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+                                        <span
+                                            class="status-admin status-<%= doacao.status.toLowerCase() %>"
+                                        >
                                             <%= doacao.status %>
                                         </span>
 
                                     </td>
 
+
+                                    <!-- AÇÕES -->
+
                                     <td>
 
-                                        <div class="acoes-tabela">
+                                        <div class="acoes-tabela doacoes-admin-acoes">
 
                                             <a
                                                 href="/admin/doacoes/<%= doacao.id %>/editar"
@@ -134,6 +476,7 @@
                                             >
                                                 Editar
                                             </a>
+
 
                                             <form
                                                 action="/admin/doacoes/<%= doacao.id %>/excluir"

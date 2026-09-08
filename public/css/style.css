@@ -14300,3 +14300,1289 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   ADMIN - DOAÇÕES
+========================================================= */
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.doacoes-admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 40px 40px 0;
+}
+
+
+.doacoes-admin-resumo-card {
+    padding: 23px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.doacoes-admin-resumo-card > span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.doacoes-admin-resumo-card > strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+}
+
+
+.doacoes-admin-resumo-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TOTAL RECEBIDO
+========================================================= */
+
+.doacoes-admin-valor-total {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 40px;
+
+    margin: 20px 40px 0;
+
+    padding: 28px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+}
+
+
+.doacoes-admin-valor-total > div {
+    max-width: 650px;
+}
+
+
+.doacoes-admin-valor-total h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 22px;
+}
+
+
+.doacoes-admin-valor-total p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.doacoes-admin-valor-total > strong {
+    flex-shrink: 0;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   LISTAGEM
+========================================================= */
+
+.doacoes-admin-listagem {
+    margin: 35px 40px 45px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.doacoes-admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 27px 28px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.doacoes-admin-listagem-topo h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.doacoes-admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.doacoes-admin-quantidade {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.doacoes-admin-tabela {
+    overflow-x: auto;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.doacoes-admin-tabela table {
+    width: 100%;
+
+    min-width: 1150px;
+
+    border-collapse: collapse;
+}
+
+
+.doacoes-admin-tabela th {
+    padding: 13px 15px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+.doacoes-admin-tabela td {
+    padding: 16px 15px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.doacoes-admin-tabela
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.doacoes-admin-tabela
+tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.doacao-admin-id {
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DOADOR
+========================================================= */
+
+.doacao-admin-doador {
+    display: grid;
+
+    grid-template-columns:
+        45px minmax(0, 1fr);
+
+    gap: 12px;
+
+    align-items: center;
+
+    min-width: 190px;
+}
+
+
+.doacao-admin-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 50%;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.doacao-admin-doador strong {
+    display: block;
+
+    max-width: 200px;
+
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.doacao-admin-doador
+div:last-child > span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   DADOS DA DOAÇÃO
+========================================================= */
+
+.doacao-admin-tipo {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    background: var(--lilas-suave);
+
+    border-radius: 20px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.doacao-admin-valor {
+    color: var(--lilas-escuro);
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.doacao-admin-campanha {
+    display: block;
+
+    max-width: 200px;
+
+    color: var(--texto);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.doacao-admin-data {
+    color: var(--texto);
+
+    white-space: nowrap;
+}
+
+
+.doacao-admin-sem-dado {
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-admin.status-recebida {
+    background: #e8f7ed;
+
+    color: #24753d;
+}
+
+
+.status-admin.status-pendente {
+    background: #fff5d8;
+
+    color: #8a6814;
+}
+
+
+.status-admin.status-cancelada {
+    background: #fdeaea;
+
+    color: #a63a3a;
+}
+
+
+body.modo-escuro
+.status-admin.status-recebida {
+    background: rgba(62, 155, 91, 0.16);
+
+    color: #86d59e;
+}
+
+
+body.modo-escuro
+.status-admin.status-pendente {
+    background: rgba(216, 169, 42, 0.16);
+
+    color: #e8ca74;
+}
+
+
+body.modo-escuro
+.status-admin.status-cancelada {
+    background: rgba(205, 79, 79, 0.16);
+
+    color: #e99494;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.doacoes-admin-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.doacoes-admin-acoes form {
+    margin: 0;
+}
+
+
+.doacoes-admin-acoes
+.btn-editar,
+.doacoes-admin-acoes
+.btn-excluir {
+    min-height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   VAZIO
+========================================================= */
+
+.doacoes-admin-vazio {
+    margin: 0;
+
+    padding: 65px 30px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+.doacoes-admin-vazio h3 {
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+.doacoes-admin-vazio p {
+    max-width: 500px;
+
+    margin: 0 auto 22px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.doacoes-admin-resumo-card,
+body.modo-escuro
+.doacoes-admin-listagem {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.doacoes-admin-valor-total {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.doacoes-admin-tabela th,
+body.modo-escuro
+.doacao-admin-avatar,
+body.modo-escuro
+.doacao-admin-tipo,
+body.modo-escuro
+.doacoes-admin-quantidade {
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .doacoes-admin-resumo {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .doacoes-admin-resumo {
+        padding:
+            28px 28px 0;
+    }
+
+
+    .doacoes-admin-valor-total {
+        margin:
+            18px 28px 0;
+    }
+
+
+    .doacoes-admin-listagem {
+        margin:
+            30px 28px 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .doacoes-admin-resumo {
+        grid-template-columns: 1fr;
+
+        padding:
+            25px 18px 0;
+    }
+
+
+    .doacoes-admin-valor-total {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        margin:
+            18px 18px 0;
+
+        padding: 23px 20px;
+    }
+
+
+    .doacoes-admin-valor-total > strong {
+        font-size: 25px;
+    }
+
+
+    .doacoes-admin-listagem {
+        margin:
+            25px 18px 35px;
+    }
+
+
+    .doacoes-admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 22px 20px;
+    }
+
+}
+/* =========================================================
+   ADMIN - FORMULÁRIO DE DOAÇÃO
+========================================================= */
+
+.doacao-admin-form-area {
+    padding: 40px;
+
+    background: var(--fundo);
+}
+
+
+.doacao-admin-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, 0.55fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   FORMULÁRIO PRINCIPAL
+========================================================= */
+
+.doacao-admin-form-principal {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.doacao-admin-form-cabecalho {
+    padding: 28px 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.doacao-admin-form-cabecalho
+.secao-etiqueta {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 10px;
+}
+
+
+.doacao-admin-form-cabecalho h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 24px;
+}
+
+
+.doacao-admin-form-cabecalho p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.doacao-admin-form-principal
+> .mensagem {
+    margin: 25px 30px 0;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.doacao-admin-formulario {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   BLOCOS
+========================================================= */
+
+.doacao-admin-form-bloco {
+    width: 100%;
+
+    padding: 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.doacao-admin-form-bloco-titulo {
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 15px;
+
+    align-items: start;
+
+    margin-bottom: 25px;
+}
+
+
+.doacao-admin-form-bloco-titulo > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 11px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.doacao-admin-form-bloco-titulo h3 {
+    margin: 0 0 4px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+}
+
+
+.doacao-admin-form-bloco-titulo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.doacao-admin-formulario
+.campo {
+    margin: 0 0 22px;
+}
+
+
+.doacao-admin-formulario
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+
+.doacao-admin-formulario
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.doacao-admin-formulario
+.campo input,
+
+.doacao-admin-formulario
+.campo select,
+
+.doacao-admin-formulario
+.campo textarea {
+    width: 100%;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+
+.doacao-admin-formulario
+.campo input,
+
+.doacao-admin-formulario
+.campo select {
+    min-height: 48px;
+
+    padding: 0 16px;
+}
+
+
+.doacao-admin-formulario
+.campo textarea {
+    min-height: 130px;
+
+    padding: 14px 16px;
+
+    resize: vertical;
+}
+
+
+.doacao-admin-formulario
+.campo input:focus,
+
+.doacao-admin-formulario
+.campo select:focus,
+
+.doacao-admin-formulario
+.campo textarea:focus {
+    outline: none;
+
+    border-color: var(--lilas-principal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.11);
+}
+
+
+.doacao-admin-formulario
+.campo-ajuda {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   GRID DOS CAMPOS
+========================================================= */
+
+.doacao-admin-formulario
+.admin-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.doacao-admin-form-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 25px 30px;
+
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   PAINEL LATERAL
+========================================================= */
+
+.doacao-admin-form-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.doacao-admin-ajuda-card,
+.doacao-admin-status-card {
+    padding: 25px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.doacao-admin-ajuda-card h2 {
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 21px;
+}
+
+
+.doacao-admin-ajuda-card > p {
+    margin: 0 0 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+.doacao-admin-ajuda-item {
+    display: grid;
+
+    grid-template-columns:
+        38px 1fr;
+
+    gap: 12px;
+
+    padding: 15px 0;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.doacao-admin-ajuda-item > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 9px;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.doacao-admin-ajuda-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+}
+
+
+.doacao-admin-ajuda-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.doacao-admin-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+}
+
+
+.doacao-admin-status-card > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.doacao-admin-status-card > strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+}
+
+
+.doacao-admin-status-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.doacao-admin-form-principal,
+
+body.modo-escuro
+.doacao-admin-form-cabecalho,
+
+body.modo-escuro
+.doacao-admin-form-bloco,
+
+body.modo-escuro
+.doacao-admin-ajuda-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.doacao-admin-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.doacao-admin-formulario
+.campo input,
+
+body.modo-escuro
+.doacao-admin-formulario
+.campo select,
+
+body.modo-escuro
+.doacao-admin-formulario
+.campo textarea {
+    background: var(--fundo);
+
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .doacao-admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .doacao-admin-form-lateral {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .doacao-admin-form-area {
+        padding: 28px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .doacao-admin-form-area {
+        padding: 25px 18px;
+    }
+
+
+    .doacao-admin-form-cabecalho,
+    .doacao-admin-form-bloco {
+        padding: 24px 20px;
+    }
+
+
+    .doacao-admin-form-bloco-titulo {
+        grid-template-columns:
+            44px 1fr;
+    }
+
+
+    .doacao-admin-formulario
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .doacao-admin-form-lateral {
+        grid-template-columns: 1fr;
+    }
+
+
+    .doacao-admin-form-acoes {
+        flex-direction: column-reverse;
+
+        padding: 22px 20px;
+    }
+
+
+    .doacao-admin-form-acoes
+    .btn-principal,
+
+    .doacao-admin-form-acoes
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}

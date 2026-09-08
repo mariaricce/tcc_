@@ -4,20 +4,27 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Doações
-                </p>
+                <span class="secao-etiqueta">
+                    DOAÇÕES
+                </span>
 
-                <h1>Nova Doação</h1>
+                <h1>
+                    Nova doação
+                </h1>
 
                 <p>
-                    Registre uma nova doação recebida pelo Instituto Solidarize.
+                    Registre uma nova contribuição recebida
+                    pelo Instituto Solidarize.
                 </p>
 
             </div>
@@ -26,246 +33,571 @@
                 href="/admin/doacoes"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para doações
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="doacao-admin-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="doacao-admin-form-grid">
 
 
-            <form
-                action="/admin/doacoes/nova"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="doacao-admin-form-principal">
 
-                    <div class="campo">
+                    <div class="doacao-admin-form-cabecalho">
 
-                        <label for="doador_nome">
-                            Nome do doador *
-                        </label>
+                        <span class="secao-etiqueta">
+                            DADOS DA DOAÇÃO
+                        </span>
 
-                        <input
-                            type="text"
-                            id="doador_nome"
-                            name="doador_nome"
-                            placeholder="Nome da pessoa ou empresa"
-                            required
-                        >
+                        <h2>
+                            Informações do registro
+                        </h2>
+
+                        <p>
+                            Preencha os campos abaixo para registrar
+                            a doação no sistema.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="tipo">
-                            Tipo de doação *
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <select
-                            id="tipo"
-                            name="tipo"
-                            required
-                        >
-
-                            <option value="">
-                                Selecione
-                            </option>
-
-                            <option value="Dinheiro">
-                                Dinheiro
-                            </option>
-
-                            <option value="Alimentos">
-                                Alimentos
-                            </option>
-
-                            <option value="Roupas">
-                                Roupas
-                            </option>
-
-                            <option value="Material escolar">
-                                Material escolar
-                            </option>
-
-                            <option value="Higiene">
-                                Higiene
-                            </option>
-
-                            <option value="Outros">
-                                Outros
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
+                    <% } %>
 
 
-                <div class="campo">
-
-                    <label for="descricao">
-                        Descrição
-                    </label>
-
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="4"
-                        placeholder="Descreva os itens ou detalhes da doação"
-                    ></textarea>
-
-                </div>
-
-
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="quantidade">
-                            Quantidade
-                        </label>
-
-                        <input
-                            type="number"
-                            id="quantidade"
-                            name="quantidade"
-                            min="1"
-                            placeholder="Ex.: 10"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="valor">
-                            Valor em R$
-                        </label>
-
-                        <input
-                            type="number"
-                            id="valor"
-                            name="valor"
-                            min="0"
-                            step="0.01"
-                            placeholder="0,00"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="data_doacao">
-                            Data da doação *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data_doacao"
-                            name="data_doacao"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="campanha_id">
-                            Campanha
-                        </label>
-
-                        <select
-                            id="campanha_id"
-                            name="campanha_id"
-                        >
-
-                            <option value="">
-                                Sem campanha específica
-                            </option>
-
-                            <% campanhas.forEach(campanha => { %>
-
-                                <option value="<%= campanha.id %>">
-                                    <%= campanha.titulo %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="status">
-                        Status *
-                    </label>
-
-                    <select
-                        id="status"
-                        name="status"
-                        required
+                    <form
+                        action="/admin/doacoes/nova"
+                        method="POST"
+                        class="formulario admin-formulario doacao-admin-formulario"
                     >
 
-                        <option value="Recebida">
+                        <!-- =========================================
+                             DOADOR E TIPO
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Doador e tipo
+                                    </h3>
+
+                                    <p>
+                                        Identifique quem realizou
+                                        a doação e qual foi o tipo
+                                        de contribuição recebida.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="doador_nome">
+                                        Nome do doador *
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="doador_nome"
+                                        name="doador_nome"
+                                        placeholder="Nome da pessoa ou empresa"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="tipo">
+                                        Tipo de doação *
+                                    </label>
+
+                                    <select
+                                        id="tipo"
+                                        name="tipo"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Selecione
+                                        </option>
+
+                                        <option value="Dinheiro">
+                                            Dinheiro
+                                        </option>
+
+                                        <option value="Alimentos">
+                                            Alimentos
+                                        </option>
+
+                                        <option value="Roupas">
+                                            Roupas
+                                        </option>
+
+                                        <option value="Material escolar">
+                                            Material escolar
+                                        </option>
+
+                                        <option value="Higiene">
+                                            Higiene
+                                        </option>
+
+                                        <option value="Outros">
+                                            Outros
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DETALHES
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Detalhes da contribuição
+                                    </h3>
+
+                                    <p>
+                                        Informe uma descrição,
+                                        quantidade ou valor quando
+                                        essas informações forem aplicáveis.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="descricao">
+                                    Descrição
+                                </label>
+
+                                <textarea
+                                    id="descricao"
+                                    name="descricao"
+                                    rows="5"
+                                    placeholder="Descreva os itens ou detalhes da doação"
+                                ></textarea>
+
+                                <small class="campo-ajuda">
+                                    Exemplo: quantidade de peças,
+                                    produtos recebidos ou outras
+                                    informações sobre a contribuição.
+                                </small>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="quantidade">
+                                        Quantidade
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="quantidade"
+                                        name="quantidade"
+                                        min="1"
+                                        placeholder="Ex.: 10"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        Utilize para doações de itens
+                                        quando houver uma quantidade definida.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="valor">
+                                        Valor em R$
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="valor"
+                                        name="valor"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0,00"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        Utilize principalmente para
+                                        doações em dinheiro.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             CAMPANHA E DATA
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Data e campanha
+                                    </h3>
+
+                                    <p>
+                                        Informe quando a doação foi
+                                        recebida e, se necessário,
+                                        vincule-a a uma campanha.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="data_doacao">
+                                        Data da doação *
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_doacao"
+                                        name="data_doacao"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="campanha_id">
+                                        Campanha
+                                    </label>
+
+                                    <select
+                                        id="campanha_id"
+                                        name="campanha_id"
+                                    >
+
+                                        <option value="">
+                                            Sem campanha específica
+                                        </option>
+
+                                        <% campanhas.forEach(campanha => { %>
+
+                                            <option value="<%= campanha.id %>">
+                                                <%= campanha.titulo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                    <small class="campo-ajuda">
+                                        O vínculo com uma campanha
+                                        é opcional.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação da doação
+                                    </h3>
+
+                                    <p>
+                                        Defina o status atual
+                                        desta contribuição.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option value="Recebida">
+                                        Recebida
+                                    </option>
+
+                                    <option value="Pendente">
+                                        Pendente
+                                    </option>
+
+                                    <option value="Cancelada">
+                                        Cancelada
+                                    </option>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    Use Recebida quando a contribuição
+                                    já tiver sido confirmada.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes doacao-admin-form-acoes">
+
+                            <a
+                                href="/admin/doacoes"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Registrar doação
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="doacao-admin-form-lateral">
+
+                    <div class="doacao-admin-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            ORIENTAÇÕES
+                        </span>
+
+                        <h2>
+                            Sobre o registro
+                        </h2>
+
+                        <p>
+                            Registre corretamente as informações
+                            para manter o controle das contribuições
+                            recebidas pelo Instituto.
+                        </p>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Tipo
+                                </strong>
+
+                                <p>
+                                    Escolha a categoria que melhor
+                                    representa a contribuição recebida.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Quantidade e valor
+                                </strong>
+
+                                <p>
+                                    Preencha somente os dados
+                                    que fizerem sentido para
+                                    o tipo de doação.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Campanha
+                                </strong>
+
+                                <p>
+                                    Vincule a doação a uma campanha
+                                    quando ela fizer parte de
+                                    uma ação específica.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Status
+                                </strong>
+
+                                <p>
+                                    Somente doações confirmadas
+                                    devem ser registradas como recebidas.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="doacao-admin-status-card">
+
+                        <span>
+                            STATUS INICIAL
+                        </span>
+
+                        <strong>
                             Recebida
-                        </option>
+                        </strong>
 
-                        <option value="Pendente">
-                            Pendente
-                        </option>
+                        <p>
+                            O cadastro administrativo inicia com
+                            Recebida selecionado, pois normalmente
+                            representa uma contribuição já entregue
+                            diretamente ao Instituto.
+                        </p>
 
-                        <option value="Cancelada">
-                            Cancelada
-                        </option>
+                    </div>
 
-                    </select>
+                </aside>
 
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/doacoes"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Registrar doação
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 
