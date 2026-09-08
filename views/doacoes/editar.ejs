@@ -4,20 +4,28 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Doações
-                </p>
+                <span class="secao-etiqueta">
+                    DOAÇÕES
+                </span>
 
-                <h1>Editar Doação</h1>
+                <h1>
+                    Editar doação
+                </h1>
 
                 <p>
-                    Atualize as informações da doação.
+                    Atualize as informações da doação
+                    realizada por
+                    <strong><%= doacao.doador_nome %></strong>.
                 </p>
 
             </div>
@@ -26,256 +34,587 @@
                 href="/admin/doacoes"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para doações
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="doacao-admin-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="doacao-admin-form-grid">
 
 
-            <form
-                action="/admin/doacoes/<%= doacao.id %>/editar"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="doacao-admin-form-principal">
 
-                    <div class="campo">
+                    <div class="doacao-admin-form-cabecalho">
 
-                        <label for="doador_nome">
-                            Nome do doador *
-                        </label>
+                        <span class="secao-etiqueta">
+                            EDITAR REGISTRO
+                        </span>
 
-                        <input
-                            type="text"
-                            id="doador_nome"
-                            name="doador_nome"
-                            value="<%= doacao.doador_nome %>"
-                            required
-                        >
+                        <h2>
+                            Informações da doação
+                        </h2>
+
+                        <p>
+                            Altere somente os dados necessários
+                            e salve as modificações.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="tipo">
-                            Tipo de doação *
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <select
-                            id="tipo"
-                            name="tipo"
-                            required
-                        >
+                    <% } %>
 
-                            <% [
-                                'Dinheiro',
-                                'Alimentos',
-                                'Roupas',
-                                'Material escolar',
-                                'Higiene',
-                                'Outros'
-                            ].forEach(tipo => { %>
 
-                                <option
-                                    value="<%= tipo %>"
-                                    <%= doacao.tipo === tipo ? 'selected' : '' %>
+                    <form
+                        action="/admin/doacoes/<%= doacao.id %>/editar"
+                        method="POST"
+                        class="formulario admin-formulario doacao-admin-formulario"
+                    >
+
+                        <!-- =========================================
+                             DOADOR E TIPO
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Doador e tipo
+                                    </h3>
+
+                                    <p>
+                                        Atualize a identificação
+                                        do doador e o tipo da contribuição.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="doador_nome">
+                                        Nome do doador *
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="doador_nome"
+                                        name="doador_nome"
+                                        value="<%= doacao.doador_nome %>"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="tipo">
+                                        Tipo de doação *
+                                    </label>
+
+                                    <select
+                                        id="tipo"
+                                        name="tipo"
+                                        required
+                                    >
+
+                                        <% [
+                                            'Dinheiro',
+                                            'Alimentos',
+                                            'Roupas',
+                                            'Material escolar',
+                                            'Higiene',
+                                            'Outros'
+                                        ].forEach(tipo => { %>
+
+                                            <option
+                                                value="<%= tipo %>"
+                                                <%= doacao.tipo === tipo
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= tipo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DETALHES
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Detalhes da contribuição
+                                    </h3>
+
+                                    <p>
+                                        Atualize a descrição,
+                                        quantidade ou valor da doação.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="descricao">
+                                    Descrição
+                                </label>
+
+                                <textarea
+                                    id="descricao"
+                                    name="descricao"
+                                    rows="5"
+                                    placeholder="Descreva os itens ou detalhes da doação"
+                                ><%= doacao.descricao || '' %></textarea>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="quantidade">
+                                        Quantidade
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="quantidade"
+                                        name="quantidade"
+                                        min="1"
+                                        value="<%= doacao.quantidade || '' %>"
+                                        placeholder="Ex.: 10"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        Utilize principalmente para
+                                        doações de itens.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="valor">
+                                        Valor em R$
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="valor"
+                                        name="valor"
+                                        min="0"
+                                        step="0.01"
+                                        value="<%= doacao.valor || '' %>"
+                                        placeholder="0,00"
+                                    >
+
+                                    <small class="campo-ajuda">
+                                        Utilize principalmente para
+                                        doações em dinheiro.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DATA E CAMPANHA
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Data e campanha
+                                    </h3>
+
+                                    <p>
+                                        Atualize a data da doação
+                                        ou a campanha vinculada.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="data_doacao">
+                                        Data da doação *
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="data_doacao"
+                                        name="data_doacao"
+                                        value="<%= doacao.data_doacao %>"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="campanha_id">
+                                        Campanha
+                                    </label>
+
+                                    <select
+                                        id="campanha_id"
+                                        name="campanha_id"
+                                    >
+
+                                        <option
+                                            value=""
+                                            <%= !doacao.campanha_id
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            Sem campanha específica
+                                        </option>
+
+                                        <% campanhas.forEach(campanha => { %>
+
+                                            <option
+                                                value="<%= campanha.id %>"
+                                                <%= Number(doacao.campanha_id) === Number(campanha.id)
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= campanha.titulo %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="doacao-admin-form-bloco">
+
+                            <div class="doacao-admin-form-bloco-titulo">
+
+                                <span>
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação da doação
+                                    </h3>
+
+                                    <p>
+                                        Atualize o status atual
+                                        desta contribuição.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
                                 >
-                                    <%= tipo %>
-                                </option>
 
-                            <% }) %>
+                                    <option
+                                        value="Recebida"
+                                        <%= doacao.status === 'Recebida'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Recebida
+                                    </option>
 
-                        </select>
+                                    <option
+                                        value="Pendente"
+                                        <%= doacao.status === 'Pendente'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Pendente
+                                    </option>
+
+                                    <option
+                                        value="Cancelada"
+                                        <%= doacao.status === 'Cancelada'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Cancelada
+                                    </option>
+
+                                </select>
+
+                                <small class="campo-ajuda">
+                                    Doações realizadas pelo site normalmente
+                                    ficam pendentes até a conferência
+                                    do pagamento.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes doacao-admin-form-acoes">
+
+                            <a
+                                href="/admin/doacoes"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Salvar alterações
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="doacao-admin-form-lateral">
+
+                    <div class="doacao-admin-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            DOAÇÃO
+                        </span>
+
+                        <h2>
+                            Dados atuais
+                        </h2>
+
+                        <p>
+                            Confira algumas informações do registro
+                            antes de realizar alterações.
+                        </p>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Identificação
+                                </strong>
+
+                                <p>
+                                    Doação #<%= doacao.id %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Tipo
+                                </strong>
+
+                                <p>
+                                    <%= doacao.tipo %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Valor
+                                </strong>
+
+                                <p>
+
+                                    <% if (
+                                        doacao.valor !== null &&
+                                        doacao.valor !== ''
+                                    ) { %>
+
+                                        R$
+                                        <%= Number(doacao.valor)
+                                            .toFixed(2)
+                                            .replace('.', ',') %>
+
+                                    <% } else { %>
+
+                                        Não informado
+
+                                    <% } %>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doacao-admin-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Campanha
+                                </strong>
+
+                                <p>
+                                    <%= doacao.campanha || 'Sem campanha específica' %>
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="doacao-admin-status-card">
 
-                <div class="campo">
+                        <span>
+                            STATUS ATUAL
+                        </span>
 
-                    <label for="descricao">
-                        Descrição
-                    </label>
+                        <strong>
+                            <%= doacao.status %>
+                        </strong>
 
-                    <textarea
-                        id="descricao"
-                        name="descricao"
-                        rows="4"
-                    ><%= doacao.descricao || '' %></textarea>
-
-                </div>
-
-
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="quantidade">
-                            Quantidade
-                        </label>
-
-                        <input
-                            type="number"
-                            id="quantidade"
-                            name="quantidade"
-                            min="1"
-                            value="<%= doacao.quantidade || '' %>"
-                        >
+                        <p>
+                            Alterar uma doação para Recebida
+                            fará com que seu valor passe a contar
+                            na arrecadação confirmada da campanha,
+                            quando houver vínculo.
+                        </p>
 
                     </div>
 
+                </aside>
 
-                    <div class="campo">
-
-                        <label for="valor">
-                            Valor em R$
-                        </label>
-
-                        <input
-                            type="number"
-                            id="valor"
-                            name="valor"
-                            min="0"
-                            step="0.01"
-                            value="<%= doacao.valor || '' %>"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="admin-form-grid">
-
-                    <div class="campo">
-
-                        <label for="data_doacao">
-                            Data da doação *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data_doacao"
-                            name="data_doacao"
-                            value="<%= doacao.data_doacao %>"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="campanha_id">
-                            Campanha
-                        </label>
-
-                        <select
-                            id="campanha_id"
-                            name="campanha_id"
-                        >
-
-                            <option value="">
-                                Sem campanha específica
-                            </option>
-
-                            <% campanhas.forEach(campanha => { %>
-
-                                <option
-                                    value="<%= campanha.id %>"
-                                    <%= Number(doacao.campanha_id) === Number(campanha.id)
-                                        ? 'selected'
-                                        : '' %>
-                                >
-                                    <%= campanha.titulo %>
-                                </option>
-
-                            <% }) %>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="status">
-                        Status *
-                    </label>
-
-                    <select
-                        id="status"
-                        name="status"
-                        required
-                    >
-
-                        <option
-                            value="Recebida"
-                            <%= doacao.status === 'Recebida'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Recebida
-                        </option>
-
-                        <option
-                            value="Pendente"
-                            <%= doacao.status === 'Pendente'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Pendente
-                        </option>
-
-                        <option
-                            value="Cancelada"
-                            <%= doacao.status === 'Cancelada'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Cancelada
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/doacoes"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Salvar alterações
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 
