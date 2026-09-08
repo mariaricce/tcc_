@@ -1,184 +1,609 @@
 <%- include('../partials/header') %>
+
 <%- include('../partials/navbar') %>
 
-<main class="pagina">
+<main>
 
-    <section class="pagina-topo">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <div class="container">
+    <section class="voluntario-publico-hero">
 
-            <h1>Quero ser voluntário </h1>
+        <div class="container voluntario-publico-hero-grid">
 
-            <p>
-                Faça parte das ações do
-                Instituto Solidarize.
-            </p>
+            <div class="voluntario-publico-hero-conteudo">
+
+                <span class="secao-etiqueta">
+                    VOLUNTARIADO
+                </span>
+
+                <h1>
+                    Seu tempo também pode
+                    <span>transformar vidas</span>
+                </h1>
+
+                <p>
+                    Faça parte do Instituto Solidarize
+                    e contribua com campanhas, arrecadações,
+                    eventos e outras ações que fazem a diferença.
+                </p>
+
+                <a
+                    href="#cadastro-voluntario"
+                    class="btn-principal"
+                >
+                    Quero participar
+                </a>
+
+            </div>
+
+
+            <div class="voluntario-publico-hero-lateral">
+
+                <span>
+                    FAZER PARTE
+                </span>
+
+                <strong>
+                    Solidariedade também é presença.
+                </strong>
+
+                <p>
+                    Cada pessoa pode contribuir de uma forma
+                    diferente. Encontre a área que combina
+                    com você e participe das nossas ações.
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <section class="conteudo-pagina">
+    <!-- =====================================================
+         COMO FUNCIONA
+    ====================================================== -->
+
+    <section class="voluntario-publico-passos">
 
         <div class="container">
 
+            <div class="voluntario-publico-secao-topo">
 
-            <% if (sucesso) { %>
+                <div>
 
-                <div class="mensagem sucesso">
+                    <span class="secao-etiqueta">
+                        COMO FUNCIONA
+                    </span>
 
-                    Cadastro realizado com sucesso!
-                    Obrigado por querer fazer parte
-                    do Instituto Solidarize. 
-
-                </div>
-
-            <% } %>
-
-
-            <% if (erro) { %>
-
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
-
-
-            <form
-                action="/quero-ser-voluntario"
-                method="POST"
-                class="formulario"
-            >
-
-
-                <div class="campo">
-
-                    <label>Nome *</label>
-
-                    <input
-                        type="text"
-                        name="nome"
-                        required
-                    >
+                    <h2>
+                        Três passos para começar
+                    </h2>
 
                 </div>
 
+                <p>
+                    Preencha seus dados e informe como você
+                    gostaria de contribuir com o Instituto.
+                </p>
 
-                <div class="campo">
-
-                    <label>E-mail *</label>
-
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                    >
-
-                </div>
+            </div>
 
 
-                <div class="campo">
+            <div class="voluntario-publico-passos-grid">
 
-                    <label>Telefone</label>
+                <article class="voluntario-publico-passo">
 
-                    <input
-                        type="text"
-                        name="telefone"
-                        placeholder="(00) 00000-0000"
-                    >
+                    <span>
+                        01
+                    </span>
 
-                </div>
+                    <h3>
+                        Faça seu cadastro
+                    </h3>
 
+                    <p>
+                        Informe seus dados de contato
+                        para que possamos identificar
+                        seu interesse em participar.
+                    </p>
 
-                <div class="campo">
-
-                    <label>
-                        Área de interesse
-                    </label>
-
-                    <select name="area_interesse">
-
-                        <option value="">
-                            Selecione
-                        </option>
-
-                        <option value="Campanhas">
-                            Campanhas
-                        </option>
-
-                        <option value="Arrecadações">
-                            Arrecadações
-                        </option>
-
-                        <option value="Eventos">
-                            Eventos
-                        </option>
-
-                        <option value="Atendimento">
-                            Atendimento
-                        </option>
-
-                        <option value="Divulgação">
-                            Divulgação
-                        </option>
-
-                        <option value="Outros">
-                            Outros
-                        </option>
-
-                    </select>
-
-                </div>
+                </article>
 
 
-                <div class="campo">
+                <article class="voluntario-publico-passo">
 
-                    <label>
-                        Disponibilidade
-                    </label>
+                    <span>
+                        02
+                    </span>
 
-                    <select name="disponibilidade">
+                    <h3>
+                        Escolha como ajudar
+                    </h3>
 
-                        <option value="">
-                            Selecione
-                        </option>
+                    <p>
+                        Selecione uma área de interesse
+                        e informe sua disponibilidade.
+                    </p>
 
-                        <option value="Manhã">
-                            Manhã
-                        </option>
+                </article>
 
-                        <option value="Tarde">
-                            Tarde
-                        </option>
 
-                        <option value="Noite">
-                            Noite
-                        </option>
+                <article class="voluntario-publico-passo">
 
-                        <option value="Finais de semana">
-                            Finais de semana
-                        </option>
+                    <span>
+                        03
+                    </span>
 
-                        <option value="Flexível">
-                            Flexível
-                        </option>
+                    <h3>
+                        Aguarde nosso contato
+                    </h3>
 
-                    </select>
+                    <p>
+                        O Instituto poderá entrar em contato
+                        quando houver oportunidades compatíveis
+                        com o seu perfil.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FORMULÁRIO
+    ====================================================== -->
+
+    <section
+        class="voluntario-publico-cadastro"
+        id="cadastro-voluntario"
+    >
+
+        <div class="container voluntario-publico-cadastro-grid">
+
+
+            <!-- =============================================
+                 FORMULÁRIO
+            ============================================== -->
+
+            <div class="voluntario-publico-form-card">
+
+                <div class="voluntario-publico-form-topo">
+
+                    <span class="secao-etiqueta">
+                        CADASTRO
+                    </span>
+
+                    <h2>
+                        Quero ser voluntário
+                    </h2>
+
+                    <p>
+                        Preencha o formulário abaixo.
+                        Os campos marcados com * são obrigatórios.
+                    </p>
 
                 </div>
 
 
-                <button
-                    type="submit"
-                    class="btn-principal"
+                <% if (typeof sucesso !== 'undefined' && sucesso) { %>
+
+                    <div class="mensagem sucesso voluntario-publico-mensagem">
+
+                        <strong>
+                            Cadastro realizado com sucesso!
+                        </strong>
+
+                        <span>
+                            Obrigado por querer fazer parte
+                            do Instituto Solidarize.
+                        </span>
+
+                    </div>
+
+                <% } %>
+
+
+                <% if (typeof erro !== 'undefined' && erro) { %>
+
+                    <div class="mensagem erro voluntario-publico-mensagem">
+                        <%= erro %>
+                    </div>
+
+                <% } %>
+
+
+                <form
+                    action="/quero-ser-voluntario"
+                    method="POST"
+                    class="formulario voluntario-publico-formulario"
                 >
-                    Quero ser voluntário
-                </button>
+
+                    <!-- =========================================
+                         DADOS PESSOAIS
+                    ========================================== -->
+
+                    <div class="voluntario-publico-form-bloco">
+
+                        <div class="voluntario-publico-form-bloco-titulo">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Seus dados
+                                </h3>
+
+                                <p>
+                                    Conte quem você é e como
+                                    podemos entrar em contato.
+                                </p>
+
+                            </div>
+
+                        </div>
 
 
-            </form>
+                        <div class="voluntario-publico-campos-grid">
+
+                            <div class="campo">
+
+                                <label for="nome">
+                                    Nome *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nome"
+                                    name="nome"
+                                    placeholder="Seu nome completo"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="email">
+                                    E-mail *
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="seuemail@exemplo.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="telefone">
+                                Telefone
+                            </label>
+
+                            <input
+                                type="text"
+                                id="telefone"
+                                name="telefone"
+                                placeholder="(00) 00000-0000"
+                                autocomplete="tel"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         PARTICIPAÇÃO
+                    ========================================== -->
+
+                    <div class="voluntario-publico-form-bloco">
+
+                        <div class="voluntario-publico-form-bloco-titulo">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Como você quer participar?
+                                </h3>
+
+                                <p>
+                                    Escolha uma área de interesse
+                                    e sua disponibilidade.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="voluntario-publico-campos-grid">
+
+                            <div class="campo">
+
+                                <label for="area_interesse">
+                                    Área de interesse
+                                </label>
+
+                                <select
+                                    id="area_interesse"
+                                    name="area_interesse"
+                                >
+
+                                    <option value="">
+                                        Selecione
+                                    </option>
+
+                                    <option value="Campanhas">
+                                        Campanhas
+                                    </option>
+
+                                    <option value="Arrecadações">
+                                        Arrecadações
+                                    </option>
+
+                                    <option value="Eventos">
+                                        Eventos
+                                    </option>
+
+                                    <option value="Atendimento">
+                                        Atendimento
+                                    </option>
+
+                                    <option value="Divulgação">
+                                        Divulgação
+                                    </option>
+
+                                    <option value="Outros">
+                                        Outros
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="disponibilidade">
+                                    Disponibilidade
+                                </label>
+
+                                <select
+                                    id="disponibilidade"
+                                    name="disponibilidade"
+                                >
+
+                                    <option value="">
+                                        Selecione
+                                    </option>
+
+                                    <option value="Manhã">
+                                        Manhã
+                                    </option>
+
+                                    <option value="Tarde">
+                                        Tarde
+                                    </option>
+
+                                    <option value="Noite">
+                                        Noite
+                                    </option>
+
+                                    <option value="Finais de semana">
+                                        Finais de semana
+                                    </option>
+
+                                    <option value="Flexível">
+                                        Flexível
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         ENVIO
+                    ========================================== -->
+
+                    <div class="voluntario-publico-form-final">
+
+                        <p>
+                            Ao enviar, seus dados serão utilizados
+                            para o cadastro e contato relacionado
+                            às atividades de voluntariado.
+                        </p>
+
+                        <button
+                            type="submit"
+                            class="btn-principal"
+                        >
+                            Enviar cadastro
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- =============================================
+                 LATERAL
+            ============================================== -->
+
+            <aside class="voluntario-publico-info">
+
+                <span class="secao-etiqueta">
+                    POR QUE PARTICIPAR?
+                </span>
+
+                <h2>
+                    Existem muitas formas de contribuir
+                </h2>
+
+                <p>
+                    O voluntariado aproxima pessoas
+                    e fortalece as ações realizadas
+                    pelo Instituto Solidarize.
+                </p>
+
+
+                <div class="voluntario-publico-info-item">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Campanhas
+                        </strong>
+
+                        <p>
+                            Apoie a organização e execução
+                            das campanhas sociais.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="voluntario-publico-info-item">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Arrecadações e eventos
+                        </strong>
+
+                        <p>
+                            Participe da coleta, organização
+                            e distribuição de doações.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="voluntario-publico-info-item">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Atendimento
+                        </strong>
+
+                        <p>
+                            Colabore em atividades relacionadas
+                            ao acolhimento dos beneficiários.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="voluntario-publico-info-item">
+
+                    <span>
+                        04
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Divulgação
+                        </strong>
+
+                        <p>
+                            Ajude nossas campanhas a chegarem
+                            a mais pessoas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA FINAL
+    ====================================================== -->
+
+    <section class="voluntario-publico-cta">
+
+        <div class="container voluntario-publico-cta-conteudo">
+
+            <div>
+
+                <span class="secao-etiqueta">
+                    SOLIDARIZE
+                </span>
+
+                <h2>
+                    Toda ajuda pode fazer diferença
+                </h2>
+
+                <p>
+                    Se o voluntariado não for a melhor opção
+                    para você agora, ainda existem outras
+                    maneiras de contribuir.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/como-ajudar"
+                class="btn-secundario"
+            >
+                Conhecer outras formas
+            </a>
 
         </div>
 
