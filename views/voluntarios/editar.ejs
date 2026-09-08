@@ -4,226 +4,532 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Voluntários
-                </p>
+                <span class="secao-etiqueta">
+                    VOLUNTÁRIOS
+                </span>
 
-                <h1>Editar Voluntário</h1>
+                <h1>
+                    Editar voluntário
+                </h1>
 
                 <p>
-                    Atualize as informações do voluntário.
+                    Atualize as informações de
+                    <strong><%= voluntario.nome %></strong>
+                    no Instituto Solidarize.
                 </p>
 
             </div>
+
 
             <a
                 href="/admin/voluntarios"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para voluntários
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (erro) { %>
+        <section class="voluntario-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="voluntario-form-grid-novo">
 
 
-            <form
-                action="/admin/voluntarios/<%= voluntario.id %>/editar"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="voluntario-form-principal">
 
-                    <div class="campo">
+                    <div class="voluntario-form-cabecalho">
 
-                        <label>Nome *</label>
+                        <span class="secao-etiqueta">
+                            EDITAR CADASTRO
+                        </span>
 
-                        <input
-                            type="text"
-                            name="nome"
-                            value="<%= voluntario.nome %>"
-                            required
-                        >
+                        <h2>
+                            Informações do voluntário
+                        </h2>
 
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label>E-mail *</label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            value="<%= voluntario.email %>"
-                            required
-                        >
+                        <p>
+                            Altere somente os dados necessários
+                            e salve as modificações.
+                        </p>
 
                     </div>
 
-                </div>
+
+                    <% if (erro) { %>
+
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
+
+                    <% } %>
 
 
-                <div class="campo">
-
-                    <label>Telefone</label>
-
-                    <input
-                        type="text"
-                        name="telefone"
-                        value="<%= voluntario.telefone || '' %>"
+                    <form
+                        action="/admin/voluntarios/<%= voluntario.id %>/editar"
+                        method="POST"
+                        class="formulario admin-formulario voluntario-formulario-novo"
                     >
 
-                </div>
+                        <!-- =========================================
+                             DADOS PESSOAIS
+                        ========================================== -->
+
+                        <div class="voluntario-form-bloco">
+
+                            <div class="voluntario-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Dados pessoais
+                                    </h3>
+
+                                    <p>
+                                        Atualize as informações
+                                        de identificação e contato.
+                                    </p>
+
+                                </div>
+
+                            </div>
 
 
-                <div class="admin-form-grid">
+                            <div class="admin-form-grid">
 
-                    <div class="campo">
+                                <div class="campo">
 
-                        <label>Área de interesse</label>
+                                    <label for="nome">
+                                        Nome *
+                                    </label>
 
-                        <select name="area_interesse">
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        value="<%= voluntario.nome %>"
+                                        autocomplete="name"
+                                        required
+                                    >
 
-                            <option
-                                value=""
-                                <%= !voluntario.area_interesse ? 'selected' : '' %>
-                            >
-                                Selecione
-                            </option>
+                                </div>
 
-                            <% [
-                                'Campanhas',
-                                'Arrecadações',
-                                'Eventos',
-                                'Atendimento',
-                                'Divulgação',
-                                'Outros'
-                            ].forEach(area => { %>
 
-                                <option
-                                    value="<%= area %>"
-                                    <%= voluntario.area_interesse === area
-                                        ? 'selected'
-                                        : '' %>
+                                <div class="campo">
+
+                                    <label for="email">
+                                        E-mail *
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value="<%= voluntario.email %>"
+                                        autocomplete="email"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="telefone">
+                                    Telefone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="telefone"
+                                    name="telefone"
+                                    value="<%= voluntario.telefone || '' %>"
+                                    placeholder="(00) 00000-0000"
+                                    autocomplete="tel"
                                 >
-                                    <%= area %>
-                                </option>
 
-                            <% }) %>
+                                <small class="campo-ajuda">
+                                    O telefone é opcional, mas facilita
+                                    o contato com o voluntário.
+                                </small>
 
-                        </select>
+                            </div>
 
-                    </div>
+                        </div>
 
 
-                    <div class="campo">
+                        <!-- =========================================
+                             PARTICIPAÇÃO
+                        ========================================== -->
 
-                        <label>Disponibilidade</label>
+                        <div class="voluntario-form-bloco">
 
-                        <select name="disponibilidade">
+                            <div class="voluntario-form-bloco-titulo">
 
-                            <option
-                                value=""
-                                <%= !voluntario.disponibilidade ? 'selected' : '' %>
-                            >
-                                Selecione
-                            </option>
+                                <span>
+                                    02
+                                </span>
 
-                            <% [
-                                'Manhã',
-                                'Tarde',
-                                'Noite',
-                                'Finais de semana',
-                                'Flexível'
-                            ].forEach(disponibilidade => { %>
+                                <div>
 
-                                <option
-                                    value="<%= disponibilidade %>"
-                                    <%= voluntario.disponibilidade === disponibilidade
-                                        ? 'selected'
-                                        : '' %>
+                                    <h3>
+                                        Interesse e disponibilidade
+                                    </h3>
+
+                                    <p>
+                                        Atualize a área de interesse
+                                        e o período de disponibilidade.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="area_interesse">
+                                        Área de interesse
+                                    </label>
+
+                                    <select
+                                        id="area_interesse"
+                                        name="area_interesse"
+                                    >
+
+                                        <option
+                                            value=""
+                                            <%= !voluntario.area_interesse
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            Selecione
+                                        </option>
+
+
+                                        <% [
+                                            'Campanhas',
+                                            'Arrecadações',
+                                            'Eventos',
+                                            'Atendimento',
+                                            'Divulgação',
+                                            'Outros'
+                                        ].forEach(area => { %>
+
+                                            <option
+                                                value="<%= area %>"
+                                                <%= voluntario.area_interesse === area
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= area %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="disponibilidade">
+                                        Disponibilidade
+                                    </label>
+
+                                    <select
+                                        id="disponibilidade"
+                                        name="disponibilidade"
+                                    >
+
+                                        <option
+                                            value=""
+                                            <%= !voluntario.disponibilidade
+                                                ? 'selected'
+                                                : '' %>
+                                        >
+                                            Selecione
+                                        </option>
+
+
+                                        <% [
+                                            'Manhã',
+                                            'Tarde',
+                                            'Noite',
+                                            'Finais de semana',
+                                            'Flexível'
+                                        ].forEach(opcao => { %>
+
+                                            <option
+                                                value="<%= opcao %>"
+                                                <%= voluntario.disponibilidade === opcao
+                                                    ? 'selected'
+                                                    : '' %>
+                                            >
+                                                <%= opcao %>
+                                            </option>
+
+                                        <% }) %>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="voluntario-form-bloco">
+
+                            <div class="voluntario-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação do cadastro
+                                    </h3>
+
+                                    <p>
+                                        Defina se este voluntário
+                                        permanecerá ativo no sistema.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
                                 >
-                                    <%= disponibilidade %>
-                                </option>
 
-                            <% }) %>
+                                    <option
+                                        value="Ativo"
+                                        <%= voluntario.status === 'Ativo'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Ativo
+                                    </option>
 
-                        </select>
+                                    <option
+                                        value="Inativo"
+                                        <%= voluntario.status === 'Inativo'
+                                            ? 'selected'
+                                            : '' %>
+                                    >
+                                        Inativo
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes voluntario-form-acoes-novas">
+
+                            <a
+                                href="/admin/voluntarios"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Salvar alterações
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="voluntario-form-lateral">
+
+                    <div class="voluntario-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            VOLUNTÁRIO
+                        </span>
+
+                        <h2>
+                            Dados atuais
+                        </h2>
+
+                        <p>
+                            Confira algumas informações do cadastro
+                            antes de realizar alterações.
+                        </p>
+
+
+                        <div class="voluntario-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Identificação
+                                </strong>
+
+                                <p>
+                                    Voluntário #<%= voluntario.id %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="voluntario-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    E-mail
+                                </strong>
+
+                                <p>
+                                    <%= voluntario.email %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="voluntario-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Área de interesse
+                                </strong>
+
+                                <p>
+                                    <%= voluntario.area_interesse
+                                        || 'Não informada' %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="voluntario-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Disponibilidade
+                                </strong>
+
+                                <p>
+                                    <%= voluntario.disponibilidade
+                                        || 'Não informada' %>
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="voluntario-form-status-card">
 
-                <div class="campo">
+                        <span>
+                            STATUS ATUAL
+                        </span>
 
-                    <label>Status *</label>
+                        <strong>
+                            <%= voluntario.status %>
+                        </strong>
 
-                    <select
-                        name="status"
-                        required
-                    >
+                        <p>
+                            Voluntários inativos permanecem
+                            cadastrados no sistema e podem
+                            ser reativados posteriormente.
+                        </p>
 
-                        <option
-                            value="Ativo"
-                            <%= voluntario.status === 'Ativo'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Ativo
-                        </option>
+                    </div>
 
-                        <option
-                            value="Inativo"
-                            <%= voluntario.status === 'Inativo'
-                                ? 'selected'
-                                : '' %>
-                        >
-                            Inativo
-                        </option>
+                </aside>
 
-                    </select>
-
-                </div>
-
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/voluntarios"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Salvar alterações
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 

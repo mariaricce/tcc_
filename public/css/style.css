@@ -12734,3 +12734,447 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   CORREÇÃO FINAL - FORMULÁRIOS DE VOLUNTÁRIOS
+========================================================= */
+
+.voluntario-form-area {
+    padding: 40px;
+    background: var(--fundo);
+}
+
+
+.voluntario-form-grid-novo {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, 0.55fr);
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* CARD PRINCIPAL */
+
+.voluntario-form-principal {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+/* CABEÇALHO INTERNO */
+
+.voluntario-form-principal
+.voluntario-form-cabecalho {
+    display: block;
+
+    padding: 28px 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.voluntario-form-principal
+.voluntario-form-cabecalho
+.secao-etiqueta {
+    display: block;
+    width: fit-content;
+
+    margin-bottom: 10px;
+}
+
+
+.voluntario-form-principal
+.voluntario-form-cabecalho h2 {
+    margin: 0 0 6px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 24px;
+}
+
+
+.voluntario-form-principal
+.voluntario-form-cabecalho p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* REMOVE ESTILO ANTIGO DO FORMULÁRIO */
+
+.voluntario-form-principal
+.voluntario-formulario-novo {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* BLOCOS DO FORMULÁRIO */
+
+.voluntario-form-principal
+.voluntario-form-bloco {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 30px;
+
+    background: var(--branco);
+
+    border: none;
+    border-bottom: 1px solid var(--borda);
+
+    border-radius: 0;
+}
+
+
+/* TÍTULO DOS BLOCOS */
+
+.voluntario-form-principal
+.voluntario-form-bloco-titulo {
+    display: grid;
+
+    grid-template-columns: 48px 1fr;
+
+    gap: 15px;
+
+    align-items: start;
+
+    margin: 0 0 25px;
+}
+
+
+/* NÚMEROS 01, 02, 03 */
+
+.voluntario-form-principal
+.voluntario-form-bloco-titulo > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+    border-radius: 11px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+.voluntario-form-principal
+.voluntario-form-bloco-titulo h3 {
+    margin: 0 0 4px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+}
+
+
+.voluntario-form-principal
+.voluntario-form-bloco-titulo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+
+/* CAMPOS */
+
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo {
+    margin: 0 0 22px;
+}
+
+
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo label {
+    display: block;
+
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo input,
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo select {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 0 16px;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo input:focus,
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo select:focus {
+    outline: none;
+
+    border-color: var(--lilas-principal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.11);
+}
+
+
+.voluntario-form-principal
+.campo-ajuda {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* DUAS COLUNAS */
+
+.voluntario-form-principal
+.admin-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* BOTÕES */
+
+.voluntario-form-principal
+.voluntario-form-acoes-novas {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0;
+    padding: 25px 30px;
+
+    background: var(--lilas-suave);
+
+    border: none;
+}
+
+
+/* =========================================================
+   PAINEL LATERAL
+========================================================= */
+
+.voluntario-form-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.voluntario-form-ajuda-card,
+.voluntario-form-status-card {
+    padding: 25px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.voluntario-form-principal,
+
+body.modo-escuro
+.voluntario-form-principal
+.voluntario-form-cabecalho,
+
+body.modo-escuro
+.voluntario-form-principal
+.voluntario-form-bloco,
+
+body.modo-escuro
+.voluntario-form-ajuda-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo input,
+
+body.modo-escuro
+.voluntario-form-principal
+.voluntario-formulario-novo
+.campo select {
+    background: var(--fundo);
+
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .voluntario-form-grid-novo {
+        grid-template-columns: 1fr;
+    }
+
+
+    .voluntario-form-lateral {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .voluntario-form-area {
+        padding: 25px 18px;
+    }
+
+
+    .voluntario-form-principal
+    .voluntario-form-cabecalho,
+
+    .voluntario-form-principal
+    .voluntario-form-bloco {
+        padding: 24px 20px;
+    }
+
+
+    .voluntario-form-principal
+    .voluntario-form-bloco-titulo {
+        grid-template-columns: 44px 1fr;
+    }
+
+
+    .voluntario-form-principal
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .voluntario-form-lateral {
+        grid-template-columns: 1fr;
+    }
+
+
+    .voluntario-form-principal
+    .voluntario-form-acoes-novas {
+        flex-direction: column-reverse;
+
+        padding: 22px 20px;
+    }
+
+
+    .voluntario-form-principal
+    .voluntario-form-acoes-novas
+    .btn-principal,
+
+    .voluntario-form-principal
+    .voluntario-form-acoes-novas
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
