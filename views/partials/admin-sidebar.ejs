@@ -1,4 +1,11 @@
-<aside class="admin-sidebar">
+<aside
+    class="admin-sidebar"
+    aria-label="Menu administrativo"
+>
+
+    <!-- =====================================================
+         IDENTIDADE
+    ====================================================== -->
 
     <div class="admin-sidebar-topo">
 
@@ -16,53 +23,101 @@
 
         </a>
 
-        <p>
-            Administração
-        </p>
+        <div class="admin-sidebar-identidade">
+
+            <span>
+                INSTITUTO SOLIDARIZE
+            </span>
+
+            <strong>
+                Administração
+            </strong>
+
+            <p>
+                Painel de gerenciamento
+            </p>
+
+        </div>
 
     </div>
 
 
-    <nav class="admin-nav">
+    <!-- =====================================================
+         NAVEGAÇÃO
+    ====================================================== -->
 
-        <a href="/admin">
-            Dashboard
-        </a>
+    <nav
+        class="admin-nav"
+        aria-label="Navegação administrativa"
+    >
 
-        <a href="/admin/campanhas">
-            Campanhas
-        </a>
+        <!-- VISÃO GERAL -->
 
-        <a href="/admin/voluntarios">
-            Voluntários
-        </a>
+        <div class="admin-nav-grupo">
 
-        <a href="/admin/beneficiarios">
-            Beneficiários
-        </a>
+            <span class="admin-nav-titulo">
+                VISÃO GERAL
+            </span>
 
-        <a href="/admin/doacoes">
-            Doações
-        </a>
+            <a href="/admin">
+                Dashboard
+            </a>
 
-        <a href="/admin/participacoes">
-            Participações
-        </a>
+        </div>
 
-        <a href="/admin/atendimentos">
-            Atendimentos
-        </a>
+
+        <!-- GESTÃO -->
+
+        <div class="admin-nav-grupo">
+
+            <span class="admin-nav-titulo">
+                GESTÃO
+            </span>
+
+            <a href="/admin/campanhas">
+                Campanhas
+            </a>
+
+            <a href="/admin/voluntarios">
+                Voluntários
+            </a>
+
+            <a href="/admin/beneficiarios">
+                Beneficiários
+            </a>
+
+            <a href="/admin/doacoes">
+                Doações
+            </a>
+
+            <a href="/admin/participacoes">
+                Participações
+            </a>
+
+            <a href="/admin/atendimentos">
+                Atendimentos
+            </a>
+
+        </div>
 
     </nav>
 
 
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
     <div class="admin-sidebar-rodape">
+
+        <span class="admin-nav-titulo">
+            ACESSO
+        </span>
 
         <a
             href="/"
             class="admin-ver-site"
         >
-            Ver site
+            Ver site público
         </a>
 
 
@@ -75,7 +130,7 @@
                 type="submit"
                 class="admin-sair"
             >
-                Sair
+                Sair da conta
             </button>
 
         </form>
