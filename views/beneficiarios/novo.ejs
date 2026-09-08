@@ -4,20 +4,27 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-form-topo-novo">
 
             <div>
 
-                <p class="admin-subtitulo">
-                    Beneficiários
-                </p>
+                <span class="secao-etiqueta">
+                    BENEFICIÁRIOS
+                </span>
 
-                <h1>Novo Beneficiário</h1>
+                <h1>
+                    Novo beneficiário
+                </h1>
 
                 <p>
-                    Cadastre uma nova pessoa beneficiária no sistema.
+                    Cadastre uma nova pessoa beneficiária
+                    atendida pelas ações do Instituto Solidarize.
                 </p>
 
             </div>
@@ -26,142 +33,418 @@
                 href="/admin/beneficiarios"
                 class="btn-secundario"
             >
-                ← Voltar
+                Voltar para beneficiários
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-form-card">
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
 
-            <% if (typeof erro !== 'undefined' && erro) { %>
+        <section class="beneficiario-form-area">
 
-                <div class="mensagem erro">
-                    <%= erro %>
-                </div>
-
-            <% } %>
+            <div class="beneficiario-form-grid-novo">
 
 
-            <form
-                action="/admin/beneficiarios/novo"
-                method="POST"
-                class="formulario admin-formulario"
-            >
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
 
-                <div class="admin-form-grid">
+                <div class="beneficiario-form-principal">
 
-                    <div class="campo">
+                    <div class="beneficiario-form-cabecalho">
 
-                        <label for="nome">
-                            Nome completo *
-                        </label>
+                        <span class="secao-etiqueta">
+                            DADOS DO BENEFICIÁRIO
+                        </span>
 
-                        <input
-                            type="text"
-                            id="nome"
-                            name="nome"
-                            placeholder="Digite o nome completo"
-                            required
-                        >
+                        <h2>
+                            Informações do cadastro
+                        </h2>
+
+                        <p>
+                            Preencha os dados abaixo para cadastrar
+                            o beneficiário no sistema.
+                        </p>
 
                     </div>
 
 
-                    <div class="campo">
+                    <% if (typeof erro !== 'undefined' && erro) { %>
 
-                        <label for="telefone">
-                            Telefone
-                        </label>
+                        <div class="mensagem erro">
+                            <%= erro %>
+                        </div>
 
-                        <input
-                            type="text"
-                            id="telefone"
-                            name="telefone"
-                            placeholder="(00) 00000-0000"
-                        >
+                    <% } %>
+
+
+                    <form
+                        action="/admin/beneficiarios/novo"
+                        method="POST"
+                        class="formulario admin-formulario beneficiario-formulario-novo"
+                    >
+
+                        <!-- =========================================
+                             IDENTIFICAÇÃO
+                        ========================================== -->
+
+                        <div class="beneficiario-form-bloco">
+
+                            <div class="beneficiario-form-bloco-titulo">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Identificação e contato
+                                    </h3>
+
+                                    <p>
+                                        Informe o nome e, se disponível,
+                                        o telefone do beneficiário.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-form-grid">
+
+                                <div class="campo">
+
+                                    <label for="nome">
+                                        Nome completo *
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        placeholder="Digite o nome completo"
+                                        autocomplete="name"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="campo">
+
+                                    <label for="telefone">
+                                        Telefone
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="telefone"
+                                        name="telefone"
+                                        placeholder="(00) 00000-0000"
+                                        autocomplete="tel"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             LOCALIZAÇÃO E OBSERVAÇÕES
+                        ========================================== -->
+
+                        <div class="beneficiario-form-bloco">
+
+                            <div class="beneficiario-form-bloco-titulo">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Informações adicionais
+                                    </h3>
+
+                                    <p>
+                                        Registre o endereço e outras
+                                        informações importantes.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="endereco">
+                                    Endereço
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="endereco"
+                                    name="endereco"
+                                    placeholder="Rua, número, bairro e cidade"
+                                    autocomplete="street-address"
+                                >
+
+                                <small class="campo-ajuda">
+                                    Informe o endereço somente quando
+                                    essa informação estiver disponível.
+                                </small>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="observacoes">
+                                    Observações
+                                </label>
+
+                                <textarea
+                                    id="observacoes"
+                                    name="observacoes"
+                                    rows="6"
+                                    placeholder="Informações adicionais sobre o beneficiário"
+                                ></textarea>
+
+                                <small class="campo-ajuda">
+                                    Utilize este campo para registrar
+                                    informações relevantes ao atendimento.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             STATUS
+                        ========================================== -->
+
+                        <div class="beneficiario-form-bloco">
+
+                            <div class="beneficiario-form-bloco-titulo">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Situação do cadastro
+                                    </h3>
+
+                                    <p>
+                                        Defina se o beneficiário ficará
+                                        ativo ou inativo no sistema.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label for="status">
+                                    Status *
+                                </label>
+
+                                <select
+                                    id="status"
+                                    name="status"
+                                    required
+                                >
+
+                                    <option value="Ativo">
+                                        Ativo
+                                    </option>
+
+                                    <option value="Inativo">
+                                        Inativo
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AÇÕES
+                        ========================================== -->
+
+                        <div class="admin-form-acoes beneficiario-form-acoes-novas">
+
+                            <a
+                                href="/admin/beneficiarios"
+                                class="btn-secundario"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn-principal"
+                            >
+                                Cadastrar beneficiário
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAINEL LATERAL
+                ================================================== -->
+
+                <aside class="beneficiario-form-lateral">
+
+                    <div class="beneficiario-form-ajuda-card">
+
+                        <span class="secao-etiqueta">
+                            ORIENTAÇÕES
+                        </span>
+
+                        <h2>
+                            Sobre o cadastro
+                        </h2>
+
+                        <p>
+                            Mantenha os dados organizados para
+                            facilitar o acompanhamento das pessoas
+                            atendidas pelo Instituto.
+                        </p>
+
+
+                        <div class="beneficiario-form-ajuda-item">
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Identificação
+                                </strong>
+
+                                <p>
+                                    O nome é obrigatório para identificar
+                                    o beneficiário no sistema.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="beneficiario-form-ajuda-item">
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Contato
+                                </strong>
+
+                                <p>
+                                    O telefone pode facilitar a comunicação
+                                    com a pessoa atendida.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="beneficiario-form-ajuda-item">
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Observações
+                                </strong>
+
+                                <p>
+                                    Registre somente informações úteis
+                                    para o acompanhamento do atendimento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="beneficiario-form-ajuda-item">
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Status
+                                </strong>
+
+                                <p>
+                                    Beneficiários inativos continuam
+                                    cadastrados e podem ser reativados.
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="beneficiario-form-status-card">
 
-                <div class="campo">
+                        <span>
+                            STATUS INICIAL
+                        </span>
 
-                    <label for="endereco">
-                        Endereço
-                    </label>
-
-                    <input
-                        type="text"
-                        id="endereco"
-                        name="endereco"
-                        placeholder="Rua, número, bairro e cidade"
-                    >
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="observacoes">
-                        Observações
-                    </label>
-
-                    <textarea
-                        id="observacoes"
-                        name="observacoes"
-                        rows="5"
-                        placeholder="Informações adicionais sobre o beneficiário"
-                    ></textarea>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="status">
-                        Status *
-                    </label>
-
-                    <select
-                        id="status"
-                        name="status"
-                        required
-                    >
-
-                        <option value="Ativo">
+                        <strong>
                             Ativo
-                        </option>
+                        </strong>
 
-                        <option value="Inativo">
-                            Inativo
-                        </option>
+                        <p>
+                            O novo beneficiário começa com o status
+                            Ativo selecionado. Você pode alterá-lo
+                            antes de concluir o cadastro.
+                        </p>
 
-                    </select>
+                    </div>
 
-                </div>
+                </aside>
 
-
-                <div class="admin-form-acoes">
-
-                    <a
-                        href="/admin/beneficiarios"
-                        class="btn-secundario"
-                    >
-                        Cancelar
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-principal"
-                    >
-                        Cadastrar beneficiário
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </section>
 

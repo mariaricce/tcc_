@@ -4,96 +4,359 @@
 
     <%- include('../partials/admin-sidebar') %>
 
-    <main class="admin-conteudo">
+    <main class="admin-conteudo admin-conteudo-novo">
 
-        <div class="admin-cabecalho">
+        <%
+            const listaBeneficiarios =
+                beneficiarios || [];
+
+            const totalBeneficiarios =
+                listaBeneficiarios.length;
+
+            const beneficiariosAtivos =
+                listaBeneficiarios.filter(
+                    beneficiario =>
+                        beneficiario.status === 'Ativo'
+                ).length;
+
+            const beneficiariosInativos =
+                listaBeneficiarios.filter(
+                    beneficiario =>
+                        beneficiario.status === 'Inativo'
+                ).length;
+
+            const comTelefone =
+                listaBeneficiarios.filter(
+                    beneficiario =>
+                        beneficiario.telefone
+                ).length;
+        %>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <header class="admin-listagem-topo">
 
             <div>
-                <p class="admin-subtitulo">
-                    Instituto Solidarize
-                </p>
 
-                <h1>Beneficiários</h1>
+                <span class="secao-etiqueta">
+                    GERENCIAMENTO
+                </span>
+
+                <h1>
+                    Beneficiários
+                </h1>
 
                 <p>
-                    Consulte e gerencie as pessoas beneficiadas pela instituição.
+                    Consulte, cadastre e gerencie as pessoas
+                    beneficiadas pelas ações do Instituto Solidarize.
                 </p>
+
             </div>
+
 
             <a
                 href="/admin/beneficiarios/novo"
                 class="btn-principal"
             >
-                + Novo beneficiário
+                Novo beneficiário
             </a>
 
-        </div>
+        </header>
 
 
-        <section class="admin-pagina-card">
+        <!-- =====================================================
+             RESUMO
+        ====================================================== -->
 
-            <% if (beneficiarios.length === 0) { %>
+        <section class="beneficiarios-admin-resumo">
 
-                <div class="admin-vazio">
+            <div class="beneficiarios-admin-resumo-card">
 
-                    <span>👥</span>
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    <%= totalBeneficiarios %>
+                </strong>
+
+                <p>
+                    Beneficiários cadastrados
+                </p>
+
+            </div>
+
+
+            <div class="beneficiarios-admin-resumo-card">
+
+                <span>
+                    ATIVOS
+                </span>
+
+                <strong>
+                    <%= beneficiariosAtivos %>
+                </strong>
+
+                <p>
+                    Beneficiários ativos
+                </p>
+
+            </div>
+
+
+            <div class="beneficiarios-admin-resumo-card">
+
+                <span>
+                    INATIVOS
+                </span>
+
+                <strong>
+                    <%= beneficiariosInativos %>
+                </strong>
+
+                <p>
+                    Beneficiários inativos
+                </p>
+
+            </div>
+
+
+            <div class="beneficiarios-admin-resumo-card">
+
+                <span>
+                    COM CONTATO
+                </span>
+
+                <strong>
+                    <%= comTelefone %>
+                </strong>
+
+                <p>
+                    Cadastros com telefone
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LISTAGEM
+        ====================================================== -->
+
+        <section class="admin-pagina-card beneficiarios-admin-listagem">
+
+            <div class="beneficiarios-admin-listagem-topo">
+
+                <div>
+
+                    <span class="secao-etiqueta">
+                        REGISTROS
+                    </span>
+
+                    <h2>
+                        Beneficiários cadastrados
+                    </h2>
 
                     <p>
-                        Nenhum beneficiário cadastrado.
+                        Consulte os dados de contato, endereço
+                        e situação dos beneficiários.
                     </p>
+
+                </div>
+
+
+                <span class="beneficiarios-admin-quantidade">
+
+                    <%= totalBeneficiarios %>
+
+                    <%= totalBeneficiarios === 1
+                        ? 'beneficiário'
+                        : 'beneficiários' %>
+
+                </span>
+
+            </div>
+
+
+            <% if (listaBeneficiarios.length === 0) { %>
+
+                <div class="admin-vazio beneficiarios-admin-vazio">
+
+                    <span class="secao-etiqueta">
+                        NENHUM REGISTRO
+                    </span>
+
+                    <h3>
+                        Nenhum beneficiário cadastrado
+                    </h3>
+
+                    <p>
+                        Cadastre o primeiro beneficiário
+                        para começar a organizar as pessoas
+                        atendidas pelo Instituto.
+                    </p>
+
+                    <a
+                        href="/admin/beneficiarios/novo"
+                        class="btn-principal"
+                    >
+                        Cadastrar beneficiário
+                    </a>
 
                 </div>
 
             <% } else { %>
 
-                <div class="tabela-container">
+                <div class="tabela-container beneficiarios-admin-tabela">
 
                     <table>
 
                         <thead>
+
                             <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Telefone</th>
-                                <th>Endereço</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Beneficiário
+                                </th>
+
+                                <th>
+                                    Telefone
+                                </th>
+
+                                <th>
+                                    Endereço
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
                             </tr>
+
                         </thead>
+
 
                         <tbody>
 
-                            <% beneficiarios.forEach(beneficiario => { %>
+                            <% listaBeneficiarios.forEach(beneficiario => { %>
 
                                 <tr>
 
-                                    <td>
-                                        <%= beneficiario.id %>
-                                    </td>
+                                    <!-- ID -->
 
                                     <td>
-                                        <strong>
-                                            <%= beneficiario.nome %>
-                                        </strong>
+
+                                        <span class="beneficiario-admin-id">
+                                            #<%= beneficiario.id %>
+                                        </span>
+
                                     </td>
 
-                                    <td>
-                                        <%= beneficiario.telefone || '-' %>
-                                    </td>
+
+                                    <!-- BENEFICIÁRIO -->
 
                                     <td>
-                                        <%= beneficiario.endereco || '-' %>
+
+                                        <div class="beneficiario-admin-identidade">
+
+                                            <div class="beneficiario-admin-avatar">
+
+                                                <%= beneficiario.nome
+                                                    .charAt(0)
+                                                    .toUpperCase() %>
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+                                                    <%= beneficiario.nome %>
+                                                </strong>
+
+                                                <span>
+                                                    Beneficiário cadastrado
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
                                     </td>
 
+
+                                    <!-- TELEFONE -->
+
                                     <td>
-                                        <span class="status-admin">
+
+                                        <% if (beneficiario.telefone) { %>
+
+                                            <span class="beneficiario-admin-telefone">
+                                                <%= beneficiario.telefone %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="beneficiario-admin-sem-dado">
+                                                Não informado
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- ENDEREÇO -->
+
+                                    <td>
+
+                                        <% if (beneficiario.endereco) { %>
+
+                                            <span class="beneficiario-admin-endereco">
+                                                <%= beneficiario.endereco %>
+                                            </span>
+
+                                        <% } else { %>
+
+                                            <span class="beneficiario-admin-sem-dado">
+                                                Não informado
+                                            </span>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+                                        <span
+                                            class="status-admin status-<%= beneficiario.status.toLowerCase() %>"
+                                        >
                                             <%= beneficiario.status %>
                                         </span>
+
                                     </td>
+
+
+                                    <!-- AÇÕES -->
 
                                     <td>
 
-                                        <div class="acoes-tabela">
+                                        <div class="acoes-tabela beneficiarios-admin-acoes">
 
                                             <a
                                                 href="/admin/beneficiarios/<%= beneficiario.id %>/editar"
@@ -101,6 +364,7 @@
                                             >
                                                 Editar
                                             </a>
+
 
                                             <form
                                                 action="/admin/beneficiarios/<%= beneficiario.id %>/excluir"

@@ -13178,3 +13178,1125 @@ body.modo-escuro
     }
 
 }
+/* =========================================================
+   ADMIN - BENEFICIÁRIOS
+========================================================= */
+
+
+/* RESUMO */
+
+.beneficiarios-admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 40px 40px 0;
+}
+
+
+.beneficiarios-admin-resumo-card {
+    padding: 23px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.beneficiarios-admin-resumo-card > span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.beneficiarios-admin-resumo-card > strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+}
+
+
+.beneficiarios-admin-resumo-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* LISTAGEM */
+
+.beneficiarios-admin-listagem {
+    margin: 35px 40px 45px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.beneficiarios-admin-listagem-topo {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 27px 28px;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.beneficiarios-admin-listagem-topo h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 23px;
+}
+
+
+.beneficiarios-admin-listagem-topo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.beneficiarios-admin-quantidade {
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 30px;
+
+    color: var(--lilas-escuro);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* TABELA */
+
+.beneficiarios-admin-tabela {
+    overflow-x: auto;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+.beneficiarios-admin-tabela table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+}
+
+
+.beneficiarios-admin-tabela th {
+    padding: 13px 15px;
+
+    background: var(--lilas-suave);
+
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+.beneficiarios-admin-tabela td {
+    padding: 16px 15px;
+
+    color: var(--texto);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--borda);
+
+    vertical-align: middle;
+}
+
+
+.beneficiarios-admin-tabela
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.beneficiarios-admin-tabela
+tbody tr:hover {
+    background: var(--lilas-suave);
+}
+
+
+/* ID */
+
+.beneficiario-admin-id {
+    color: var(--texto-claro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* IDENTIDADE */
+
+.beneficiario-admin-identidade {
+    display: grid;
+
+    grid-template-columns:
+        45px minmax(0, 1fr);
+
+    gap: 12px;
+
+    align-items: center;
+
+    min-width: 220px;
+}
+
+
+.beneficiario-admin-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 50%;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.beneficiario-admin-identidade strong {
+    display: block;
+
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.beneficiario-admin-identidade
+div:last-child > span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* DADOS */
+
+.beneficiario-admin-telefone {
+    color: var(--texto);
+
+    white-space: nowrap;
+}
+
+
+.beneficiario-admin-endereco {
+    display: block;
+
+    max-width: 280px;
+
+    color: var(--texto);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.beneficiario-admin-sem-dado {
+    color: var(--texto-claro);
+
+    font-size: 10px;
+}
+
+
+/* AÇÕES */
+
+.beneficiarios-admin-acoes {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.beneficiarios-admin-acoes form {
+    margin: 0;
+}
+
+
+.beneficiarios-admin-acoes
+.btn-editar,
+.beneficiarios-admin-acoes
+.btn-excluir {
+    min-height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 11px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* VAZIO */
+
+.beneficiarios-admin-vazio {
+    margin: 0;
+
+    padding: 65px 30px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+.beneficiarios-admin-vazio h3 {
+    margin-bottom: 8px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 20px;
+}
+
+
+.beneficiarios-admin-vazio p {
+    max-width: 500px;
+
+    margin: 0 auto 22px;
+
+    color: var(--texto-claro);
+
+    line-height: 1.7;
+}
+
+
+/* MODO ESCURO */
+
+body.modo-escuro
+.beneficiarios-admin-resumo-card,
+body.modo-escuro
+.beneficiarios-admin-listagem {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.beneficiarios-admin-tabela th,
+body.modo-escuro
+.beneficiario-admin-avatar,
+body.modo-escuro
+.beneficiarios-admin-quantidade {
+    background: var(--lilas-suave);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 1200px) {
+
+    .beneficiarios-admin-resumo {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .beneficiarios-admin-resumo {
+        padding:
+            28px 28px 0;
+    }
+
+
+    .beneficiarios-admin-listagem {
+        margin:
+            30px 28px 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .beneficiarios-admin-resumo {
+        grid-template-columns: 1fr;
+
+        padding:
+            25px 18px 0;
+    }
+
+
+    .beneficiarios-admin-listagem {
+        margin:
+            25px 18px 35px;
+    }
+
+
+    .beneficiarios-admin-listagem-topo {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 22px 20px;
+    }
+
+}
+/* =========================================================
+   ADMIN - FORMULÁRIO DE BENEFICIÁRIO
+========================================================= */
+
+.beneficiario-form-area {
+    padding: 40px;
+    background: var(--fundo);
+}
+
+
+.beneficiario-form-grid-novo {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, 0.55fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   CARD PRINCIPAL
+========================================================= */
+
+.beneficiario-form-principal {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-cabecalho {
+    padding: 28px 30px;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-cabecalho
+.secao-etiqueta {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 10px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-cabecalho h2 {
+    margin: 0 0 5px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 24px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-cabecalho p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.beneficiario-form-principal
+> .mensagem {
+    margin: 25px 30px 0;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   BLOCOS
+========================================================= */
+
+.beneficiario-form-principal
+.beneficiario-form-bloco {
+    width: 100%;
+
+    margin: 0;
+    padding: 30px;
+
+    background: var(--branco);
+
+    border: none;
+    border-bottom: 1px solid var(--borda);
+
+    border-radius: 0;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-bloco-titulo {
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 15px;
+
+    align-items: start;
+
+    margin-bottom: 25px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-bloco-titulo > span {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border: 1px solid var(--borda);
+    border-radius: 11px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-bloco-titulo h3 {
+    margin: 0 0 4px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 17px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-form-bloco-titulo p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo {
+    margin: 0 0 22px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo input,
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo select,
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo textarea {
+    width: 100%;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo input,
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo select {
+    min-height: 48px;
+
+    padding: 0 16px;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo textarea {
+    min-height: 140px;
+
+    padding: 14px 16px;
+
+    resize: vertical;
+}
+
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo input:focus,
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo select:focus,
+
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo textarea:focus {
+    outline: none;
+
+    border-color: var(--lilas-principal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.11);
+}
+
+
+.beneficiario-form-principal
+.campo-ajuda {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.beneficiario-form-principal
+.admin-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.beneficiario-form-principal
+.beneficiario-form-acoes-novas {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0;
+    padding: 25px 30px;
+
+    background: var(--lilas-suave);
+}
+
+
+/* =========================================================
+   PAINEL LATERAL
+========================================================= */
+
+.beneficiario-form-lateral {
+    display: grid;
+
+    gap: 18px;
+}
+
+
+.beneficiario-form-ajuda-card,
+.beneficiario-form-status-card {
+    padding: 25px;
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: 17px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(73, 43, 120, 0.05);
+}
+
+
+.beneficiario-form-ajuda-card h2 {
+    margin: 0 0 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 21px;
+}
+
+
+.beneficiario-form-ajuda-card > p {
+    margin: 0 0 25px;
+
+    color: var(--texto-claro);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+.beneficiario-form-ajuda-item {
+    display: grid;
+
+    grid-template-columns:
+        38px 1fr;
+
+    gap: 12px;
+
+    padding: 15px 0;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.beneficiario-form-ajuda-item > span {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--lilas-suave);
+
+    border-radius: 9px;
+
+    color: var(--lilas-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.beneficiario-form-ajuda-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-size: 13px;
+}
+
+
+.beneficiario-form-ajuda-item p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.beneficiario-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #eee5ff,
+            #faf8ff
+        );
+}
+
+
+.beneficiario-form-status-card > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--lilas-principal);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.beneficiario-form-status-card > strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--lilas-muito-escuro);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 22px;
+}
+
+
+.beneficiario-form-status-card p {
+    margin: 0;
+
+    color: var(--texto-claro);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MODO ESCURO
+========================================================= */
+
+body.modo-escuro
+.beneficiario-form-principal,
+
+body.modo-escuro
+.beneficiario-form-principal
+.beneficiario-form-cabecalho,
+
+body.modo-escuro
+.beneficiario-form-principal
+.beneficiario-form-bloco,
+
+body.modo-escuro
+.beneficiario-form-ajuda-card {
+    background: var(--branco);
+}
+
+
+body.modo-escuro
+.beneficiario-form-status-card {
+    background:
+        linear-gradient(
+            135deg,
+            #2b213a,
+            #19151f
+        );
+}
+
+
+body.modo-escuro
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo input,
+
+body.modo-escuro
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo select,
+
+body.modo-escuro
+.beneficiario-form-principal
+.beneficiario-formulario-novo
+.campo textarea {
+    background: var(--fundo);
+
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .beneficiario-form-grid-novo {
+        grid-template-columns: 1fr;
+    }
+
+
+    .beneficiario-form-lateral {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .beneficiario-form-area {
+        padding: 28px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .beneficiario-form-area {
+        padding: 25px 18px;
+    }
+
+
+    .beneficiario-form-principal
+    .beneficiario-form-cabecalho,
+
+    .beneficiario-form-principal
+    .beneficiario-form-bloco {
+        padding: 24px 20px;
+    }
+
+
+    .beneficiario-form-principal
+    .beneficiario-form-bloco-titulo {
+        grid-template-columns:
+            44px 1fr;
+    }
+
+
+    .beneficiario-form-principal
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .beneficiario-form-lateral {
+        grid-template-columns: 1fr;
+    }
+
+
+    .beneficiario-form-principal
+    .beneficiario-form-acoes-novas {
+        flex-direction: column-reverse;
+
+        padding: 22px 20px;
+    }
+
+
+    .beneficiario-form-principal
+    .beneficiario-form-acoes-novas
+    .btn-principal,
+
+    .beneficiario-form-principal
+    .beneficiario-form-acoes-novas
+    .btn-secundario {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
